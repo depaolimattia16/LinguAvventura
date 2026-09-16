@@ -139,6 +139,7 @@
   .menu-card:nth-child(2){--r:1deg;}
   .menu-card:nth-child(3){--r:-1.2deg;}
   .menu-card:nth-child(4){--r:0.8deg;}
+  .menu-card:nth-child(5){--r:-0.6deg;}
   .menu-card .emoji{font-size:1.8rem;}
   .menu-card h3{margin:2px 0 0;color:var(--ink);}
   .menu-card span.desc{color:var(--charcoal-soft);font-size:.9rem;}

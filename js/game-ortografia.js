@@ -13,9 +13,10 @@ function fillOrthoBanks(data){
 }
 function goOrtografiaChoose(){ state.view='ortografiaChoose'; render(); }
 function viewOrtografiaChoose(){
-  const cards = Object.keys(ORTHO_TOPICS).map(k=>
-    `<button class="mode-card" onclick="startOrtografiaTopic('${k}')"><span class="emoji">🔤</span><div class="txt"><strong>${ORTHO_TOPICS[k].label}</strong></div></button>`
-  ).join('');
+  const cards = Object.keys(ORTHO_TOPICS).map(k=>{
+    const n = ORTHO_TOPICS[k].bank.length;
+    return `<button class="mode-card" onclick="startOrtografiaTopic('${k}')"><span class="emoji">🔤</span><div class="txt"><strong>${ORTHO_TOPICS[k].label}</strong><span>${n} esempi</span></div></button>`;
+  }).join('');
   return `
   <h2>Ortografia</h2>
   <p class="hint">Scegli su quale regola vuoi allenarti.</p>

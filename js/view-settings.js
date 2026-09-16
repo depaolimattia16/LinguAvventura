@@ -37,7 +37,7 @@ function viewSettings(){
   `).join('');
   return `
   <h2>Argomenti</h2>
-  <p class="hint">Scegli su cosa vuoi allenare la classe: le scelte valgono per tutte le modalità di gioco.</p>
+  <p class="hint">Scegli su cosa vuoi allenare la classe nelle modalità di Grammatica. (L'Ortografia ha sempre tutte le regole disponibili: non serve attivarle qui.)</p>
   <div class="blackboard">
     <h3>Parti del discorso</h3>
     ${tipiRows}
