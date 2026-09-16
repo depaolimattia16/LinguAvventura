@@ -5,7 +5,10 @@ function goHome(){ clearIntervals(); state.view='home'; state.gameMode=null; ren
 function goModeSelect(){ clearIntervals(); state.view='modeSelect'; render(); }
 function goSettings(){ clearIntervals(); state.view='settings'; render(); }
 function goProgress(){ clearIntervals(); state.view='progress'; render(); }
-function clearIntervals(){ if(state.game && state.game.intervalId){ clearInterval(state.game.intervalId); } }
+function clearIntervals(){
+  if(state.game && state.game.intervalId){ clearInterval(state.game.intervalId); state.game.intervalId=null; }
+  if(state.splitIntervalId){ clearInterval(state.splitIntervalId); state.splitIntervalId=null; }
+}
 
 function render(){
   renderTopbar();
