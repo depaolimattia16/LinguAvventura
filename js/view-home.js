@@ -15,7 +15,7 @@ function viewHome(){
   </div>
   <div class="menu-grid">
     <button class="menu-card" onclick="goModeSelect()"><span class="emoji">🎮</span><h3>Gioca</h3><span class="desc">Scegli una modalità e mettiti alla prova</span></button>
-    <button class="menu-card" onclick="goClassroom()"><span class="emoji">📺</span><h3>Modalità classe</h3><span class="desc">Da usare alla LIM, tutti insieme</span></button>
+    <button class="menu-card" onclick="goClassroomChoose()"><span class="emoji">📺</span><h3>Modalità classe</h3><span class="desc">Da usare alla LIM, tutti insieme</span></button>
     <button class="menu-card" onclick="goSettings()"><span class="emoji">📚</span><h3>Argomenti</h3><span class="desc">Scegli su cosa allenarti</span></button>
     <button class="menu-card" onclick="goProgress()"><span class="emoji">🏆</span><h3>Progressi</h3><span class="desc">XP, giorni di fila e medaglie</span></button>
   </div>`;

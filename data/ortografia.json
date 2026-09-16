@@ -109,6 +109,76 @@
       "s": "energia",
       "ok": "energie",
       "bad": "energe"
+    },
+    {
+      "s": "quercia",
+      "ok": "querce",
+      "bad": "quercie"
+    },
+    {
+      "s": "traccia",
+      "ok": "tracce",
+      "bad": "traccie"
+    },
+    {
+      "s": "goccia",
+      "ok": "gocce",
+      "bad": "goccie"
+    },
+    {
+      "s": "caccia",
+      "ok": "cacce",
+      "bad": "caccie"
+    },
+    {
+      "s": "loggia",
+      "ok": "logge",
+      "bad": "loggie"
+    },
+    {
+      "s": "reggia",
+      "ok": "regge",
+      "bad": "reggie"
+    },
+    {
+      "s": "salsiccia",
+      "ok": "salsicce",
+      "bad": "salsiccie"
+    },
+    {
+      "s": "geografia",
+      "ok": "geografie",
+      "bad": "geografe"
+    },
+    {
+      "s": "biologia",
+      "ok": "biologie",
+      "bad": "biologe"
+    },
+    {
+      "s": "filosofia",
+      "ok": "filosofie",
+      "bad": "filosofe"
+    },
+    {
+      "s": "chirurgia",
+      "ok": "chirurgie",
+      "bad": "chirurge"
+    },
+    {
+      "s": "nostalgia",
+      "ok": "nostalgie",
+      "bad": "nostalge"
+    },
+    {
+      "s": "cartuccia",
+      "ok": "cartucce",
+      "bad": "cartuccie"
+    },
+    {
+      "s": "grattugia",
+      "ok": "grattugie",
+      "bad": "grattuge"
     }
   ],
   "scesci": [
@@ -143,6 +213,46 @@
     {
       "ok": "coscienza",
       "bad": "coscenza"
+    },
+    {
+      "ok": "scelta",
+      "bad": "scielta"
+    },
+    {
+      "ok": "scesa",
+      "bad": "sciesa"
+    },
+    {
+      "ok": "discesa",
+      "bad": "disciesa"
+    },
+    {
+      "ok": "uscendo",
+      "bad": "usciendo"
+    },
+    {
+      "ok": "scienziato",
+      "bad": "scenziato"
+    },
+    {
+      "ok": "coscienzioso",
+      "bad": "coscenzioso"
+    },
+    {
+      "ok": "conoscere",
+      "bad": "conosciere"
+    },
+    {
+      "ok": "riconoscere",
+      "bad": "riconosciere"
+    },
+    {
+      "ok": "cosciente",
+      "bad": "coscente"
+    },
+    {
+      "ok": "incosciente",
+      "bad": "incoscente"
     }
   ],
   "glili": [
@@ -185,6 +295,62 @@
     {
       "ok": "egli",
       "bad": "eli"
+    },
+    {
+      "ok": "gigli",
+      "bad": "gili"
+    },
+    {
+      "ok": "moglie",
+      "bad": "molie"
+    },
+    {
+      "ok": "biglietto",
+      "bad": "bilietto"
+    },
+    {
+      "ok": "consiglio",
+      "bad": "consilio"
+    },
+    {
+      "ok": "sveglia",
+      "bad": "svelia"
+    },
+    {
+      "ok": "meraviglia",
+      "bad": "meravilia"
+    },
+    {
+      "ok": "taglio",
+      "bad": "talio"
+    },
+    {
+      "ok": "foglio",
+      "bad": "folio"
+    },
+    {
+      "ok": "orgoglio",
+      "bad": "orgolio"
+    },
+    {
+      "ok": "risveglio",
+      "bad": "risvelio"
+    },
+    {
+      "ok": "abbaglio",
+      "bad": "abbalio"
+    },
+    {
+      "ok": "imbroglio",
+      "bad": "imbrolio"
+    },
+    {
+      "ok": "sbaglio",
+      "bad": "sbalio"
+    },
+    {
+      "ok": "veglia",
+      "bad": "velia"
     }
   ],
   "cuqu": [
@@ -235,6 +401,106 @@
     {
       "ok": "soqquadro",
       "bad": "soquadro"
+    },
+    {
+      "ok": "percuotere",
+      "bad": "perquotere"
+    },
+    {
+      "ok": "riscuotere",
+      "bad": "risquotere"
+    },
+    {
+      "ok": "scuotere",
+      "bad": "squotere"
+    },
+    {
+      "ok": "quota",
+      "bad": "cuota"
+    },
+    {
+      "ok": "quotidiano",
+      "bad": "cuotidiano"
+    },
+    {
+      "ok": "equatore",
+      "bad": "ecuatore"
+    },
+    {
+      "ok": "acquazzone",
+      "bad": "aquazzone"
+    },
+    {
+      "ok": "acquisto",
+      "bad": "aquisto"
+    },
+    {
+      "ok": "acquerello",
+      "bad": "aquerello"
+    },
+    {
+      "ok": "cuocere",
+      "bad": "quocere"
+    },
+    {
+      "ok": "qualcosa",
+      "bad": "cualcosa"
+    },
+    {
+      "ok": "qualcuno",
+      "bad": "cualcuno"
+    },
+    {
+      "ok": "qualche",
+      "bad": "cualche"
+    },
+    {
+      "ok": "quale",
+      "bad": "cuale"
+    },
+    {
+      "ok": "quanto",
+      "bad": "cuanto"
+    },
+    {
+      "ok": "questa",
+      "bad": "cuesta"
+    },
+    {
+      "ok": "quinto",
+      "bad": "cuinto"
+    },
+    {
+      "ok": "quarto",
+      "bad": "cuarto"
+    },
+    {
+      "ok": "quaranta",
+      "bad": "cuaranta"
+    },
+    {
+      "ok": "quindici",
+      "bad": "cuindici"
+    },
+    {
+      "ok": "aquilone",
+      "bad": "acuilone"
+    },
+    {
+      "ok": "aquila",
+      "bad": "acuila"
+    },
+    {
+      "ok": "tacque",
+      "bad": "tacue"
+    },
+    {
+      "ok": "piacque",
+      "bad": "piacue"
+    },
+    {
+      "ok": "acquedotto",
+      "bad": "aquedotto"
     }
   ],
   "doppie": [
@@ -289,6 +555,142 @@
     {
       "ok": "cappello",
       "bad": "capelo"
+    },
+    {
+      "ok": "campanella",
+      "bad": "campanela"
+    },
+    {
+      "ok": "formaggio",
+      "bad": "formagio"
+    },
+    {
+      "ok": "cioccolato",
+      "bad": "ciocolato"
+    },
+    {
+      "ok": "ombrello",
+      "bad": "ombrelo"
+    },
+    {
+      "ok": "cappotto",
+      "bad": "capoto"
+    },
+    {
+      "ok": "ferro",
+      "bad": "fero"
+    },
+    {
+      "ok": "terra",
+      "bad": "tera"
+    },
+    {
+      "ok": "fiamma",
+      "bad": "fiama"
+    },
+    {
+      "ok": "stella",
+      "bad": "stela"
+    },
+    {
+      "ok": "cassetto",
+      "bad": "casetto"
+    },
+    {
+      "ok": "occhiali",
+      "bad": "ochiali"
+    },
+    {
+      "ok": "arrivo",
+      "bad": "arivo"
+    },
+    {
+      "ok": "spazzola",
+      "bad": "spazola"
+    },
+    {
+      "ok": "settimana",
+      "bad": "setimana"
+    },
+    {
+      "ok": "cattivo",
+      "bad": "cativo"
+    },
+    {
+      "ok": "grosso",
+      "bad": "groso"
+    },
+    {
+      "ok": "pacco",
+      "bad": "paco"
+    },
+    {
+      "ok": "riccio",
+      "bad": "ricio"
+    },
+    {
+      "ok": "secchio",
+      "bad": "sechio"
+    },
+    {
+      "ok": "vecchio",
+      "bad": "vechio"
+    },
+    {
+      "ok": "chiocciola",
+      "bad": "chiociola"
+    },
+    {
+      "ok": "spiaggia",
+      "bad": "spiagia"
+    },
+    {
+      "ok": "spaghetti",
+      "bad": "spagheti"
+    },
+    {
+      "ok": "biscotto",
+      "bad": "biscoto"
+    },
+    {
+      "ok": "gonna",
+      "bad": "gona"
+    },
+    {
+      "ok": "letto",
+      "bad": "leto"
+    },
+    {
+      "ok": "sorella",
+      "bad": "sorela"
+    },
+    {
+      "ok": "cavallo",
+      "bad": "cavalo"
+    },
+    {
+      "ok": "giraffa",
+      "bad": "girafa"
+    },
+    {
+      "ok": "occhio",
+      "bad": "ochio"
+    },
+    {
+      "ok": "stoffa",
+      "bad": "stofa"
+    },
+    {
+      "ok": "grasso",
+      "bad": "graso"
+    },
+    {
+      "ok": "trattore",
+      "bad": "tratore"
+    },
+    {
+      "ok": "carrello",
+      "bad": "carello"
     }
   ],
   "letterah": [
@@ -349,6 +751,146 @@
     },
     {
       "sentence": "Non ___ capito.",
+      "ok": "hanno",
+      "bad": "anno"
+    },
+    {
+      "sentence": "Non ___ voglia di uscire.",
+      "ok": "ho",
+      "bad": "o"
+    },
+    {
+      "sentence": "___ due gatti.",
+      "ok": "ho",
+      "bad": "o"
+    },
+    {
+      "sentence": "Cosa ___ fatto?",
+      "ok": "hai",
+      "bad": "ai"
+    },
+    {
+      "sentence": "___ fame?",
+      "ok": "hai",
+      "bad": "ai"
+    },
+    {
+      "sentence": "La mamma ___ chiamato.",
+      "ok": "ha",
+      "bad": "a"
+    },
+    {
+      "sentence": "Chi ___ vinto?",
+      "ok": "ha",
+      "bad": "a"
+    },
+    {
+      "sentence": "I ragazzi ___ vinto la partita.",
+      "ok": "hanno",
+      "bad": "anno"
+    },
+    {
+      "sentence": "Non ___ ancora finito.",
+      "ok": "hanno",
+      "bad": "anno"
+    },
+    {
+      "sentence": "___ molti amici.",
+      "ok": "ho",
+      "bad": "o"
+    },
+    {
+      "sentence": "Ieri ___ giocato a calcio.",
+      "ok": "ho",
+      "bad": "o"
+    },
+    {
+      "sentence": "___ sonno.",
+      "ok": "ho",
+      "bad": "o"
+    },
+    {
+      "sentence": "Non ___ capito niente.",
+      "ok": "ho",
+      "bad": "o"
+    },
+    {
+      "sentence": "___ sete.",
+      "ok": "ho",
+      "bad": "o"
+    },
+    {
+      "sentence": "___ dormito bene?",
+      "ok": "hai",
+      "bad": "ai"
+    },
+    {
+      "sentence": "Non ___ ancora mangiato.",
+      "ok": "hai",
+      "bad": "ai"
+    },
+    {
+      "sentence": "Che cosa ___ nello zaino?",
+      "ok": "hai",
+      "bad": "ai"
+    },
+    {
+      "sentence": "___ paura del buio?",
+      "ok": "hai",
+      "bad": "ai"
+    },
+    {
+      "sentence": "___ ragione tu.",
+      "ok": "hai",
+      "bad": "ai"
+    },
+    {
+      "sentence": "Il cane ___ abbaiato.",
+      "ok": "ha",
+      "bad": "a"
+    },
+    {
+      "sentence": "Luca ___ vinto la gara.",
+      "ok": "ha",
+      "bad": "a"
+    },
+    {
+      "sentence": "Non ___ nessun problema.",
+      "ok": "ha",
+      "bad": "a"
+    },
+    {
+      "sentence": "___ sempre fretta.",
+      "ok": "ha",
+      "bad": "a"
+    },
+    {
+      "sentence": "La maestra ___ spiegato la lezione.",
+      "ok": "ha",
+      "bad": "a"
+    },
+    {
+      "sentence": "___ mangiato tutta la torta.",
+      "ok": "hanno",
+      "bad": "anno"
+    },
+    {
+      "sentence": "I miei genitori ___ telefonato.",
+      "ok": "hanno",
+      "bad": "anno"
+    },
+    {
+      "sentence": "___ paura dei tuoni.",
+      "ok": "hanno",
+      "bad": "anno"
+    },
+    {
+      "sentence": "Le squadre ___ giocato bene.",
+      "ok": "hanno",
+      "bad": "anno"
+    },
+    {
+      "sentence": "Non ___ visto niente.",
       "ok": "hanno",
       "bad": "anno"
     }

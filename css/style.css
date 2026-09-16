@@ -247,6 +247,19 @@
   .team-verde .score{color:var(--grass);}
   .team-box button{margin-top:6px;}
 
+  /* classroom - schermo diviso */
+  .split-row{display:flex;gap:16px;margin-top:14px;flex-wrap:wrap;align-items:stretch;}
+  .split-col{
+    flex:1;min-width:260px;text-align:center;
+    background:var(--card-bg);border:3px solid var(--paper-line);border-radius:var(--radius-sticker);
+    box-shadow:var(--shadow-hard);padding:18px 14px;
+  }
+  .split-col.blu{border-color:#3D6FE0;}
+  .split-col.rosso{border-color:var(--coral);}
+  .split-col h3{font-family:'Baloo 2';margin:0 0 4px;}
+  .split-score{font-family:'Baloo 2';font-size:2.2rem;font-weight:800;color:var(--ink);margin-bottom:10px;}
+  .options-grid-single{display:grid;grid-template-columns:1fr;gap:8px;margin-top:8px;}
+
   .toast{
     position:fixed;left:50%;bottom:18px;transform:translateX(-50%);
     background:var(--ink);color:#fff;padding:12px 20px;border-radius:12px;

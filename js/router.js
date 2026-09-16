@@ -5,7 +5,6 @@ function goHome(){ clearIntervals(); state.view='home'; state.gameMode=null; ren
 function goModeSelect(){ clearIntervals(); state.view='modeSelect'; render(); }
 function goSettings(){ clearIntervals(); state.view='settings'; render(); }
 function goProgress(){ clearIntervals(); state.view='progress'; render(); }
-function goClassroom(){ clearIntervals(); state.view='classroom'; state.classTeam={blu:0,rosso:0,verde:0}; nextClassroomWord(); render(); }
 function clearIntervals(){ if(state.game && state.game.intervalId){ clearInterval(state.game.intervalId); } }
 
 function render(){
@@ -15,7 +14,9 @@ function render(){
   else if(state.view==='modeSelect') app.innerHTML = viewModeSelect();
   else if(state.view==='settings') app.innerHTML = viewSettings();
   else if(state.view==='progress') app.innerHTML = viewProgress();
+  else if(state.view==='classroomChoose') app.innerHTML = viewClassroomChoose();
   else if(state.view==='classroom') app.innerHTML = viewClassroom();
+  else if(state.view==='classroomSplit') app.innerHTML = viewClassroomSplit();
   else if(state.view==='analizzaChoose') app.innerHTML = viewAnalizzaChoose();
   else if(state.view==='ortografiaChoose') app.innerHTML = viewOrtografiaChoose();
   else if(state.view==='game'){
@@ -31,17 +32,19 @@ function render(){
   window.scrollTo(0,0);
 }
 
+const MAPPA_VIEWS = ['game','classroom','classroomSplit','classroomChoose','analizzaChoose','ortografiaChoose'];
 function renderTopbar(){
   const tb = document.getElementById('topbar');
   if(state.view==='home'){ tb.innerHTML=''; return; }
+  const onMappa = MAPPA_VIEWS.includes(state.view);
   tb.innerHTML = `
-    <button class="back-btn" onclick="${state.view==='game' || state.view==='classroom' || state.view==='analizzaChoose' || state.view==='ortografiaChoose' ? 'goModeSelectOrHome()' : 'goHome()'}">‹ ${state.view==='game'||state.view==='classroom'||state.view==='analizzaChoose'||state.view==='ortografiaChoose'?'Mappa':'Home'}</button>
+    <button class="back-btn" onclick="${onMappa ? 'goModeSelectOrHome()' : 'goHome()'}">‹ ${onMappa?'Mappa':'Home'}</button>
     <div class="stats">
       <span class="pill">⭐ ${progress.xp} XP</span>
       <span class="pill">🔥 ${progress.streak}</span>
     </div>`;
 }
 function goModeSelectOrHome(){
-  if(state.view==='classroom'){ goHome(); return; }
+  if(state.view==='classroom' || state.view==='classroomSplit'){ goClassroomChoose(); return; }
   goModeSelect();
 }
