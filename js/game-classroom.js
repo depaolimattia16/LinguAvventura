@@ -10,36 +10,89 @@ function viewClassroomChoose(){
   </div>`;
 }
 
-/* --- Schermo condiviso (una domanda, punti assegnati a mano) --- */
+/* --- Schermo condiviso (1 minuto totale, parole a tempo, avanza da sola) --- */
+const CLASSROOM_TOTAL_SECONDS = 60;
+const CLASSROOM_ANSWER_SECONDS = 10;
+const CLASSROOM_REVEAL_SECONDS = 3;
 function startClassroomShared(){
   clearIntervals();
   state.view='classroom';
   state.classTeam={blu:0,rosso:0,verde:0};
-  nextClassroomWord();
+  state.game = {totalTimeLeft:CLASSROOM_TOTAL_SECONDS, over:false};
+  beginClassroomRound();
   render();
 }
-function nextClassroomWord(){
+function beginClassroomRound(){
   const tipiList = activeTipiList();
   const pool = wordsByTipi(tipiList);
   const word = pickRandom(pool);
   const options = shuffle(tipiList.slice());
-  state.game.current = {word, options, answered:false};
+  state.game.current = {word, options, answered:false, chosen:null};
+  state.game.phase = 'answering';
+  state.game.timeLeft = CLASSROOM_ANSWER_SECONDS;
+  if(state.game.intervalId) clearInterval(state.game.intervalId);
+  state.game.intervalId = setInterval(classroomTick, 1000);
+}
+function classroomTick(){
+  const g = state.game;
+  g.totalTimeLeft--;
+  if(g.totalTimeLeft <= 0){
+    clearInterval(g.intervalId);
+    g.over = true;
+    render();
+    return;
+  }
+  g.timeLeft--;
+  if(g.timeLeft <= 0){
+    if(g.phase==='answering'){
+      g.current.answered = true;
+      g.phase = 'revealing';
+      g.timeLeft = CLASSROOM_REVEAL_SECONDS;
+    } else {
+      beginClassroomRound();
+      return;
+    }
+  }
+  render();
 }
 function viewClassroom(){
-  if(!state.game.current) nextClassroomWord();
-  const c = state.game.current;
+  const g = state.game;
+  const team = state.classTeam;
+  if(g.over){
+    return `
+    <div class="quiz-card">
+      <h2>⏱ Tempo scaduto!</h2>
+      <p>Punteggio finale dopo 1 minuto:</p>
+      <div class="team-row">
+        <div class="team-box team-blu"><div>🔵 Blu</div><div class="score">${team.blu}</div></div>
+        <div class="team-box team-rosso"><div>🔴 Rosso</div><div class="score">${team.rosso}</div></div>
+        <div class="team-box team-verde"><div>🟢 Verde</div><div class="score">${team.verde}</div></div>
+      </div>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px">
+        <button class="btn btn-coral" onclick="startClassroomShared()">Nuova sfida (1 minuto)</button>
+        <button class="btn btn-ghost" onclick="goClassroomChoose()">Cambia modalità</button>
+      </div>
+    </div>`;
+  }
+  const c = g.current;
   const optsHtml = c.options.map(t=>{
     let cls='option-btn';
-    if(c.answered && t===c.word.t) cls+=' correct';
-    return `<button class="${cls}" onclick="revealClassroom('${t}')">${TIPI_LABELS[t]}</button>`;
+    if(c.answered){
+      if(t===c.word.t) cls+=' correct';
+      else if(t===c.chosen) cls+=' wrong';
+    }
+    return `<button class="${cls}" ${c.answered?'disabled':''} onclick="revealClassroom('${t}')">${TIPI_LABELS[t]}</button>`;
   }).join('');
-  const team = state.classTeam;
+  const timerLabel = g.phase==='answering'
+    ? `⏱ ${g.timeLeft}s per rispondere`
+    : `Prossima parola tra ${g.timeLeft}...`;
   return `
+  <p class="hint" style="text-align:center;font-size:1.05rem">${timerLabel} · tempo totale rimasto: ${g.totalTimeLeft}s</p>
   <div class="quiz-card">
     <div class="quiz-prompt">Che cos'è...</div>
     <div class="quiz-word" style="font-size:clamp(2.2rem,10vw,3.4rem)">${c.word.w}</div>
     <div class="options-grid">${optsHtml}</div>
-    ${c.answered ? `<p class="feedback ok" style="margin-top:14px">La risposta corretta è: ${TIPI_LABELS[c.word.t]}</p><button class="btn btn-ink" style="margin-top:6px" onclick="nextClassroomBtn()">Parola successiva →</button>` : ''}
+    ${c.answered ? `<p class="feedback ok" style="margin-top:14px">La risposta corretta è: ${TIPI_LABELS[c.word.t]}</p>` : ''}
   </div>
   <div class="team-row">
     <div class="team-box team-blu"><div>🔵 Blu</div><div class="score">${team.blu}</div><button class="btn btn-ink" onclick="addTeamPoint('blu')">+1 punto</button></div>
@@ -47,12 +100,16 @@ function viewClassroom(){
     <div class="team-box team-verde"><div>🟢 Verde</div><div class="score">${team.verde}</div><button class="btn btn-grass" onclick="addTeamPoint('verde')">+1 punto</button></div>
   </div>`;
 }
-function revealClassroom(){
-  state.game.current.answered = true;
+function revealClassroom(t){
+  const g = state.game;
+  if(g.over || g.phase!=='answering' || g.current.answered) return;
+  g.current.answered = true;
+  g.current.chosen = t;
+  g.phase = 'revealing';
+  g.timeLeft = CLASSROOM_REVEAL_SECONDS;
   render();
 }
-function nextClassroomBtn(){ nextClassroomWord(); render(); }
-function addTeamPoint(team){ state.classTeam[team]++; render(); }
+function addTeamPoint(team){ if(state.game.over) return; state.classTeam[team]++; render(); }
 
 /* --- Squadra contro squadra (schermo diviso, 2 domande indipendenti) --- */
 const SPLIT_TEAMS = {

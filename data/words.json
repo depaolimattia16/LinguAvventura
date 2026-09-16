@@ -9412,5 +9412,962 @@
     "tipo": "indeterminativo",
     "gen": "f",
     "num": "s"
+  },
+  {
+    "w": "arancia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "arance",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "pioggia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "piogge",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "faccia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "facce",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "provincia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "province",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "focaccia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "focacce",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "freccia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "frecce",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "roccia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "rocce",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "minaccia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "minacce",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "guancia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "guance",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "mancia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "mance",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "doccia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "docce",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "lancia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "lance",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "bilancia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "bilance",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "farmacia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "farmacie",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "valigia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "valigie",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "ciliegia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "ciliegie",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "camicia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "camicie",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "magia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "magie",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "allergia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "allergie",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "quercia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "querce",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "traccia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "tracce",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "goccia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "gocce",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "caccia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "cacce",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "loggia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "logge",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "reggia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "regge",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "salsiccia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "salsicce",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "geografia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "geografie",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "biologia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "biologie",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "filosofia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "filosofie",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "chirurgia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "chirurgie",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "nostalgie",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "cartuccia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "cartucce",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "grattugia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "grattugie",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "scena",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "scienza",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "coscienza",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "scelta",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "scesa",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "discesa",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "aglio",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "m",
+    "num": "s"
+  },
+  {
+    "w": "quaglia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "animale",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "maglia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "bottiglia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "gigli",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "m",
+    "num": "p"
+  },
+  {
+    "w": "biglietto",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "m",
+    "num": "s"
+  },
+  {
+    "w": "consiglio",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "m",
+    "num": "s"
+  },
+  {
+    "w": "taglio",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "m",
+    "num": "s"
+  },
+  {
+    "w": "foglio",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "m",
+    "num": "s"
+  },
+  {
+    "w": "orgoglio",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "m",
+    "num": "s"
+  },
+  {
+    "w": "risveglio",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "m",
+    "num": "s"
+  },
+  {
+    "w": "abbaglio",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "m",
+    "num": "s"
+  },
+  {
+    "w": "imbroglio",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "m",
+    "num": "s"
+  },
+  {
+    "w": "sbaglio",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "m",
+    "num": "s"
+  },
+  {
+    "w": "veglia",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "cuore",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "m",
+    "num": "s"
+  },
+  {
+    "w": "cuoio",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "m",
+    "num": "s"
+  },
+  {
+    "w": "quadro",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "m",
+    "num": "s"
+  },
+  {
+    "w": "acqua",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "acquario",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "m",
+    "num": "s"
+  },
+  {
+    "w": "soqquadro",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "m",
+    "num": "s"
+  },
+  {
+    "w": "quota",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "equatore",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "m",
+    "num": "s"
+  },
+  {
+    "w": "acquazzone",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "m",
+    "num": "s"
+  },
+  {
+    "w": "acquisto",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "astratto",
+    "gen": "m",
+    "num": "s"
+  },
+  {
+    "w": "acquerello",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "m",
+    "num": "s"
+  },
+  {
+    "w": "aquilone",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "m",
+    "num": "s"
+  },
+  {
+    "w": "acquedotto",
+    "t": "nome",
+    "tipo": "comune",
+    "cat": "cosa",
+    "forma": "concreto",
+    "gen": "m",
+    "num": "s"
+  },
+  {
+    "w": "scendere",
+    "t": "verbo"
+  },
+  {
+    "w": "nascere",
+    "t": "verbo"
+  },
+  {
+    "w": "crescere",
+    "t": "verbo"
+  },
+  {
+    "w": "conoscere",
+    "t": "verbo"
+  },
+  {
+    "w": "riconoscere",
+    "t": "verbo"
+  },
+  {
+    "w": "percuotere",
+    "t": "verbo"
+  },
+  {
+    "w": "riscuotere",
+    "t": "verbo"
+  },
+  {
+    "w": "scuotere",
+    "t": "verbo"
+  },
+  {
+    "w": "cuocere",
+    "t": "verbo"
+  },
+  {
+    "w": "voglio",
+    "t": "verbo"
+  },
+  {
+    "w": "nacque",
+    "t": "verbo"
+  },
+  {
+    "w": "tacque",
+    "t": "verbo"
+  },
+  {
+    "w": "piacque",
+    "t": "verbo"
+  },
+  {
+    "w": "scemo",
+    "t": "aggettivo",
+    "sottotipo": "qualificativo",
+    "gen": "m",
+    "num": "s"
+  },
+  {
+    "w": "coscienzioso",
+    "t": "aggettivo",
+    "sottotipo": "qualificativo",
+    "gen": "m",
+    "num": "s"
   }
 ]
