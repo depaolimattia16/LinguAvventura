@@ -1,0 +1,202 @@
+[
+  [
+    {
+      "w": "Il",
+      "t": "articolo",
+      "tipo": "determinativo",
+      "gen": "m",
+      "num": "s"
+    },
+    {
+      "w": "gatto",
+      "t": "nome",
+      "tipo": "comune",
+      "cat": "animale",
+      "forma": "concreto",
+      "gen": "m",
+      "num": "s"
+    },
+    {
+      "w": "nero",
+      "t": "aggettivo",
+      "sottotipo": "qualificativo",
+      "gen": "m",
+      "num": "s"
+    },
+    {
+      "w": "dorme",
+      "t": "verbo",
+      "persona": "3",
+      "num": "s",
+      "tempo": "presente",
+      "modo": "indicativo"
+    }
+  ],
+  [
+    {
+      "w": "La",
+      "t": "articolo",
+      "tipo": "determinativo",
+      "gen": "f",
+      "num": "s"
+    },
+    {
+      "w": "bambina",
+      "t": "nome",
+      "tipo": "comune",
+      "cat": "persona",
+      "forma": "concreto",
+      "gen": "f",
+      "num": "s"
+    },
+    {
+      "w": "legge",
+      "t": "verbo",
+      "persona": "3",
+      "num": "s",
+      "tempo": "presente",
+      "modo": "indicativo"
+    },
+    {
+      "w": "un",
+      "t": "articolo",
+      "tipo": "indeterminativo",
+      "gen": "m",
+      "num": "s"
+    },
+    {
+      "w": "libro",
+      "t": "nome",
+      "tipo": "comune",
+      "cat": "cosa",
+      "forma": "concreto",
+      "gen": "m",
+      "num": "s"
+    }
+  ],
+  [
+    {
+      "w": "I",
+      "t": "articolo",
+      "tipo": "determinativo",
+      "gen": "m",
+      "num": "p"
+    },
+    {
+      "w": "miei",
+      "t": "aggettivo",
+      "sottotipo": "possessivo",
+      "gen": "m",
+      "num": "p"
+    },
+    {
+      "w": "amici",
+      "t": "nome",
+      "tipo": "comune",
+      "cat": "persona",
+      "forma": "concreto",
+      "gen": "m",
+      "num": "p"
+    },
+    {
+      "w": "giocano",
+      "t": "verbo",
+      "persona": "3",
+      "num": "p",
+      "tempo": "presente",
+      "modo": "indicativo"
+    }
+  ],
+  [
+    {
+      "w": "Le",
+      "t": "articolo",
+      "tipo": "determinativo",
+      "gen": "f",
+      "num": "p"
+    },
+    {
+      "w": "farfalle",
+      "t": "nome",
+      "tipo": "comune",
+      "cat": "animale",
+      "forma": "concreto",
+      "gen": "f",
+      "num": "p"
+    },
+    {
+      "w": "volano",
+      "t": "verbo",
+      "persona": "3",
+      "num": "p",
+      "tempo": "presente",
+      "modo": "indicativo"
+    }
+  ],
+  [
+    {
+      "w": "Un",
+      "t": "articolo",
+      "tipo": "indeterminativo",
+      "gen": "m",
+      "num": "s"
+    },
+    {
+      "w": "cane",
+      "t": "nome",
+      "tipo": "comune",
+      "cat": "animale",
+      "forma": "concreto",
+      "gen": "m",
+      "num": "s"
+    },
+    {
+      "w": "nero",
+      "t": "aggettivo",
+      "sottotipo": "qualificativo",
+      "gen": "m",
+      "num": "s"
+    },
+    {
+      "w": "abbaia",
+      "t": "verbo",
+      "persona": "3",
+      "num": "s",
+      "tempo": "presente",
+      "modo": "indicativo"
+    }
+  ],
+  [
+    {
+      "w": "Le",
+      "t": "articolo",
+      "tipo": "determinativo",
+      "gen": "f",
+      "num": "p"
+    },
+    {
+      "w": "mie",
+      "t": "aggettivo",
+      "sottotipo": "possessivo",
+      "gen": "f",
+      "num": "p"
+    },
+    {
+      "w": "sorelle",
+      "t": "nome",
+      "tipo": "comune",
+      "cat": "persona",
+      "forma": "concreto",
+      "gen": "f",
+      "num": "p"
+    },
+    {
+      "w": "cantano",
+      "t": "verbo",
+      "persona": "3",
+      "num": "p",
+      "tempo": "presente",
+      "modo": "indicativo"
+    }
+  ]
+]

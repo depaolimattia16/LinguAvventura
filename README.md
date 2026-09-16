@@ -20,9 +20,12 @@ poi apri l'indirizzo che ti stampa a schermo (di solito `http://localhost:3000`)
 index.html          lo scheletro della pagina, carica CSS e script in ordine
 favicon.svg          il logo (L verde) mostrato nella scheda del browser
 css/style.css        tutti gli stili
+data/                 IL DATABASE, in JSON puro — apribile e modificabile senza toccare il codice
+  words.json            tutte le parole (nomi, verbi, aggettivi, articoli) con le loro caratteristiche
+  sentences.json         le frasi pronte per "Analizza tutto" e "Parola misteriosa"
+  ortografia.json        le liste per ogni regola di ortografia (ce/cie, ge/gie, gli/li, ecc.)
 js/
-  data.js             il database delle parole (WORDS), le frasi pronte (SENTENCES),
-                       le liste per l'ortografia, le etichette e le medaglie
+  data.js             le etichette mostrate a schermo e le medaglie (non le parole: quelle sono in /data)
   storage.js          salvataggio/lettura di impostazioni e progressi (localStorage),
                        XP, giorni di fila, medaglie
   helpers.js          funzioni di utilità condivise (shuffle, pick random, ecc.)
@@ -40,17 +43,26 @@ js/
   game-mostro.js      "Il mostro della grammatica"
   game-ortografia.js  "Ortografia" (ce/cie, ge/gie, sce/sci, gli/li, cu/qu, doppie, la H)
   game-classroom.js   "Modalità classe" (per la LIM)
-  app.js              avvio dell'app (ultimo file caricato)
+  app.js              carica i file in /data, poi avvia l'app (ultimo file caricato)
 ```
 
 I file JS sono script "classici" (non moduli), caricati in ordine da `index.html`: le funzioni e le costanti definite in un file sono visibili anche nei successivi, quindi l'ordine dei tag `<script>` in `index.html` conta e va rispettato se aggiungi nuovi file.
 
+`js/app.js` all'avvio scarica i tre file JSON con `fetch()` e solo dopo disegna la pagina — per questo **serve sempre un server locale** (vedi sopra): con `file://` (doppio click) i browser bloccano il caricamento di questi file e la pagina resta su "Caricamento...".
+
 ## Modificare i contenuti
 
-- Per aggiungere parole al database, apri `js/data.js` e aggiungi voci all'array `WORDS`, seguendo lo stesso formato delle altre.
-- Per aggiungere frasi ad "Analizza tutto" / "Parola misteriosa", aggiungi un array di parole taggate a `SENTENCES` in `js/data.js`.
-- Per una nuova regola di ortografia, aggiungi una lista di coppie `{ok, bad}` e una voce in `ORTHO_TOPICS` dentro `js/game-ortografia.js`.
-- Le costanti `*_LABELS` in `js/data.js` definiscono le etichette mostrate a schermo.
+Tutto il contenuto "didattico" sta in `/data`, come JSON puro — nessuna sintassi di programmazione, solo dati:
+
+- **`data/words.json`** — un array di oggetti, uno per parola. Esempio:
+  ```json
+  { "w": "cane", "t": "nome", "tipo": "comune", "cat": "animale", "forma": "concreto", "gen": "m", "num": "s" }
+  ```
+  Per aggiungere una parola, copia una riga simile (stesso tipo `t`) e cambia i valori. Attenzione alle virgole tra un oggetto e l'altro: un JSON con una virgola di troppo o mancante non si carica più — se non sei sicuro, incolla il file in un validatore JSON online prima di salvare.
+- **`data/sentences.json`** — un array di frasi, ogni frase è un array di parole taggate come sopra (con in più, per i verbi, persona/numero/tempo/modo).
+- **`data/ortografia.json`** — un oggetto con una lista per ogni regola (`cege`, `scesci`, `glili`, `cuqu`, `doppie`, `letterah`), ciascuna con coppie `{ "ok": "...", "bad": "..." }` (oppure `{ "s": "...", "ok": "...", "bad": "..." }` per Ce/Cie-Ge/Gie, o `{ "sentence": "...", "ok": "...", "bad": "..." }` per la lettera H).
+
+Per una NUOVA regola di ortografia (non solo nuove parole in una esistente) serve anche aggiungere una voce a `ORTHO_TOPICS` dentro `js/game-ortografia.js`. Le costanti `*_LABELS` in `js/data.js` definiscono le etichette mostrate a schermo (es. "Maschile"/"Femminile").
 
 ## Deploy su Vercel
 

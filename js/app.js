@@ -1,3 +1,29 @@
 /* ============ INIT ============ */
-touchStreak();
-render();
+/* Il database (parole, frasi, ortografia) vive in file JSON dentro /data,
+   così è modificabile e consultabile senza toccare il codice. */
+async function loadContentData(){
+  const [words, sentences, ortho] = await Promise.all([
+    fetch('data/words.json').then(r=>r.json()),
+    fetch('data/sentences.json').then(r=>r.json()),
+    fetch('data/ortografia.json').then(r=>r.json()),
+  ]);
+  WORDS = words;
+  SENTENCES = sentences;
+  fillOrthoBanks(ortho);
+}
+
+loadContentData().then(()=>{
+  touchStreak();
+  render();
+}).catch(err=>{
+  console.error('Errore nel caricamento dei dati:', err);
+  const app = document.getElementById('app');
+  if(app){
+    app.innerHTML = `
+    <div class="quiz-card">
+      <h2>Non riesco a caricare i dati</h2>
+      <p>Questa pagina deve essere aperta tramite un server locale, non con doppio click sul file.</p>
+      <p class="hint">Nella cartella del progetto lancia: <code>npx serve .</code>, poi apri l'indirizzo che ti stampa a schermo.</p>
+    </div>`;
+  }
+});
