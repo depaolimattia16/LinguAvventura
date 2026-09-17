@@ -105,23 +105,38 @@ const SPLIT_CONTENT_TYPES = {
 };
 function goClassroomSplitChoose(){
   clearIntervals();
+  if(!state.splitContentTypes) state.splitContentTypes = ['checose'];
   state.view='classroomSplitChoose';
   render();
 }
 function viewClassroomSplitChoose(){
-  const cards = Object.keys(SPLIT_CONTENT_TYPES).map(k=>{
+  const selected = state.splitContentTypes;
+  const rows = Object.keys(SPLIT_CONTENT_TYPES).map(k=>{
     const meta = SPLIT_CONTENT_TYPES[k];
-    return `<button class="mode-card" onclick="startClassroomSplit('${k}')"><span class="emoji">${meta.emoji}</span><div class="txt"><strong>${meta.label}</strong></div></button>`;
+    const checked = selected.includes(k);
+    return `<label class="check-row"><input type="checkbox" ${checked?'checked':''} onchange="toggleSplitContent('${k}')"> ${meta.emoji} ${meta.label}</label>`;
   }).join('');
   return `
   <h2>Squadra contro squadra</h2>
-  <p class="hint">Su cosa vuoi far sfidare le due squadre?</p>
-  <div class="mode-list">${cards}</div>`;
+  <p class="hint">Scegli su cosa far sfidare le due squadre. Puoi selezionarne più di uno: si mescoleranno, e ogni squadra pesca in autonomia.</p>
+  <div class="settings-block">${rows}</div>
+  <button class="btn btn-coral" style="margin-top:16px" onclick="startClassroomSplit()">Inizia sfida</button>`;
 }
-function startClassroomSplit(contentType){
+function toggleSplitContent(k){
+  const list = state.splitContentTypes;
+  const idx = list.indexOf(k);
+  if(idx>=0){
+    if(list.length<=1){ showToast('Deve restare selezionato almeno un contenuto'); return; }
+    list.splice(idx,1);
+  } else {
+    list.push(k);
+  }
+  render();
+}
+function startClassroomSplit(){
   clearIntervals();
   state.view='classroomSplit';
-  state.splitContentType = contentType;
+  if(!state.splitContentTypes || state.splitContentTypes.length===0) state.splitContentTypes=['checose'];
   state.split = {
     blu:{score:0, current:null, phase:'answering', timeLeft:SPLIT_ANSWER_SECONDS},
     rosso:{score:0, current:null, phase:'answering', timeLeft:SPLIT_ANSWER_SECONDS},
@@ -132,7 +147,7 @@ function startClassroomSplit(contentType){
   render();
 }
 function loadSplitWord(side){
-  const type = state.splitContentType;
+  const type = pickRandom(state.splitContentTypes);
   const s = state.split[side];
   if(type==='checose'){
     const tipiList = activeTipiList();
@@ -210,7 +225,10 @@ function splitColumnHtml(side){
   </div>`;
 }
 function viewClassroomSplit(){
-  const contentLabel = SPLIT_CONTENT_TYPES[state.splitContentType].label;
+  const types = state.splitContentTypes;
+  const contentLabel = types.length<=2
+    ? types.map(t=>SPLIT_CONTENT_TYPES[t].label).join(' + ')
+    : `${types.length} contenuti mescolati`;
   return `
   <p class="hint" style="text-align:center">${contentLabel} · ogni squadra risponde alla propria domanda, le parole cambiano da sole.</p>
   <div class="split-row">
