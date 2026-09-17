@@ -34,7 +34,7 @@ function viewLampo(){
       <p>Record personale: <strong>${progress.recordLampo}</strong></p>
       <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px">
         <button class="btn btn-coral" onclick="startLampo()">Rigioca</button>
-        <button class="btn btn-ghost" onclick="goModeSelect()">Altre sfide</button>
+        <button class="btn btn-ghost" onclick="goCheCosEChoose()">Altre sfide</button>
       </div>
     </div>`;
   }

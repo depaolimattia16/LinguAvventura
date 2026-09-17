@@ -80,7 +80,7 @@ function analizzaTuttoSummary(g){
     <div class="quiz-word" style="font-size:2.2rem">${g.score} / ${g.totalQuestions}</div>
     <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px">
       <button class="btn btn-coral" onclick="startAnalizzaTutto()">Un'altra frase</button>
-      <button class="btn btn-ghost" onclick="goModeSelect()">Altre sfide</button>
+      <button class="btn btn-ghost" onclick="goAnalizzaChoose()">Altre sfide</button>
     </div>
   </div>`;
 }

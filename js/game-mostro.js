@@ -21,7 +21,7 @@ function viewMostro(){
       <p>${g.win?'Complimenti, hai risposto benissimo!':'Riprova, ce la puoi fare!'}</p>
       <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px">
         <button class="btn btn-coral" onclick="startMostro()">Rigioca</button>
-        <button class="btn btn-ghost" onclick="goModeSelect()">Altre sfide</button>
+        <button class="btn btn-ghost" onclick="goCheCosEChoose()">Altre sfide</button>
       </div>
     </div>`;
   }

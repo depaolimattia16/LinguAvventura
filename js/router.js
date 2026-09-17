@@ -24,6 +24,7 @@ function render(){
   else if(state.view==='analizzaChoose') app.innerHTML = viewAnalizzaChoose();
   else if(state.view==='ortografiaChoose') app.innerHTML = viewOrtografiaChoose();
   else if(state.view==='ortografiaMistaChoose') app.innerHTML = viewOrtografiaMistaChoose();
+  else if(state.view==='checoseChoose') app.innerHTML = viewCheCosEChoose();
   else if(state.view==='game'){
     if(state.gameMode==='checose') app.innerHTML = viewCheCosE();
     else if(state.gameMode==='analizza') app.innerHTML = viewAnalizza();
@@ -40,7 +41,7 @@ function render(){
   window.scrollTo(0,0);
 }
 
-const MAPPA_VIEWS = ['game','classroom','classroomSplit','classroomChoose','classroomSplitChoose','analizzaChoose','ortografiaChoose','ortografiaMistaChoose'];
+const MAPPA_VIEWS = ['game','classroom','classroomSplit','classroomChoose','classroomSplitChoose','analizzaChoose','ortografiaChoose','ortografiaMistaChoose','checoseChoose'];
 function renderTopbar(){
   const tb = document.getElementById('topbar');
   if(state.view==='home'){ tb.innerHTML=''; return; }
@@ -53,14 +54,19 @@ function renderTopbar(){
     </div>`;
 }
 const ORTHO_GAME_MODES = ['ortografia','ortografiaMista'];
+const CHECOSE_GAME_MODES = ['checose','lampo','mostro','misteriosa'];
+const ANALIZZA_GAME_MODES = ['analizza','analizzatutto'];
 function goModeSelectOrHome(){
   if(state.view==='classroom'){ goClassroomChoose(); return; }
   if(state.view==='classroomSplit'){ goClassroomSplitChoose(); return; }
   if(state.view==='classroomSplitChoose'){ goClassroomChoose(); return; }
   if(state.view==='ortografiaMistaChoose'){ goOrtografiaChoose(); return; }
+  if(state.view==='checoseChoose'){ goModeSelect(); return; }
   if(state.view==='game' && ORTHO_GAME_MODES.includes(state.gameMode)){
     if(state.gameMode==='ortografiaMista'){ goOrtografiaMistaChoose(); return; }
     goOrtografiaChoose(); return;
   }
+  if(state.view==='game' && CHECOSE_GAME_MODES.includes(state.gameMode)){ goCheCosEChoose(); return; }
+  if(state.view==='game' && ANALIZZA_GAME_MODES.includes(state.gameMode)){ goAnalizzaChoose(); return; }
   goModeSelect();
 }

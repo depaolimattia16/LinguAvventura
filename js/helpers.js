@@ -25,6 +25,15 @@ function finishRound(){
   if(progress.giochiCompletati>=1) awardBadge('prima_sfida');
   saveProgress();
 }
+function modeBackTarget(mode){
+  const map = {
+    checose:'goCheCosEChoose',
+    misteriosa:'goCheCosEChoose',
+    ortografia:'goOrtografiaChoose',
+    ortografiaMista:'goOrtografiaMistaChoose',
+  };
+  return map[mode] || 'goModeSelect';
+}
 function roundSummary(score,total,mode){
   return `
   <div class="quiz-card">
@@ -33,7 +42,7 @@ function roundSummary(score,total,mode){
     <p>Ottimo lavoro, continua così!</p>
     <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px">
       <button class="btn btn-coral" onclick="restartMode('${mode}')">Rigioca</button>
-      <button class="btn btn-ghost" onclick="goModeSelect()">Altre sfide</button>
+      <button class="btn btn-ghost" onclick="${modeBackTarget(mode)}()">Altre sfide</button>
     </div>
   </div>`;
 }

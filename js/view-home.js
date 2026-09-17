@@ -28,14 +28,10 @@ function viewModeSelect(){
   <h2>Grammatica</h2>
   <p class="hint">Scegli una sfida.</p>
   <div class="mode-list">
-    <button class="mode-card" onclick="startCheCosE()"><span class="emoji">❓</span><div class="txt"><strong>Che cos'è?</strong><span>Nome, verbo, aggettivo o articolo?</span></div></button>
-    <button class="mode-card" onclick="goAnalizzaChoose()"><span class="emoji">🔎</span><div class="txt"><strong>Analisi grammaticale</strong><span>Nome, aggettivo, articolo o verbo: a caso o a scelta</span></div></button>
-    <button class="mode-card" onclick="startAnalizzaTutto()"><span class="emoji">📖</span><div class="txt"><strong>Analizza tutto</strong><span>Una frase intera, parola per parola</span></div></button>
-    <button class="mode-card" onclick="startParolaMisteriosa()"><span class="emoji">🔍</span><div class="txt"><strong>Parola misteriosa</strong><span>Che cos'è la parola evidenziata nella frase?</span></div></button>
-    <button class="mode-card" onclick="startPrimitivi()"><span class="emoji">🌱</span><div class="txt"><strong>Primitivi e derivati</strong><span>Questa parola da dove nasce?</span></div></button>
+    <button class="mode-card" onclick="goCheCosEChoose()"><span class="emoji">❓</span><div class="txt"><strong>Che cos'è?</strong><span>Nome, verbo, aggettivo o articolo — classica, a tempo, contro il mostro o in una frase</span></div></button>
+    <button class="mode-card" onclick="goAnalizzaChoose()"><span class="emoji">🔎</span><div class="txt"><strong>Analisi grammaticale</strong><span>Nome, aggettivo, articolo, verbo, o una frase intera</span></div></button>
     <button class="mode-card" onclick="startIntruso()"><span class="emoji">🕵️</span><div class="txt"><strong>Trova l'intruso</strong><span>Tre parole simili, una diversa</span></div></button>
-    <button class="mode-card" onclick="startLampo()"><span class="emoji">⚡</span><div class="txt"><strong>Sfida lampo</strong><span>60 secondi, più risposte puoi dare</span></div></button>
-    <button class="mode-card" onclick="startMostro()"><span class="emoji">🐉</span><div class="txt"><strong>Il mostro della grammatica</strong><span>Rispondi bene per sconfiggerlo</span></div></button>
+    <button class="mode-card" onclick="startPrimitivi()"><span class="emoji">🌱</span><div class="txt"><strong>Primitivi e derivati</strong><span>Questa parola da dove nasce?</span></div></button>
     <button class="mode-card" onclick="startSfidaMista()"><span class="emoji">🎲</span><div class="txt"><strong>Sfida mista</strong><span>Un po' di tutto: pesca a caso da ogni modalità</span></div></button>
   </div>`;
 }

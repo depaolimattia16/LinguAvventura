@@ -71,9 +71,10 @@ function viewAnalizzaChoose(){
   }).join('');
   return `
   <h2>Analisi grammaticale</h2>
-  <p class="hint">Scegli una parola a caso oppure allenati su una parte del discorso precisa.</p>
+  <p class="hint">Scegli una parola a caso, una parte del discorso precisa, o analizza una frase intera.</p>
   <div class="mode-list">
     <button class="mode-card" onclick="startAnalizza(null)"><span class="emoji">🎲</span><div class="txt"><strong>Casuale</strong><span>Nome, aggettivo, articolo o verbo a sorpresa</span></div></button>
+    <button class="mode-card" onclick="startAnalizzaTutto()"><span class="emoji">📖</span><div class="txt"><strong>Frase intera</strong><span>Una frase intera, parola per parola</span></div></button>
     ${cards}
   </div>`;
 }
