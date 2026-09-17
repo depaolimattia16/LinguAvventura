@@ -179,6 +179,36 @@
       "s": "grattugia",
       "ok": "grattugie",
       "bad": "grattuge"
+    },
+    {
+      "s": "fascia",
+      "ok": "fasce",
+      "bad": "fascie"
+    },
+    {
+      "s": "boccia",
+      "ok": "bocce",
+      "bad": "boccie"
+    },
+    {
+      "s": "angoscia",
+      "ok": "angosce",
+      "bad": "angoscie"
+    },
+    {
+      "s": "strategia",
+      "ok": "strategie",
+      "bad": "stratege"
+    },
+    {
+      "s": "regia",
+      "ok": "regie",
+      "bad": "rege"
+    },
+    {
+      "s": "acacia",
+      "ok": "acacie",
+      "bad": "acace"
     }
   ],
   "scesci": [
@@ -253,6 +283,42 @@
     {
       "ok": "incosciente",
       "bad": "incoscente"
+    },
+    {
+      "ok": "crescendo",
+      "bad": "cresciendo"
+    },
+    {
+      "ok": "rinascere",
+      "bad": "rinasciere"
+    },
+    {
+      "ok": "decrescere",
+      "bad": "decresciere"
+    },
+    {
+      "ok": "prescelto",
+      "bad": "prescielto"
+    },
+    {
+      "ok": "scemenza",
+      "bad": "sciemenza"
+    },
+    {
+      "ok": "scie",
+      "bad": "sce"
+    },
+    {
+      "ok": "scientifico",
+      "bad": "scentifico"
+    },
+    {
+      "ok": "fantascienza",
+      "bad": "fantascenza"
+    },
+    {
+      "ok": "incoscienza",
+      "bad": "incoscenza"
     }
   ],
   "glili": [
@@ -351,6 +417,70 @@
     {
       "ok": "veglia",
       "bad": "velia"
+    },
+    {
+      "ok": "coniglio",
+      "bad": "conilio"
+    },
+    {
+      "ok": "giglio",
+      "bad": "gilio"
+    },
+    {
+      "ok": "vaniglia",
+      "bad": "vanilia"
+    },
+    {
+      "ok": "conchiglia",
+      "bad": "conchilia"
+    },
+    {
+      "ok": "battaglia",
+      "bad": "battalia"
+    },
+    {
+      "ok": "medaglia",
+      "bad": "medalia"
+    },
+    {
+      "ok": "paglia",
+      "bad": "palia"
+    },
+    {
+      "ok": "maglione",
+      "bad": "malione"
+    },
+    {
+      "ok": "tovaglia",
+      "bad": "tovalia"
+    },
+    {
+      "ok": "bisbiglio",
+      "bad": "bisbilio"
+    },
+    {
+      "ok": "caviglia",
+      "bad": "cavilia"
+    },
+    {
+      "ok": "portafoglio",
+      "bad": "portafolio"
+    },
+    {
+      "ok": "ventaglio",
+      "bad": "ventalio"
+    },
+    {
+      "ok": "trifoglio",
+      "bad": "trifolio"
+    },
+    {
+      "ok": "abbigliamento",
+      "bad": "abbiliamento"
+    },
+    {
+      "ok": "scogliera",
+      "bad": "scoliera"
     }
   ],
   "cuqu": [
