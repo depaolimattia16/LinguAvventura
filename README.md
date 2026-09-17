@@ -24,6 +24,7 @@ data/                 IL DATABASE, in JSON puro — apribile e modificabile senz
   words.json            tutte le parole (nomi, verbi, aggettivi, articoli) con le loro caratteristiche
   sentences.json         le frasi pronte per "Analizza tutto" e "Parola misteriosa"
   ortografia.json        le liste per ogni regola di ortografia (ce/cie, ge/gie, gli/li, ecc.)
+  primitivi-derivati.json  le parole per l'esercizio "Primitivi e derivati"
 js/
   data.js             le etichette mostrate a schermo e le medaglie (non le parole: quelle sono in /data)
   storage.js          salvataggio/lettura di impostazioni e progressi (localStorage),
@@ -38,6 +39,8 @@ js/
   game-analizza.js    "Analisi grammaticale" (nome, aggettivo, articolo, verbo)
   game-analizzatutto.js  "Analizza tutto" (frase intera, parola per parola)
   game-misteriosa.js  "Parola misteriosa"
+  game-primitivi.js   "Primitivi e derivati"
+  game-sfidamista.js  "Sfida mista" (pesca a caso da tutte le altre modalità di grammatica)
   game-intruso.js     "Trova l'intruso"
   game-lampo.js       "Sfida lampo"
   game-mostro.js      "Il mostro della grammatica"
@@ -61,6 +64,7 @@ Tutto il contenuto "didattico" sta in `/data`, come JSON puro — nessuna sintas
   Per aggiungere una parola, copia una riga simile (stesso tipo `t`) e cambia i valori. Attenzione alle virgole tra un oggetto e l'altro: un JSON con una virgola di troppo o mancante non si carica più — se non sei sicuro, incolla il file in un validatore JSON online prima di salvare.
 - **`data/sentences.json`** — un array di frasi, ogni frase è un array di parole taggate come sopra (con in più, per i verbi, persona/numero/tempo/modo).
 - **`data/ortografia.json`** — un oggetto con una lista per ogni regola (`cege`, `scesci`, `glili`, `cuqu`, `doppie`, `letterah`), ciascuna con coppie `{ "ok": "...", "bad": "..." }` (oppure `{ "s": "...", "ok": "...", "bad": "..." }` per Ce/Cie-Ge/Gie, o `{ "sentence": "...", "ok": "...", "bad": "..." }` per la lettera H).
+- **`data/primitivi-derivati.json`** — un array di `{ "w": "...", "tipo": "primitivo" }` oppure `"tipo": "derivato"`.
 
 Per una NUOVA regola di ortografia (non solo nuove parole in una esistente) serve anche aggiungere una voce a `ORTHO_TOPICS` dentro `js/game-ortografia.js`. Le costanti `*_LABELS` in `js/data.js` definiscono le etichette mostrate a schermo (es. "Maschile"/"Femminile").
 

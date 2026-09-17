@@ -32,8 +32,10 @@ function viewModeSelect(){
     <button class="mode-card" onclick="goAnalizzaChoose()"><span class="emoji">🔎</span><div class="txt"><strong>Analisi grammaticale</strong><span>Nome, aggettivo, articolo o verbo: a caso o a scelta</span></div></button>
     <button class="mode-card" onclick="startAnalizzaTutto()"><span class="emoji">📖</span><div class="txt"><strong>Analizza tutto</strong><span>Una frase intera, parola per parola</span></div></button>
     <button class="mode-card" onclick="startParolaMisteriosa()"><span class="emoji">🔍</span><div class="txt"><strong>Parola misteriosa</strong><span>Che cos'è la parola evidenziata nella frase?</span></div></button>
+    <button class="mode-card" onclick="startPrimitivi()"><span class="emoji">🌱</span><div class="txt"><strong>Primitivi e derivati</strong><span>Questa parola da dove nasce?</span></div></button>
     <button class="mode-card" onclick="startIntruso()"><span class="emoji">🕵️</span><div class="txt"><strong>Trova l'intruso</strong><span>Tre parole simili, una diversa</span></div></button>
     <button class="mode-card" onclick="startLampo()"><span class="emoji">⚡</span><div class="txt"><strong>Sfida lampo</strong><span>60 secondi, più risposte puoi dare</span></div></button>
     <button class="mode-card" onclick="startMostro()"><span class="emoji">🐉</span><div class="txt"><strong>Il mostro della grammatica</strong><span>Rispondi bene per sconfiggerlo</span></div></button>
+    <button class="mode-card" onclick="startSfidaMista()"><span class="emoji">🎲</span><div class="txt"><strong>Sfida mista</strong><span>Un po' di tutto: pesca a caso da ogni modalità</span></div></button>
   </div>`;
 }

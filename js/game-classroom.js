@@ -6,7 +6,7 @@ function viewClassroomChoose(){
   <p class="hint">Scegli come usarla alla LIM.</p>
   <div class="mode-list">
     <button class="mode-card" onclick="startClassroomShared()"><span class="emoji">📺</span><div class="txt"><strong>Schermo condiviso</strong><span>Una domanda per tutti, vince la prima squadra ad arrivare a 10 punti</span></div></button>
-    <button class="mode-card" onclick="startClassroomSplit()"><span class="emoji">⚔️</span><div class="txt"><strong>Squadra contro squadra</strong><span>Schermo diviso a metà, a tempo: le domande cambiano da sole</span></div></button>
+    <button class="mode-card" onclick="goClassroomSplitChoose()"><span class="emoji">⚔️</span><div class="txt"><strong>Squadra contro squadra</strong><span>Schermo diviso a metà, a tempo: scegli tu il contenuto</span></div></button>
   </div>`;
 }
 
@@ -86,16 +86,42 @@ function addTeamPoint(team){
   render();
 }
 
-/* --- Squadra contro squadra: schermo diviso, a tempo, avanza da sola --- */
+/* --- Squadra contro squadra: schermo diviso, a tempo, avanza da sola, contenuto a scelta --- */
 const SPLIT_ANSWER_SECONDS = 10;
 const SPLIT_REVEAL_SECONDS = 2;
 const SPLIT_TEAMS = {
   blu:{label:'Blu', emoji:'🔵', cls:'blu'},
   rosso:{label:'Rosso', emoji:'🔴', cls:'rosso'},
 };
-function startClassroomSplit(){
+const SPLIT_CONTENT_TYPES = {
+  checose:{label:"Che cos'è?", emoji:'❓'},
+  primitivi:{label:'Primitivi e derivati', emoji:'🌱'},
+  cege:{label:'Ortografia: Ce/Cie - Ge/Gie', emoji:'🔤'},
+  scesci:{label:'Ortografia: Sce - Sci', emoji:'🔤'},
+  glili:{label:'Ortografia: Gli - Li', emoji:'🔤'},
+  cuqu:{label:'Ortografia: Cu/Qu/Cqu/Qqu', emoji:'🔤'},
+  doppie:{label:'Ortografia: Le doppie', emoji:'🔤'},
+  letterah:{label:'Ortografia: La lettera H', emoji:'🔤'},
+};
+function goClassroomSplitChoose(){
+  clearIntervals();
+  state.view='classroomSplitChoose';
+  render();
+}
+function viewClassroomSplitChoose(){
+  const cards = Object.keys(SPLIT_CONTENT_TYPES).map(k=>{
+    const meta = SPLIT_CONTENT_TYPES[k];
+    return `<button class="mode-card" onclick="startClassroomSplit('${k}')"><span class="emoji">${meta.emoji}</span><div class="txt"><strong>${meta.label}</strong></div></button>`;
+  }).join('');
+  return `
+  <h2>Squadra contro squadra</h2>
+  <p class="hint">Su cosa vuoi far sfidare le due squadre?</p>
+  <div class="mode-list">${cards}</div>`;
+}
+function startClassroomSplit(contentType){
   clearIntervals();
   state.view='classroomSplit';
+  state.splitContentType = contentType;
   state.split = {
     blu:{score:0, current:null, phase:'answering', timeLeft:SPLIT_ANSWER_SECONDS},
     rosso:{score:0, current:null, phase:'answering', timeLeft:SPLIT_ANSWER_SECONDS},
@@ -106,12 +132,28 @@ function startClassroomSplit(){
   render();
 }
 function loadSplitWord(side){
-  const tipiList = activeTipiList();
-  const pool = wordsByTipi(tipiList);
-  const word = pickRandom(pool);
-  const options = shuffle(tipiList.slice());
+  const type = state.splitContentType;
   const s = state.split[side];
-  s.current = {word, options, answered:false, chosen:null};
+  if(type==='checose'){
+    const tipiList = activeTipiList();
+    const pool = wordsByTipi(tipiList);
+    const word = pickRandom(pool);
+    const options = shuffle(tipiList.slice());
+    s.current = {kind:'grammar', display:word.w, correct:word.t, options, labels:TIPI_LABELS};
+  } else if(type==='primitivi'){
+    const primitivi = PRIMITIVI_DERIVATI.filter(w=>w.tipo==='primitivo');
+    const derivati = PRIMITIVI_DERIVATI.filter(w=>w.tipo==='derivato');
+    const item = Math.random() < 0.5 ? pickRandom(primitivi) : pickRandom(derivati);
+    const options = shuffle(['primitivo','derivato']);
+    s.current = {kind:'grammar', display:item.w, correct:item.tipo, options, labels:PRIMDERIV_LABELS};
+  } else {
+    const topic = ORTHO_TOPICS[type];
+    const item = pickRandom(topic.bank);
+    const options = shuffle([item.ok, item.bad]);
+    s.current = {kind:'ortho', orthoMode:topic.mode, item, options};
+  }
+  s.answered = false;
+  s.chosen = null;
   s.phase = 'answering';
   s.timeLeft = SPLIT_ANSWER_SECONDS;
 }
@@ -121,7 +163,7 @@ function splitTick(){
     s.timeLeft--;
     if(s.timeLeft <= 0){
       if(s.phase==='answering'){
-        s.current.answered = true;
+        s.answered = true;
         s.phase = 'revealing';
         s.timeLeft = SPLIT_REVEAL_SECONDS;
       } else {
@@ -135,48 +177,66 @@ function splitColumnHtml(side){
   const meta = SPLIT_TEAMS[side];
   const s = state.split[side];
   const c = s.current;
-  const optsHtml = c.options.map(t=>{
-    let cls='option-btn';
-    if(c.answered){
-      if(t===c.word.t) cls+=' correct';
-      else if(t===c.chosen) cls+=' wrong';
-    }
-    return `<button class="${cls}" ${c.answered?'disabled':''} onclick="answerSplit('${side}','${t}')">${TIPI_LABELS[t]}</button>`;
-  }).join('');
+  let bodyHtml = '';
+  if(c.kind==='grammar'){
+    const optsHtml = c.options.map(opt=>{
+      let cls='option-btn';
+      if(s.answered){
+        if(opt===c.correct) cls+=' correct';
+        else if(opt===s.chosen) cls+=' wrong';
+      }
+      return `<button class="${cls}" ${s.answered?'disabled':''} onclick="answerSplit('${side}','${opt}')">${c.labels[opt]}</button>`;
+    }).join('');
+    bodyHtml = `<div class="quiz-word" style="font-size:clamp(1.5rem,6vw,2.1rem)">${c.display}</div><div class="options-grid-single">${optsHtml}</div>`;
+  } else {
+    const wordText = c.orthoMode==='transform' ? c.item.s : (c.orthoMode==='sentence' ? c.item.sentence : '');
+    const optsHtml = c.options.map(opt=>{
+      let cls='option-btn';
+      if(s.answered){
+        if(opt===c.item.ok) cls+=' correct';
+        else if(opt===s.chosen) cls+=' wrong';
+      }
+      return `<button class="${cls}" ${s.answered?'disabled':''} onclick="answerSplit('${side}','${opt}')">${opt}</button>`;
+    }).join('');
+    bodyHtml = `${wordText ? `<div class="quiz-word" style="font-size:clamp(1.2rem,4.5vw,1.6rem)">${wordText}</div>` : ''}<div class="options-grid-single">${optsHtml}</div>`;
+  }
   const timerLabel = s.phase==='answering' ? `⏱ ${s.timeLeft}s` : `Prossima tra ${s.timeLeft}...`;
   return `
   <div class="split-col ${meta.cls}">
     <h3>${meta.emoji} Squadra ${meta.label}</h3>
     <div class="split-score">${s.score}</div>
     <div class="hint">${timerLabel}</div>
-    <div class="quiz-prompt">Che cos'è...</div>
-    <div class="quiz-word" style="font-size:clamp(1.6rem,6vw,2.2rem)">${c.word.w}</div>
-    <div class="options-grid-single">${optsHtml}</div>
+    ${bodyHtml}
   </div>`;
 }
 function viewClassroomSplit(){
+  const contentLabel = SPLIT_CONTENT_TYPES[state.splitContentType].label;
   return `
-  <p class="hint" style="text-align:center">Ogni squadra risponde alla propria domanda, in autonomia: le parole cambiano da sole.</p>
+  <p class="hint" style="text-align:center">${contentLabel} · ogni squadra risponde alla propria domanda, le parole cambiano da sole.</p>
   <div class="split-row">
     ${splitColumnHtml('blu')}
     ${splitColumnHtml('rosso')}
   </div>
-  <div style="text-align:center;margin-top:16px">
+  <div style="text-align:center;margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
     <button class="btn btn-ghost" onclick="resetSplit()">Azzera punteggio</button>
+    <button class="btn btn-ghost" onclick="goClassroomSplitChoose()">Cambia contenuto</button>
   </div>`;
 }
-function answerSplit(side, t){
+function answerSplit(side, value){
   const s = state.split[side];
-  if(s.phase!=='answering' || s.current.answered) return;
-  s.current.answered=true; s.current.chosen=t;
-  if(t===s.current.word.t) s.score++;
+  if(s.phase!=='answering' || s.answered) return;
+  const c = s.current;
+  const correct = c.kind==='grammar' ? value===c.correct : value===c.item.ok;
+  s.answered = true;
+  s.chosen = value;
+  if(correct) s.score++;
   s.phase = 'revealing';
   s.timeLeft = SPLIT_REVEAL_SECONDS;
   render();
 }
 function resetSplit(){
-  state.split.blu.score=0;
-  state.split.rosso.score=0;
+  state.split.blu.score = 0;
+  state.split.rosso.score = 0;
   loadSplitWord('blu');
   loadSplitWord('rosso');
   render();

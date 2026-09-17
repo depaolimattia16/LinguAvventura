@@ -1,0 +1,554 @@
+[
+  {
+    "w": "fiore",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "pane",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "terra",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "mare",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "libro",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "dente",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "latte",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "erba",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "cane",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "gatto",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "scuola",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "giornale",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "sole",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "neve",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "pesce",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "fuoco",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "ferro",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "vetro",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "carta",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "sasso",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "mano",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "occhio",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "testa",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "bocca",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "campana",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "porta",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "casa",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "vento",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "acqua",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "legno",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "giardino",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "montagna",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "cielo",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "stella",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "sale",
+    "tipo": "primitivo"
+  },
+  {
+    "w": "fioraio",
+    "tipo": "derivato"
+  },
+  {
+    "w": "fioriera",
+    "tipo": "derivato"
+  },
+  {
+    "w": "fiorista",
+    "tipo": "derivato"
+  },
+  {
+    "w": "fiorellino",
+    "tipo": "derivato"
+  },
+  {
+    "w": "panettiere",
+    "tipo": "derivato"
+  },
+  {
+    "w": "panetteria",
+    "tipo": "derivato"
+  },
+  {
+    "w": "panino",
+    "tipo": "derivato"
+  },
+  {
+    "w": "panificio",
+    "tipo": "derivato"
+  },
+  {
+    "w": "terreno",
+    "tipo": "derivato"
+  },
+  {
+    "w": "terrazza",
+    "tipo": "derivato"
+  },
+  {
+    "w": "terriccio",
+    "tipo": "derivato"
+  },
+  {
+    "w": "atterraggio",
+    "tipo": "derivato"
+  },
+  {
+    "w": "marinaio",
+    "tipo": "derivato"
+  },
+  {
+    "w": "sottomarino",
+    "tipo": "derivato"
+  },
+  {
+    "w": "mareggiata",
+    "tipo": "derivato"
+  },
+  {
+    "w": "libreria",
+    "tipo": "derivato"
+  },
+  {
+    "w": "libraio",
+    "tipo": "derivato"
+  },
+  {
+    "w": "libretto",
+    "tipo": "derivato"
+  },
+  {
+    "w": "librone",
+    "tipo": "derivato"
+  },
+  {
+    "w": "dentista",
+    "tipo": "derivato"
+  },
+  {
+    "w": "dentiera",
+    "tipo": "derivato"
+  },
+  {
+    "w": "dentifricio",
+    "tipo": "derivato"
+  },
+  {
+    "w": "dentino",
+    "tipo": "derivato"
+  },
+  {
+    "w": "latteria",
+    "tipo": "derivato"
+  },
+  {
+    "w": "lattaio",
+    "tipo": "derivato"
+  },
+  {
+    "w": "latticino",
+    "tipo": "derivato"
+  },
+  {
+    "w": "lattiera",
+    "tipo": "derivato"
+  },
+  {
+    "w": "erbario",
+    "tipo": "derivato"
+  },
+  {
+    "w": "erboristeria",
+    "tipo": "derivato"
+  },
+  {
+    "w": "erbaccia",
+    "tipo": "derivato"
+  },
+  {
+    "w": "canile",
+    "tipo": "derivato"
+  },
+  {
+    "w": "cagnolino",
+    "tipo": "derivato"
+  },
+  {
+    "w": "cagnolone",
+    "tipo": "derivato"
+  },
+  {
+    "w": "gattino",
+    "tipo": "derivato"
+  },
+  {
+    "w": "gattile",
+    "tipo": "derivato"
+  },
+  {
+    "w": "gattone",
+    "tipo": "derivato"
+  },
+  {
+    "w": "scolaro",
+    "tipo": "derivato"
+  },
+  {
+    "w": "scolaresca",
+    "tipo": "derivato"
+  },
+  {
+    "w": "giornalista",
+    "tipo": "derivato"
+  },
+  {
+    "w": "giornalaio",
+    "tipo": "derivato"
+  },
+  {
+    "w": "giornalino",
+    "tipo": "derivato"
+  },
+  {
+    "w": "girasole",
+    "tipo": "derivato"
+  },
+  {
+    "w": "nevaio",
+    "tipo": "derivato"
+  },
+  {
+    "w": "nevicata",
+    "tipo": "derivato"
+  },
+  {
+    "w": "pescatore",
+    "tipo": "derivato"
+  },
+  {
+    "w": "pescheria",
+    "tipo": "derivato"
+  },
+  {
+    "w": "pescivendolo",
+    "tipo": "derivato"
+  },
+  {
+    "w": "pesciolino",
+    "tipo": "derivato"
+  },
+  {
+    "w": "focolare",
+    "tipo": "derivato"
+  },
+  {
+    "w": "fuochista",
+    "tipo": "derivato"
+  },
+  {
+    "w": "fuocherello",
+    "tipo": "derivato"
+  },
+  {
+    "w": "ferriera",
+    "tipo": "derivato"
+  },
+  {
+    "w": "ferramenta",
+    "tipo": "derivato"
+  },
+  {
+    "w": "ferroviere",
+    "tipo": "derivato"
+  },
+  {
+    "w": "vetraio",
+    "tipo": "derivato"
+  },
+  {
+    "w": "vetreria",
+    "tipo": "derivato"
+  },
+  {
+    "w": "vetrata",
+    "tipo": "derivato"
+  },
+  {
+    "w": "cartaio",
+    "tipo": "derivato"
+  },
+  {
+    "w": "cartoleria",
+    "tipo": "derivato"
+  },
+  {
+    "w": "cartolina",
+    "tipo": "derivato"
+  },
+  {
+    "w": "cartoccio",
+    "tipo": "derivato"
+  },
+  {
+    "w": "sassolino",
+    "tipo": "derivato"
+  },
+  {
+    "w": "sassata",
+    "tipo": "derivato"
+  },
+  {
+    "w": "manina",
+    "tipo": "derivato"
+  },
+  {
+    "w": "manetta",
+    "tipo": "derivato"
+  },
+  {
+    "w": "manopola",
+    "tipo": "derivato"
+  },
+  {
+    "w": "manata",
+    "tipo": "derivato"
+  },
+  {
+    "w": "occhiali",
+    "tipo": "derivato"
+  },
+  {
+    "w": "occhiata",
+    "tipo": "derivato"
+  },
+  {
+    "w": "occhietto",
+    "tipo": "derivato"
+  },
+  {
+    "w": "occhiello",
+    "tipo": "derivato"
+  },
+  {
+    "w": "testata",
+    "tipo": "derivato"
+  },
+  {
+    "w": "testone",
+    "tipo": "derivato"
+  },
+  {
+    "w": "testina",
+    "tipo": "derivato"
+  },
+  {
+    "w": "boccone",
+    "tipo": "derivato"
+  },
+  {
+    "w": "boccuccia",
+    "tipo": "derivato"
+  },
+  {
+    "w": "boccaglio",
+    "tipo": "derivato"
+  },
+  {
+    "w": "campanile",
+    "tipo": "derivato"
+  },
+  {
+    "w": "campanello",
+    "tipo": "derivato"
+  },
+  {
+    "w": "campanaro",
+    "tipo": "derivato"
+  },
+  {
+    "w": "portone",
+    "tipo": "derivato"
+  },
+  {
+    "w": "portiere",
+    "tipo": "derivato"
+  },
+  {
+    "w": "portineria",
+    "tipo": "derivato"
+  },
+  {
+    "w": "casetta",
+    "tipo": "derivato"
+  },
+  {
+    "w": "casale",
+    "tipo": "derivato"
+  },
+  {
+    "w": "casolare",
+    "tipo": "derivato"
+  },
+  {
+    "w": "casamento",
+    "tipo": "derivato"
+  },
+  {
+    "w": "ventata",
+    "tipo": "derivato"
+  },
+  {
+    "w": "ventaglio",
+    "tipo": "derivato"
+  },
+  {
+    "w": "acquaio",
+    "tipo": "derivato"
+  },
+  {
+    "w": "acquazzone",
+    "tipo": "derivato"
+  },
+  {
+    "w": "acquario",
+    "tipo": "derivato"
+  },
+  {
+    "w": "legnaia",
+    "tipo": "derivato"
+  },
+  {
+    "w": "legnetto",
+    "tipo": "derivato"
+  },
+  {
+    "w": "legname",
+    "tipo": "derivato"
+  },
+  {
+    "w": "giardiniere",
+    "tipo": "derivato"
+  },
+  {
+    "w": "giardinetto",
+    "tipo": "derivato"
+  },
+  {
+    "w": "giardinaggio",
+    "tipo": "derivato"
+  },
+  {
+    "w": "montanaro",
+    "tipo": "derivato"
+  },
+  {
+    "w": "stellina",
+    "tipo": "derivato"
+  },
+  {
+    "w": "costellazione",
+    "tipo": "derivato"
+  },
+  {
+    "w": "salame",
+    "tipo": "derivato"
+  },
+  {
+    "w": "saliera",
+    "tipo": "derivato"
+  }
+]

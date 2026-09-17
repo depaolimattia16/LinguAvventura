@@ -42,4 +42,6 @@ function restartMode(mode){
   else if(mode==='intruso') startIntruso();
   else if(mode==='ortografia') startOrtografiaTopic(state.game.topic);
   else if(mode==='misteriosa') startParolaMisteriosa();
+  else if(mode==='primitivi') startPrimitivi();
+  else if(mode==='sfidamista') startSfidaMista();
 }

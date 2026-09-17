@@ -19,6 +19,7 @@ function render(){
   else if(state.view==='progress') app.innerHTML = viewProgress();
   else if(state.view==='classroomChoose') app.innerHTML = viewClassroomChoose();
   else if(state.view==='classroom') app.innerHTML = viewClassroom();
+  else if(state.view==='classroomSplitChoose') app.innerHTML = viewClassroomSplitChoose();
   else if(state.view==='classroomSplit') app.innerHTML = viewClassroomSplit();
   else if(state.view==='analizzaChoose') app.innerHTML = viewAnalizzaChoose();
   else if(state.view==='ortografiaChoose') app.innerHTML = viewOrtografiaChoose();
@@ -31,11 +32,13 @@ function render(){
     else if(state.gameMode==='ortografia') app.innerHTML = viewOrtografia();
     else if(state.gameMode==='analizzatutto') app.innerHTML = viewAnalizzaTutto();
     else if(state.gameMode==='misteriosa') app.innerHTML = viewParolaMisteriosa();
+    else if(state.gameMode==='primitivi') app.innerHTML = viewPrimitivi();
+    else if(state.gameMode==='sfidamista') app.innerHTML = viewSfidaMista();
   }
   window.scrollTo(0,0);
 }
 
-const MAPPA_VIEWS = ['game','classroom','classroomSplit','classroomChoose','analizzaChoose','ortografiaChoose'];
+const MAPPA_VIEWS = ['game','classroom','classroomSplit','classroomChoose','classroomSplitChoose','analizzaChoose','ortografiaChoose'];
 function renderTopbar(){
   const tb = document.getElementById('topbar');
   if(state.view==='home'){ tb.innerHTML=''; return; }
@@ -48,6 +51,8 @@ function renderTopbar(){
     </div>`;
 }
 function goModeSelectOrHome(){
-  if(state.view==='classroom' || state.view==='classroomSplit'){ goClassroomChoose(); return; }
+  if(state.view==='classroom'){ goClassroomChoose(); return; }
+  if(state.view==='classroomSplit'){ goClassroomSplitChoose(); return; }
+  if(state.view==='classroomSplitChoose'){ goClassroomChoose(); return; }
   goModeSelect();
 }

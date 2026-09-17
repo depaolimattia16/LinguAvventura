@@ -2,14 +2,16 @@
 /* Il database (parole, frasi, ortografia) vive in file JSON dentro /data,
    così è modificabile e consultabile senza toccare il codice. */
 async function loadContentData(){
-  const [words, sentences, ortho] = await Promise.all([
+  const [words, sentences, ortho, primitivi] = await Promise.all([
     fetch('data/words.json').then(r=>r.json()),
     fetch('data/sentences.json').then(r=>r.json()),
     fetch('data/ortografia.json').then(r=>r.json()),
+    fetch('data/primitivi-derivati.json').then(r=>r.json()),
   ]);
   WORDS = words;
   SENTENCES = sentences;
   fillOrthoBanks(ortho);
+  PRIMITIVI_DERIVATI = primitivi;
 }
 
 loadContentData().then(()=>{
