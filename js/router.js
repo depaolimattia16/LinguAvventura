@@ -23,6 +23,7 @@ function render(){
   else if(state.view==='classroomSplit') app.innerHTML = viewClassroomSplit();
   else if(state.view==='analizzaChoose') app.innerHTML = viewAnalizzaChoose();
   else if(state.view==='ortografiaChoose') app.innerHTML = viewOrtografiaChoose();
+  else if(state.view==='ortografiaMistaChoose') app.innerHTML = viewOrtografiaMistaChoose();
   else if(state.view==='game'){
     if(state.gameMode==='checose') app.innerHTML = viewCheCosE();
     else if(state.gameMode==='analizza') app.innerHTML = viewAnalizza();
@@ -30,6 +31,7 @@ function render(){
     else if(state.gameMode==='lampo') app.innerHTML = viewLampo();
     else if(state.gameMode==='mostro') app.innerHTML = viewMostro();
     else if(state.gameMode==='ortografia') app.innerHTML = viewOrtografia();
+    else if(state.gameMode==='ortografiaMista') app.innerHTML = viewOrtografiaMista();
     else if(state.gameMode==='analizzatutto') app.innerHTML = viewAnalizzaTutto();
     else if(state.gameMode==='misteriosa') app.innerHTML = viewParolaMisteriosa();
     else if(state.gameMode==='primitivi') app.innerHTML = viewPrimitivi();
@@ -38,7 +40,7 @@ function render(){
   window.scrollTo(0,0);
 }
 
-const MAPPA_VIEWS = ['game','classroom','classroomSplit','classroomChoose','classroomSplitChoose','analizzaChoose','ortografiaChoose'];
+const MAPPA_VIEWS = ['game','classroom','classroomSplit','classroomChoose','classroomSplitChoose','analizzaChoose','ortografiaChoose','ortografiaMistaChoose'];
 function renderTopbar(){
   const tb = document.getElementById('topbar');
   if(state.view==='home'){ tb.innerHTML=''; return; }
@@ -50,9 +52,15 @@ function renderTopbar(){
       <span class="pill">🔥 ${progress.streak}</span>
     </div>`;
 }
+const ORTHO_GAME_MODES = ['ortografia','ortografiaMista'];
 function goModeSelectOrHome(){
   if(state.view==='classroom'){ goClassroomChoose(); return; }
   if(state.view==='classroomSplit'){ goClassroomSplitChoose(); return; }
   if(state.view==='classroomSplitChoose'){ goClassroomChoose(); return; }
+  if(state.view==='ortografiaMistaChoose'){ goOrtografiaChoose(); return; }
+  if(state.view==='game' && ORTHO_GAME_MODES.includes(state.gameMode)){
+    if(state.gameMode==='ortografiaMista'){ goOrtografiaMistaChoose(); return; }
+    goOrtografiaChoose(); return;
+  }
   goModeSelect();
 }
