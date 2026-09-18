@@ -2,21 +2,27 @@
 /* Il database (parole, frasi, ortografia) vive in file JSON dentro /data,
    così è modificabile e consultabile senza toccare il codice. */
 async function loadContentData(){
-  const [words, sentences, ortho, primitivi] = await Promise.all([
+  const [words, sentences, ortho, primitivi, teoria] = await Promise.all([
     fetch('data/words.json').then(r=>r.json()),
     fetch('data/sentences.json').then(r=>r.json()),
     fetch('data/ortografia.json').then(r=>r.json()),
     fetch('data/primitivi-derivati.json').then(r=>r.json()),
+    fetch('data/teoria.json').then(r=>r.json()),
   ]);
   WORDS = words;
   SENTENCES = sentences;
   fillOrthoBanks(ortho);
   PRIMITIVI_DERIVATI = primitivi;
+  TEORIA = teoria;
 }
 
 loadContentData().then(()=>{
   touchStreak();
+  // Il nickname si chiede solo se Supabase è configurato (altrimenti non servirebbe a nulla):
+  // così l'app resta a zero attrito finché non decidi tu di collegare le statistiche.
+  state.view = (supabaseClient && !getNickname()) ? 'nickname' : 'home';
   render();
+  if(supabaseClient) flushPendingQueue(); // riprova a spedire eventuali risposte rimaste in sospeso
 }).catch(err=>{
   console.error('Errore nel caricamento dei dati:', err);
   const app = document.getElementById('app');

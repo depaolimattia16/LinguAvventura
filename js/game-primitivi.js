@@ -43,7 +43,7 @@ function answerPrimitivi(t){
   c.answered=true; c.chosen=t;
   const correct = t===c.item.tipo;
   if(correct){ state.game.score++; addXP(10); }
-  recordAnswer(correct);
+  recordAnswer(correct, 'primitivi');
   render();
 }
 function nextPrimitiviBtn(){

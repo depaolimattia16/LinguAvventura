@@ -55,7 +55,7 @@ function answerCheCosE(t){
   c.answered = true; c.chosen = t;
   const correct = t===c.word.t;
   if(correct){ state.game.score++; addXP(10); }
-  recordAnswer(correct);
+  recordAnswer(correct, 'checose');
   render();
 }
 function nextCheCosEBtn(){

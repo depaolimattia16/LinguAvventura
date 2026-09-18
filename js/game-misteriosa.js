@@ -42,7 +42,7 @@ function answerParolaMisteriosa(t){
   c.answered=true; c.chosen=t;
   const correct = t===c.sentence[c.tokenIndex].t;
   if(correct){ state.game.score++; addXP(10); }
-  recordAnswer(correct);
+  recordAnswer(correct, 'misteriosa');
   render();
 }
 function nextParolaMisteriosaBtn(){

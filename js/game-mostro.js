@@ -53,7 +53,7 @@ function answerMostro(t){
   if(c.answered) return;
   c.answered=true; c.chosen=t;
   const correct = t===c.word.t;
-  recordAnswer(correct);
+  recordAnswer(correct, 'mostro');
   if(correct) state.game.hp--;
   else state.game.lives--;
   render();

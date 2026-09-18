@@ -14,6 +14,8 @@ function render(){
   renderTopbar();
   const app = document.getElementById('app');
   if(state.view==='home') app.innerHTML = viewHome();
+  else if(state.view==='nickname') app.innerHTML = viewNickname();
+  else if(state.view==='classStats') app.innerHTML = viewClassStats();
   else if(state.view==='modeSelect') app.innerHTML = viewModeSelect();
   else if(state.view==='settings') app.innerHTML = viewSettings();
   else if(state.view==='progress') app.innerHTML = viewProgress();
@@ -25,6 +27,8 @@ function render(){
   else if(state.view==='ortografiaChoose') app.innerHTML = viewOrtografiaChoose();
   else if(state.view==='ortografiaMistaChoose') app.innerHTML = viewOrtografiaMistaChoose();
   else if(state.view==='checoseChoose') app.innerHTML = viewCheCosEChoose();
+  else if(state.view==='teoriaChoose') app.innerHTML = viewTeoriaChoose();
+  else if(state.view==='teoriaPage') app.innerHTML = viewTeoriaPage();
   else if(state.view==='game'){
     if(state.gameMode==='checose') app.innerHTML = viewCheCosE();
     else if(state.gameMode==='analizza') app.innerHTML = viewAnalizza();
@@ -41,14 +45,16 @@ function render(){
   window.scrollTo(0,0);
 }
 
-const MAPPA_VIEWS = ['game','classroom','classroomSplit','classroomChoose','classroomSplitChoose','analizzaChoose','ortografiaChoose','ortografiaMistaChoose','checoseChoose'];
+const MAPPA_VIEWS = ['game','classroom','classroomSplit','classroomChoose','classroomSplitChoose','analizzaChoose','ortografiaChoose','ortografiaMistaChoose','checoseChoose','teoriaPage'];
 function renderTopbar(){
   const tb = document.getElementById('topbar');
-  if(state.view==='home'){ tb.innerHTML=''; return; }
+  if(state.view==='home' || state.view==='nickname'){ tb.innerHTML=''; return; }
   const onMappa = MAPPA_VIEWS.includes(state.view);
+  const nickname = getNickname();
   tb.innerHTML = `
     <button class="back-btn" onclick="${onMappa ? 'goModeSelectOrHome()' : 'goHome()'}">‹ ${onMappa?'Mappa':'Home'}</button>
     <div class="stats">
+      ${nickname ? `<button class="pill" style="border:none;cursor:pointer;font-family:inherit" onclick="changeNickname()">👤 ${nickname}</button>` : ''}
       <span class="pill">⭐ ${progress.xp} XP</span>
       <span class="pill">🔥 ${progress.streak}</span>
     </div>`;
@@ -62,6 +68,7 @@ function goModeSelectOrHome(){
   if(state.view==='classroomSplitChoose'){ goClassroomChoose(); return; }
   if(state.view==='ortografiaMistaChoose'){ goOrtografiaChoose(); return; }
   if(state.view==='checoseChoose'){ goModeSelect(); return; }
+  if(state.view==='teoriaPage'){ goTeoriaChoose(); return; }
   if(state.view==='game' && ORTHO_GAME_MODES.includes(state.gameMode)){
     if(state.gameMode==='ortografiaMista'){ goOrtografiaMistaChoose(); return; }
     goOrtografiaChoose(); return;

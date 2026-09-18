@@ -83,7 +83,7 @@ function answerIntruso(wStr){
   c.chosen = c.four.find(it=>it.w===wStr);
   const correct = c.chosen.w===c.intruder.w;
   if(correct){ state.game.score++; addXP(10); }
-  recordAnswer(correct);
+  recordAnswer(correct, 'intruso:'+c.axis);
   render();
 }
 function nextIntrusoBtn(){

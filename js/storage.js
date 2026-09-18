@@ -60,7 +60,7 @@ function touchStreak(){
 
 function addXP(n){ progress.xp += n; saveProgress(); renderTopbar(); }
 
-function recordAnswer(correct){
+function recordAnswer(correct, topic){
   progress.totalAnswered++;
   if(correct){
     progress.totalCorrect++;
@@ -71,6 +71,7 @@ function recordAnswer(correct){
   }
   if(progress.totalCorrect >= 100) awardBadge('cento_risposte');
   saveProgress();
+  logAttempt(topic || 'sconosciuto', correct);
 }
 
 function awardBadge(id){

@@ -53,7 +53,7 @@ function answerLampo(t){
   if(!g.running) return;
   const correct = t===g.current.word.t;
   if(correct) g.score++;
-  recordAnswer(correct);
+  recordAnswer(correct, 'lampo');
   nextLampoQuestion();
   render();
 }

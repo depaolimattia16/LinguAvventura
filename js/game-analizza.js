@@ -125,10 +125,11 @@ function answerAnalizza(opt){
   const g = state.game;
   if(g.answered) return;
   const cfg = ANALYSIS_CONFIG[g.type];
-  const field = cfg.stepDef[g.steps[g.stepIndex]].field;
+  const stepKey = g.steps[g.stepIndex];
+  const field = cfg.stepDef[stepKey].field;
   g.answered=true; g.chosen=opt;
   const correct = opt===g.word[field];
-  recordAnswer(correct);
+  recordAnswer(correct, 'analizza:'+g.type+':'+stepKey);
   render();
 }
 function nextAnalizzaStep(){

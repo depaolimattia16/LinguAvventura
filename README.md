@@ -19,13 +19,17 @@ poi apri l'indirizzo che ti stampa a schermo (di solito `http://localhost:3000`)
 ```
 index.html          lo scheletro della pagina, carica CSS e script in ordine
 favicon.svg          il logo (L verde) mostrato nella scheda del browser
+supabase-schema.sql  SQL da eseguire una volta su Supabase per le statistiche di classe (opzionale)
 css/style.css        tutti gli stili
 data/                 IL DATABASE, in JSON puro — apribile e modificabile senza toccare il codice
   words.json            tutte le parole (nomi, verbi, aggettivi, articoli) con le loro caratteristiche
   sentences.json         le frasi pronte per "Analizza tutto" e "Parola misteriosa"
   ortografia.json        le liste per ogni regola di ortografia (ce/cie, ge/gie, gli/li, ecc.)
   primitivi-derivati.json  le parole per l'esercizio "Primitivi e derivati"
+  teoria.json              le schede di teoria (regole di grammatica e ortografia spiegate in breve)
 js/
+  config.js           URL e chiave del tuo progetto Supabase (vuoto di default: vedi sotto)
+  sync.js             gestione del nickname e invio delle risposte a Supabase
   data.js             le etichette mostrate a schermo e le medaglie (non le parole: quelle sono in /data)
   storage.js          salvataggio/lettura di impostazioni e progressi (localStorage),
                        XP, giorni di fila, medaglie
@@ -33,8 +37,11 @@ js/
                        e la logica comune ai giochi "a round" (punteggio, rigioca)
   router.js           schermata attuale e funzione che disegna la pagina
   view-home.js        home e schermata di scelta modalità
+  view-nickname.js    schermata "come ti chiami?" mostrata la prima volta
+  view-stats.js       pagina "Statistiche" per l'insegnante (legge da Supabase)
+  view-teoria.js      pagina "Teoria" (regole spiegate in breve, con link all'esercizio)
   view-settings.js    pagina "Argomenti" (attiva/disattiva caratteristiche)
-  view-progress.js    pagina "Progressi" (XP, medaglie, statistiche)
+  view-progress.js    pagina "Progressi" (XP, medaglie, statistiche personali)
   game-checose.js     modalità "Che cos'è?"
   game-analizza.js    "Analisi grammaticale" (nome, aggettivo, articolo, verbo)
   game-analizzatutto.js  "Analizza tutto" (frase intera, parola per parola)
@@ -67,6 +74,26 @@ Tutto il contenuto "didattico" sta in `/data`, come JSON puro — nessuna sintas
 - **`data/primitivi-derivati.json`** — un array di `{ "w": "...", "tipo": "primitivo" }` oppure `"tipo": "derivato"`.
 
 Per una NUOVA regola di ortografia (non solo nuove parole in una esistente) serve anche aggiungere una voce a `ORTHO_TOPICS` dentro `js/game-ortografia.js`. Le costanti `*_LABELS` in `js/data.js` definiscono le etichette mostrate a schermo (es. "Maschile"/"Femminile").
+
+## Statistiche di classe (opzionale, richiede Supabase)
+
+Di base l'app non ha nessun database: i progressi restano sul dispositivo di ognuno, come descritto sopra. Se vuoi vedere anche tu, da insegnante, come va la classe nel complesso (e su quali argomenti si sbaglia di più), puoi collegare un progetto Supabase gratuito. Senza questo passaggio l'app funziona comunque esattamente come prima.
+
+1. Crea un progetto su [supabase.com](https://supabase.com) (o usane uno che hai già).
+2. Apri **SQL Editor** nel progetto, incolla il contenuto di `supabase-schema.sql` (nella cartella principale del repository) e lancialo. Crea la tabella `attempts` con le regole di sicurezza necessarie.
+3. Vai su **Project Settings → API**: copia **Project URL** e la chiave **anon public**.
+4. Apri `js/config.js` e incollali:
+   ```js
+   const SUPABASE_URL = 'https://IL-TUO-PROGETTO.supabase.co';
+   const SUPABASE_ANON_KEY = 'la-tua-chiave-anon';
+   ```
+5. Fai il deploy (o ricarica in locale). D'ora in poi, ogni volta che qualcuno gioca, ogni risposta (giusta o sbagliata, con l'argomento a cui appartiene) viene mandata anche a Supabase, collegata al nickname scelto.
+6. Da qualsiasi dispositivo, apri **Home → Statistiche** per vedere il riepilogo per studente e per argomento, ordinato dagli argomenti/studenti con più difficoltà.
+
+Note:
+- Il nickname è libero (ogni studente lo scrive al primo utilizzo su quel dispositivo) e resta salvato lì; si può cambiare in qualsiasi momento toccando la pillola col nome in alto nello schermo, utile se più studenti condividono lo stesso dispositivo a turno.
+- Se internet non è disponibile o Supabase non è raggiungibile, il gioco continua a funzionare normalmente: semplicemente quella risposta non viene sincronizzata.
+- La chiave "anon" è pensata per stare nel codice pubblico del sito (è quella con cui l'app stessa comunica con Supabase); le regole di sicurezza (`supabase-schema.sql`) permettono a chiunque abbia quella chiave di leggere e scrivere le risposte, senza login. Per una classe va bene così, ma è bene sapere che non c'è una vera protezione ad accesso.
 
 ## Deploy su Vercel
 

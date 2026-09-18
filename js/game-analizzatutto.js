@@ -48,11 +48,12 @@ function answerAnalizzaTutto(opt){
   if(g.answered) return;
   const token = g.sentence[g.tokenIndex];
   const cfg = ANALYSIS_CONFIG[token.t];
-  const field = cfg.stepDef[g.steps[g.stepIndex]].field;
+  const stepKey = g.steps[g.stepIndex];
+  const field = cfg.stepDef[stepKey].field;
   g.answered=true; g.chosen=opt;
   const correct = opt===token[field];
   if(correct) g.score++;
-  recordAnswer(correct);
+  recordAnswer(correct, 'analizzatutto:'+token.t+':'+stepKey);
   render();
 }
 function nextAnalizzaTuttoStep(){

@@ -1,0 +1,149 @@
+{
+  "grammatica": [
+    {
+      "key": "nome",
+      "title": "Il nome",
+      "icon": "📛",
+      "esercizio": "startAnalizza('nome')",
+      "regola": "<p>Il nome (o sostantivo) è la parola che indica persone, animali, cose, idee o sentimenti. Si può analizzare da più punti di vista: comune o proprio; se indica una persona, un animale o una cosa; se è concreto, astratto o collettivo; genere e numero.</p>",
+      "esempi": [
+        "cane → comune, animale, concreto, maschile, singolare",
+        "Roma → proprio, cosa/luogo, concreto, femminile, singolare",
+        "coraggio → comune, cosa, astratto, maschile, singolare",
+        "squadra → comune, cosa, collettivo, femminile, singolare"
+      ],
+      "eccezioni": "<p>Alcuni nomi non cambiano tra singolare e plurale: <strong>la città → le città</strong>, <strong>il re → i re</strong>, <strong>la crisi → le crisi</strong>. Alcuni nomi collettivi restano grammaticalmente singolari anche se indicano tante persone: <strong>la gente</strong> (non \"le genti\" nel linguaggio comune).</p>"
+    },
+    {
+      "key": "aggettivo",
+      "title": "L'aggettivo",
+      "icon": "🎨",
+      "esercizio": "startAnalizza('aggettivo')",
+      "regola": "<p>L'aggettivo accompagna il nome e concorda sempre con lui in genere e numero. Può essere qualificativo (indica una qualità), possessivo (indica a chi appartiene qualcosa) o dimostrativo (indica la posizione rispetto a chi parla).</p>",
+      "esempi": [
+        "bello, bella, belli, belle → qualificativo",
+        "mio, tuo, suo, nostro, vostro → possessivo",
+        "questo (vicino), quello (lontano) → dimostrativo"
+      ],
+      "eccezioni": "<p>Alcuni aggettivi qualificativi sono <strong>invariabili nel genere</strong>: hanno la stessa forma per maschile e femminile, cambia solo il numero. Esempio: <strong>verde/verdi</strong> (il prato verde, la maglia verde), <strong>forte/forti</strong>, <strong>grande/grandi</strong>. Alcuni, come <strong>blu</strong> e <strong>rosa</strong>, restano identici anche al plurale.</p>"
+    },
+    {
+      "key": "articolo",
+      "title": "L'articolo",
+      "icon": "🔤",
+      "esercizio": "startAnalizza('articolo')",
+      "regola": "<p>L'articolo precede il nome e ne anticipa genere e numero. Determinativo (il, lo, la, i, gli, le) indica qualcosa di preciso, già conosciuto. Indeterminativo (un, uno, una) indica qualcosa di generico.</p>",
+      "esempi": [
+        "il cane, i cani (determinativo maschile)",
+        "la casa, le case (determinativo femminile)",
+        "un cane, una casa (indeterminativo)"
+      ],
+      "eccezioni": "<p>Davanti a parole maschili che iniziano con <strong>s+consonante, z, gn, ps, x, y</strong> si usano <strong>lo/gli/uno</strong> invece di il/i/un: lo zaino, gli gnomi, uno psicologo (non \"il zaino\", \"i gnomi\", \"un psicologo\").</p>"
+    },
+    {
+      "key": "verbo",
+      "title": "Il verbo",
+      "icon": "🏃",
+      "esercizio": "startAnalizza('verbo')",
+      "regola": "<p>Il verbo indica un'azione, uno stato o un modo di essere, e cambia forma secondo persona (chi compie l'azione), numero, modo e tempo (quando avviene).</p>",
+      "esempi": [
+        "io parlo → 1ª persona singolare, presente",
+        "tu parlavi → 2ª persona singolare, imperfetto",
+        "loro parleranno → 3ª persona plurale, futuro"
+      ],
+      "eccezioni": "<p>Molti verbi comuni sono <strong>irregolari</strong> e non seguono lo schema normale delle coniugazioni. I più usati sono <strong>essere</strong> (sono, sei, è, siamo, siete, sono) e <strong>avere</strong> (ho, hai, ha, abbiamo, avete, hanno): non si costruiscono aggiungendo desinenze regolari alla radice, vanno imparati a memoria.</p>"
+    },
+    {
+      "key": "primitivi",
+      "title": "Nomi primitivi e derivati",
+      "icon": "🌱",
+      "esercizio": "startPrimitivi()",
+      "regola": "<p>Il nome primitivo è la parola \"base\", da cui nascono altre parole della stessa famiglia. Il nome derivato nasce da un primitivo aggiungendo un pezzo all'inizio o alla fine della parola, mantenendo un legame di significato.</p>",
+      "esempi": [
+        "fiore (primitivo) → fioraio, fioriera, fiorista (derivati)",
+        "pane (primitivo) → panettiere, panetteria, panino (derivati)",
+        "terra (primitivo) → terreno, atterraggio, terrazza (derivati)"
+      ],
+      "eccezioni": "<p>Non basta che due parole si somiglino nel suono per essere nella stessa famiglia: deve esserci anche un legame di <strong>significato</strong>. Ad esempio <strong>tappo</strong> e <strong>tappeto</strong> si assomigliano ma non sono parenti; lo stesso vale per <strong>mare</strong> e <strong>marmo</strong>.</p>"
+    }
+  ],
+  "ortografia": [
+    {
+      "key": "cege",
+      "title": "Ce/Cie - Ge/Gie",
+      "icon": "🍊",
+      "esercizio": "startOrtografiaTopic('cege')",
+      "regola": "<p>Le parole che finiscono in <strong>-cia</strong> e <strong>-gia</strong>, al plurale, perdono o mantengono la \"i\" a seconda di cosa c'è subito prima.</p><p>Se prima c'è una <strong>consonante</strong>, la \"i\" si perde al plurale. Se prima c'è una <strong>vocale</strong>, la \"i\" resta.</p>",
+      "esempi": [
+        "arancia → arance (consonante \"c\" prima di \"cia\")",
+        "pioggia → piogge (consonante \"g\" prima di \"gia\")",
+        "farmacia → farmacie (vocale \"a\" prima di \"cia\")",
+        "valigia → valigie (vocale \"i\" prima di \"gia\")"
+      ],
+      "eccezioni": "<p>Questa regola ha pochissime vere eccezioni. Un caso a parte sono parole come <strong>energia</strong> e <strong>farmacia</strong>, dove l'accento cade proprio sulla \"ì\" finale: qui la \"i\" resta sempre al plurale (energie, farmacie), a prescindere dalla regola.</p>"
+    },
+    {
+      "key": "scesci",
+      "title": "Sce - Sci",
+      "icon": "🐟",
+      "esercizio": "startOrtografiaTopic('scesci')",
+      "regola": "<p>Il suono \"sc\" prima della \"e\" si scrive normalmente <strong>senza</strong> la \"i\".</p>",
+      "esempi": [
+        "pesce, scendere, nascere, crescere"
+      ],
+      "eccezioni": "<p>Poche parole, quasi tutte della famiglia di \"scienza\", si scrivono con la \"i\": <strong>scienza, coscienza, scienziato, scie</strong> (i sentieri lasciati da qualcosa che si muove, come le scie degli aerei).</p>"
+    },
+    {
+      "key": "glili",
+      "title": "Gli - Li",
+      "icon": "🌻",
+      "esercizio": "startOrtografiaTopic('glili')",
+      "regola": "<p>Il suono \"gli\" (una specie di \"l\" morbida, pronunciata con la lingua contro il palato) si scrive con <strong>gli</strong>. È diverso dal suono \"li\" semplice (l + i separate).</p>",
+      "esempi": [
+        "figlio, famiglia, foglia, coniglio → suono \"gli\" morbido",
+        "olio → suono \"li\" normale, diverso"
+      ],
+      "eccezioni": "<p>In alcune parole (spesso di origine dotta o straniera) \"gli\" si legge con la g e la l <strong>separate</strong>, non come il suono morbido di \"figlio\": <strong>geroglifico, negligente, glicine, anglicano</strong>.</p>"
+    },
+    {
+      "key": "cuqu",
+      "title": "Cu - Qu - Cqu - Qqu",
+      "icon": "💧",
+      "esercizio": "startOrtografiaTopic('cuqu')",
+      "regola": "<p>Il suono \"kw\" davanti a una vocale si scrive quasi sempre con <strong>QU</strong>. Solo poche parole si scrivono con <strong>CU</strong>. La famiglia di \"acqua\" e pochi verbi usano <strong>CQU</strong>.</p>",
+      "esempi": [
+        "quaderno, questo, quando → QU (il caso più comune)",
+        "cuore, scuola, cuoco, cuoio → CU (eccezioni da imparare a memoria)",
+        "acqua, acquario, nacque, piacque → CQU"
+      ],
+      "eccezioni": "<p>Una sola parola in tutta la lingua italiana si scrive con <strong>QQU</strong>: <strong>soqquadro</strong> (\"mettere a soqquadro\" = mettere tutto in disordine).</p>"
+    },
+    {
+      "key": "doppie",
+      "title": "Le doppie",
+      "icon": "2️⃣",
+      "esercizio": "startOrtografiaTopic('doppie')",
+      "regola": "<p>Alcune consonanti si raddoppiano nella pronuncia e nella scrittura (mm, ll, tt, ecc.), e spesso questo cambia completamente il significato della parola.</p>",
+      "esempi": [
+        "sono (io sono) / sonno (il bisogno di dormire)",
+        "capello (uno solo, sulla testa) / cappello (da indossare)",
+        "pala (attrezzo) / palla (da gioco)"
+      ],
+      "eccezioni": "<p>Qui non ci sono vere e proprie eccezioni: il problema è che <strong>non esiste una regola fissa</strong> per sapere in anticipo quali parole raddoppiano. Vanno imparate ascoltando bene come suonano e leggendo molto.</p>"
+    },
+    {
+      "key": "letterah",
+      "title": "La lettera H",
+      "icon": "🅷",
+      "esercizio": "startOrtografiaTopic('letterah')",
+      "regola": "<p>La H nelle voci del verbo <strong>avere</strong> (ho, hai, ha, hanno) serve a distinguerle da altre parole che si pronunciano allo stesso modo ma hanno un significato diverso.</p>",
+      "esempi": [
+        "ho (verbo avere) / o (oppure)",
+        "hai (verbo avere) / ai (a + i)",
+        "ha (verbo avere) / a (preposizione)",
+        "hanno (verbo avere) / anno (il periodo di tempo)"
+      ],
+      "eccezioni": "<p>La H compare anche in altri casi che non c'entrano col verbo avere: nelle interiezioni (<strong>oh!, ah!, ehi!</strong>) e in alcune parole straniere entrate nell'italiano (<strong>hotel, hobby, hockey</strong>).</p>"
+    }
+  ]
+}

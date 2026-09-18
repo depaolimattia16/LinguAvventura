@@ -11,14 +11,16 @@ function viewHome(){
       <path d="M45 42 Q50 47 55 42" stroke="var(--charcoal)" stroke-width="2" fill="none" stroke-linecap="round"/>
     </svg>
     <h1>Linguavventura</h1>
-    <p>Ripassiamo l'italiano giocando: grammatica e ortografia in tante sfide diverse.</p>
+    <p>${getNickname() ? `Ciao, ${getNickname()}! ` : ''}Ripassiamo l'italiano giocando: grammatica e ortografia in tante sfide diverse.</p>
   </div>
   <div class="menu-grid">
-    <button class="menu-card" onclick="goModeSelect()"><span class="emoji">🧠</span><h3>Grammatica</h3><span class="desc">Nomi, verbi, aggettivi, articoli: 7 modalità di gioco</span></button>
+    <button class="menu-card" onclick="goModeSelect()"><span class="emoji">🧠</span><h3>Grammatica</h3><span class="desc">Nomi, verbi, aggettivi, articoli: 5 modalità di gioco</span></button>
     <button class="menu-card" onclick="goOrtografiaChoose()"><span class="emoji">🔤</span><h3>Ortografia</h3><span class="desc">Ce/cie, ge/gie, gli/li, cu/qu, doppie, la H</span></button>
     <button class="menu-card" onclick="goClassroomChoose()"><span class="emoji">📺</span><h3>Modalità classe</h3><span class="desc">Da usare alla LIM, tutti insieme</span></button>
     <button class="menu-card" onclick="goSettings()"><span class="emoji">📚</span><h3>Argomenti</h3><span class="desc">Scegli su cosa allenarti in grammatica</span></button>
     <button class="menu-card" onclick="goProgress()"><span class="emoji">🏆</span><h3>Progressi</h3><span class="desc">XP, giorni di fila e medaglie</span></button>
+    <button class="menu-card" onclick="goTeoriaChoose()"><span class="emoji">📘</span><h3>Teoria</h3><span class="desc">Le regole spiegate in breve</span></button>
+    <button class="menu-card" onclick="goClassStats()"><span class="emoji">📊</span><h3>Statistiche</h3><span class="desc">Come va la classe (serve Supabase collegato)</span></button>
   </div>`;
 }
 

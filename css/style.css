@@ -140,12 +140,31 @@
   .menu-card:nth-child(3){--r:-1.2deg;}
   .menu-card:nth-child(4){--r:0.8deg;}
   .menu-card:nth-child(5){--r:-0.6deg;}
+  .menu-card:nth-child(6){--r:0.9deg;}
+  .menu-card:nth-child(7){--r:-0.8deg;}
   .menu-card .emoji{font-size:1.8rem;}
   .menu-card h3{margin:2px 0 0;color:var(--ink);}
   .menu-card span.desc{color:var(--charcoal-soft);font-size:.9rem;}
 
   /* mode cards (gioco) */
   .mode-list{display:flex;flex-direction:column;gap:12px;margin-top:18px;}
+  .mode-section-label{
+    font-family:'Baloo 2';font-weight:700;font-size:.78rem;
+    color:var(--charcoal-soft);text-transform:uppercase;letter-spacing:.06em;
+    padding-left:4px;margin-top:16px;
+  }
+  .teoria-text{margin-top:10px;}
+  .teoria-text h4{font-family:'Baloo 2';color:var(--ink);margin:14px 0 4px;font-size:1rem;}
+  .teoria-text p{margin:6px 0;line-height:1.55;}
+  .teoria-section{margin-top:16px;}
+  .teoria-label{font-family:'Baloo 2';font-weight:700;color:var(--ink);font-size:.95rem;}
+  .teoria-esempi{margin:8px 0 0;padding-left:20px;line-height:1.7;}
+  .teoria-esempi li{margin-bottom:4px;}
+  .teoria-callout{
+    margin-top:18px;padding:14px 16px;border-radius:12px;
+    background:#FDF1DC;border:2px solid var(--sun);
+  }
+  .teoria-callout .teoria-label{color:var(--sun-dark);}
   .mode-card{
     background:var(--card-bg);border-radius:var(--radius-sticker);
     border:2px solid var(--paper-line);padding:14px 16px;
@@ -207,6 +226,12 @@
   .check-row{display:flex;align-items:center;gap:10px;padding:7px 0;font-weight:700;color:var(--charcoal);}
   .check-row input{width:20px;height:20px;accent-color:var(--grass);flex-shrink:0;}
   .hint{color:var(--charcoal-soft);font-size:.85rem;margin-top:6px;}
+  .text-input{
+    width:100%;font-family:'Nunito',sans-serif;font-size:1.05rem;
+    padding:13px 14px;border:2px solid var(--paper-line);border-radius:12px;
+    background:#fff;color:var(--charcoal);
+  }
+  .text-input:focus{outline:none;border-color:var(--ink);}
   .blackboard{
     background:#2E4A3B;color:#F2ECE1;border-radius:var(--radius-sticker);
     padding:16px 18px;border:3px dashed #F2ECE1;margin-top:16px;

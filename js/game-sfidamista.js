@@ -135,7 +135,7 @@ function answerSfidaMista(value){
   g.chosen = value;
   g.lastCorrect = correct;
   if(correct){ g.score++; addXP(10); }
-  recordAnswer(correct);
+  recordAnswer(correct, 'sfidamista:'+c.kind);
   render();
 }
 function nextSfidaMistaBtn(){

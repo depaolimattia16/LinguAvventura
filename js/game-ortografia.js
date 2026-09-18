@@ -101,7 +101,7 @@ function answerOrtografiaMista(opt){
   c.answered=true; c.chosen=opt;
   const correct = opt===c.item.ok;
   if(correct){ state.game.score++; addXP(10); }
-  recordAnswer(correct);
+  recordAnswer(correct, 'ortografiaMista:'+c.topicKey);
   render();
 }
 function nextOrtografiaMistaBtn(){
@@ -155,7 +155,7 @@ function answerOrtografia(opt){
   c.answered=true; c.chosen=opt;
   const correct = opt===c.item.ok;
   if(correct){ state.game.score++; addXP(10); }
-  recordAnswer(correct);
+  recordAnswer(correct, 'ortografia:'+state.game.topic);
   render();
 }
 function nextOrtografiaBtn(){

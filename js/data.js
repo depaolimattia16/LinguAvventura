@@ -13,6 +13,7 @@ const PERSONA_LABELS = {'1':'1ª persona', '2':'2ª persona', '3':'3ª persona'}
 const VERBOBASE_LABELS = {essere:'Essere', avere:'Avere', parlare:'Parlare', credere:'Credere', dormire:'Dormire'};
 const PRIMDERIV_LABELS = {primitivo:'Primitivo', derivato:'Derivato'};
 let PRIMITIVI_DERIVATI = []; // caricate da data/primitivi-derivati.json (vedi js/app.js)
+let TEORIA = {grammatica:[], ortografia:[]}; // caricate da data/teoria.json (vedi js/app.js)
 const TEMPO_LABELS = {presente:'Presente', imperfetto:'Imperfetto', futuro:'Futuro semplice'};
 const MODO_LABELS = {indicativo:'Indicativo', congiuntivo:'Congiuntivo', condizionale:'Condizionale', imperativo:'Imperativo'};
 
