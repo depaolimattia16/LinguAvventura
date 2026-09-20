@@ -65,6 +65,8 @@ js/
 
 I file JS sono script "classici" (non moduli), caricati in ordine da `index.html`: le funzioni e le costanti definite in un file sono visibili anche nei successivi, quindi l'ordine dei tag `<script>` in `index.html` conta e va rispettato se aggiungi nuovi file.
 
+**Nota sull'architettura**: l'app ridisegna tutto lo schermo ad ogni interazione (`app.innerHTML = ...`), invece di aggiornare solo i pezzi che cambiano come farebbe un framework (React, ecc.). Per questo certe animazioni continue (trascinare, seguire il dito) sono più difficili da ottenere qui che in un'app fatta con un framework — ho usato `document.startViewTransition()` (in `js/router.js`, funzione `render()`) per una dissolvenza automatica tra una schermata e l'altra, che nei browser moderni aiuta molto, ma non è lo stesso livello di fluidità di un'app a componenti.
+
 `js/app.js` all'avvio scarica i tre file JSON con `fetch()` e solo dopo disegna la pagina — per questo **serve sempre un server locale** (vedi sopra): con `file://` (doppio click) i browser bloccano il caricamento di questi file e la pagina resta su "Caricamento...".
 
 ## Modificare i contenuti

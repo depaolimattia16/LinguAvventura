@@ -441,4 +441,15 @@
 
   @media (prefers-reduced-motion: reduce){
     *{transition:none !important;animation:none !important;}
+    ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*){
+      animation:none !important;
+    }
+  }
+
+  /* Transizione tra una schermata e l'altra (dove il browser la supporta): una breve
+     dissolvenza invece di uno scatto secco. Durata volutamente rapida per non rallentare
+     un'app fatta di tocchi veloci. */
+  ::view-transition-old(root), ::view-transition-new(root){
+    animation-duration:.16s;
+    animation-timing-function:ease-out;
   }

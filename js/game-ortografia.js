@@ -53,7 +53,6 @@ function toggleOrthoMistaType(k){
   const list = state.orthoMistaTypes;
   const idx = list.indexOf(k);
   if(idx>=0){
-    if(list.length<=1){ showToast('Deve restare selezionata almeno una regola'); return; }
     list.splice(idx,1);
   } else {
     list.push(k);
@@ -87,7 +86,7 @@ function viewOrtografiaMista(){
       if(opt===c.item.ok) cls+=' correct';
       else if(opt===c.chosen) cls+=' wrong';
     }
-    return `<button class="${cls}" ${c.answered?'disabled':''} onclick="answerOrtografiaMista('${opt}')">${opt}</button>`;
+    return `<button class="${cls}" ${c.answered?'disabled':''} onclick="answerOrtografiaMista('${escJs(opt)}')">${opt}</button>`;
   }).join('');
   const promptText = c.topic.mode==='transform' ? "Qual è il plurale corretto di..." : (c.topic.mode==='sentence' ? '' : "Quale delle due è scritta bene?");
   const wordText = c.topic.mode==='transform' ? c.item.s : (c.topic.mode==='sentence' ? c.item.sentence : '');
@@ -141,7 +140,7 @@ function viewOrtografia(){
       if(opt===c.item.ok) cls+=' correct';
       else if(opt===c.chosen) cls+=' wrong';
     }
-    return `<button class="${cls}" ${c.answered?'disabled':''} onclick="answerOrtografia('${opt}')">${opt}</button>`;
+    return `<button class="${cls}" ${c.answered?'disabled':''} onclick="answerOrtografia('${escJs(opt)}')">${opt}</button>`;
   }).join('');
   const promptText = topic.mode==='transform' ? "Qual è il plurale corretto di..." : (topic.mode==='sentence' ? '' : "Quale delle due è scritta bene?");
   const wordText = topic.mode==='transform' ? c.item.s : (topic.mode==='sentence' ? c.item.sentence : '');

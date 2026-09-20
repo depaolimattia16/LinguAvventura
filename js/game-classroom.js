@@ -265,7 +265,6 @@ function toggleTugContent(k){
   const list = state.tugContentTypes;
   const idx = list.indexOf(k);
   if(idx>=0){
-    if(list.length<=1){ showToast('Deve restare selezionato almeno un contenuto'); return; }
     list.splice(idx,1);
   } else {
     list.push(k);
@@ -339,8 +338,8 @@ function viewTugOfWar(){
   </div>
   <p class="hint" style="text-align:center">Stessa domanda per tutti e due: chi tocca la risposta giusta per primo tira la fune.</p>
   <div class="split-row">
-    ${raceColumnHtml(race, 'blu', SPLIT_TEAMS.blu, opt=>`answerTugSide('blu','${opt}')`)}
-    ${raceColumnHtml(race, 'rosso', SPLIT_TEAMS.rosso, opt=>`answerTugSide('rosso','${opt}')`)}
+    ${raceColumnHtml(race, 'blu', SPLIT_TEAMS.blu, opt=>`answerTugSide('blu','${escJs(opt)}')`)}
+    ${raceColumnHtml(race, 'rosso', SPLIT_TEAMS.rosso, opt=>`answerTugSide('rosso','${escJs(opt)}')`)}
   </div>
   ${race.winner ? `<button class="btn btn-ink" style="margin-top:14px;width:100%" onclick="nextTugRoundBtn()">Prossima domanda →</button>` : ''}`;
 }
@@ -370,7 +369,6 @@ function toggleShipContent(k){
   const list = state.shipContentTypes;
   const idx = list.indexOf(k);
   if(idx>=0){
-    if(list.length<=1){ showToast('Deve restare selezionato almeno un contenuto'); return; }
     list.splice(idx,1);
   } else {
     list.push(k);
@@ -448,8 +446,8 @@ function viewShipBattle(){
   </div>
   <p class="hint" style="text-align:center">Stessa domanda per tutti e due: chi tocca la risposta giusta per primo spara.</p>
   <div class="split-row">
-    ${raceColumnHtml(race, 'blu', SPLIT_TEAMS.blu, opt=>`answerShipSide('blu','${opt}')`)}
-    ${raceColumnHtml(race, 'rosso', SPLIT_TEAMS.rosso, opt=>`answerShipSide('rosso','${opt}')`)}
+    ${raceColumnHtml(race, 'blu', SPLIT_TEAMS.blu, opt=>`answerShipSide('blu','${escJs(opt)}')`)}
+    ${raceColumnHtml(race, 'rosso', SPLIT_TEAMS.rosso, opt=>`answerShipSide('rosso','${escJs(opt)}')`)}
   </div>
   ${race.winner ? `<button class="btn btn-ink" style="margin-top:14px;width:100%" onclick="nextShipRoundBtn()">Prossima domanda →</button>` : ''}`;
 }
@@ -479,7 +477,6 @@ function toggleWheelContent(k){
   const list = state.wheelContentTypes;
   const idx = list.indexOf(k);
   if(idx>=0){
-    if(list.length<=1){ showToast('Deve restare selezionato almeno un contenuto'); return; }
     list.splice(idx,1);
   } else {
     list.push(k);
@@ -558,8 +555,8 @@ function viewWheel(){
     bottomHtml = `
     <p class="quiz-prompt" style="text-align:center">In palio: <strong>${g.value} punti</strong> — chi risponde giusto per primo li prende</p>
     <div class="split-row">
-      ${raceColumnHtml(g.race, 'blu', SPLIT_TEAMS.blu, opt=>`answerWheelSide('blu','${opt}')`)}
-      ${raceColumnHtml(g.race, 'rosso', SPLIT_TEAMS.rosso, opt=>`answerWheelSide('rosso','${opt}')`)}
+      ${raceColumnHtml(g.race, 'blu', SPLIT_TEAMS.blu, opt=>`answerWheelSide('blu','${escJs(opt)}')`)}
+      ${raceColumnHtml(g.race, 'rosso', SPLIT_TEAMS.rosso, opt=>`answerWheelSide('rosso','${escJs(opt)}')`)}
     </div>
     ${g.race.winner ? `<button class="btn btn-ink" style="margin-top:14px;width:100%" onclick="nextWheelRoundBtn()">Gira di nuovo →</button>` : ''}`;
   }
@@ -575,9 +572,7 @@ function viewWheel(){
   ${g.race ? bottomHtml : `<div class="quiz-card">${bottomHtml}</div>`}`;
 }
 
-/* --- Squadra contro squadra: schermo diviso, a tempo, avanza da sola, contenuto a scelta --- */
-const SPLIT_ANSWER_SECONDS = 10;
-const SPLIT_REVEAL_SECONDS = 2;
+/* --- Squadra contro squadra: schermo diviso, un solo timer totale, vince chi ha più punti --- */
 const SPLIT_TEAMS = {
   blu:{label:'Blu', emoji:'🔵', cls:'blu'},
   rosso:{label:'Rosso', emoji:'🔴', cls:'rosso'},
@@ -605,20 +600,23 @@ function toggleSplitContent(k){
   const list = state.splitContentTypes;
   const idx = list.indexOf(k);
   if(idx>=0){
-    if(list.length<=1){ showToast('Deve restare selezionato almeno un contenuto'); return; }
     list.splice(idx,1);
   } else {
     list.push(k);
   }
   render();
 }
+const SPLIT_MATCH_SECONDS = 60;
+const SPLIT_REVEAL_SECONDS = 1;
 function startClassroomSplit(){
   clearIntervals();
   state.view='classroomSplit';
   if(!state.splitContentTypes || state.splitContentTypes.length===0) state.splitContentTypes=['checose'];
   state.split = {
-    blu:{score:0, current:null, phase:'answering', timeLeft:SPLIT_ANSWER_SECONDS},
-    rosso:{score:0, current:null, phase:'answering', timeLeft:SPLIT_ANSWER_SECONDS},
+    blu:{score:0, current:null},
+    rosso:{score:0, current:null},
+    timeLeft: SPLIT_MATCH_SECONDS,
+    finished: false,
   };
   loadSplitWord('blu');
   loadSplitWord('rosso');
@@ -627,71 +625,78 @@ function startClassroomSplit(){
 }
 function loadSplitWord(side){
   const type = pickRandom(state.splitContentTypes);
-  const s = state.split[side];
-  s.current = generateContentQuestion(type);
-  s.phase = 'answering';
-  s.timeLeft = SPLIT_ANSWER_SECONDS;
+  state.split[side].current = generateContentQuestion(type);
 }
 function splitTick(){
-  ['blu','rosso'].forEach(side=>{
-    const s = state.split[side];
-    s.timeLeft--;
-    if(s.timeLeft <= 0){
-      if(s.phase==='answering'){
-        s.current.answered = true;
-        s.phase = 'revealing';
-        s.timeLeft = SPLIT_REVEAL_SECONDS;
-      } else {
-        loadSplitWord(side);
-      }
-    }
-  });
+  state.split.timeLeft--;
+  if(state.split.timeLeft <= 0){
+    state.split.timeLeft = 0;
+    state.split.finished = true;
+    clearIntervals();
+  }
   render();
 }
 function splitColumnHtml(side){
   const meta = SPLIT_TEAMS[side];
   const s = state.split[side];
-  const bodyHtml = contentQuestionBodyHtml(s.current, opt=>`answerSplit('${side}','${opt}')`, 'options-grid-single');
-  const timerLabel = s.phase==='answering' ? `⏱ ${s.timeLeft}s` : `Prossima tra ${s.timeLeft}...`;
+  const bodyHtml = contentQuestionBodyHtml(s.current, opt=>`answerSplit('${side}','${escJs(opt)}')`, 'options-grid-single');
   return `
   <div class="split-col ${meta.cls}">
     <h3>${meta.emoji} Squadra ${meta.label}</h3>
     <div class="split-score">${s.score}</div>
-    <div class="hint">${timerLabel}</div>
     ${bodyHtml}
   </div>`;
 }
 function viewClassroomSplit(){
+  const st = state.split;
   const types = state.splitContentTypes;
   const contentLabel = types.length<=2
     ? types.map(t=>CONTENT_TYPES[t].label).join(' + ')
     : `${types.length} contenuti mescolati`;
+  if(st.finished){
+    let resultHtml;
+    if(st.blu.score > st.rosso.score) resultHtml = `<h2>🏆 Ha vinto la squadra 🔵 Blu!</h2>`;
+    else if(st.rosso.score > st.blu.score) resultHtml = `<h2>🏆 Ha vinto la squadra 🔴 Rosso!</h2>`;
+    else resultHtml = `<h2>🤝 Pareggio!</h2>`;
+    return `
+    ${st.blu.score !== st.rosso.score ? confettiHtml() : ''}
+    <div class="quiz-card">
+      ${resultHtml}
+      <p>Tempo scaduto: 60 secondi giocati.</p>
+      <div class="team-row">
+        <div class="team-box team-blu"><div>🔵 Blu</div><div class="score">${st.blu.score}</div></div>
+        <div class="team-box team-rosso"><div>🔴 Rosso</div><div class="score">${st.rosso.score}</div></div>
+      </div>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px">
+        <button class="btn btn-coral" onclick="startClassroomSplit()">Rivincita</button>
+        <button class="btn btn-ghost" onclick="goClassroomSplitChoose()">Cambia contenuto</button>
+        <button class="btn btn-ghost" onclick="goClassroomChoose()">Cambia modalità</button>
+      </div>
+    </div>`;
+  }
   return `
-  <p class="hint" style="text-align:center">${contentLabel} · ogni squadra risponde alla propria domanda, le parole cambiano da sole.</p>
+  <p class="hint" style="text-align:center">⏱ ${st.timeLeft}s rimasti · ${contentLabel} · vince chi ha più punti allo scadere del tempo</p>
   <div class="split-row">
     ${splitColumnHtml('blu')}
     ${splitColumnHtml('rosso')}
   </div>
   <div style="text-align:center;margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-    <button class="btn btn-ghost" onclick="resetSplit()">Azzera punteggio</button>
+    <button class="btn btn-ghost" onclick="startClassroomSplit()">Ricomincia</button>
     <button class="btn btn-ghost" onclick="goClassroomSplitChoose()">Cambia contenuto</button>
   </div>`;
 }
 function answerSplit(side, value){
   const s = state.split[side];
-  if(s.phase!=='answering' || s.current.answered) return;
+  if(state.split.finished || s.current.answered) return;
   const correct = value===contentQuestionCorrectValue(s.current);
   s.current.answered = true;
   s.current.chosen = value;
   if(correct) s.score++;
-  s.phase = 'revealing';
-  s.timeLeft = SPLIT_REVEAL_SECONDS;
   render();
-}
-function resetSplit(){
-  state.split.blu.score = 0;
-  state.split.rosso.score = 0;
-  loadSplitWord('blu');
-  loadSplitWord('rosso');
-  render();
+  setTimeout(()=>{
+    if(!state.split.finished){
+      loadSplitWord(side);
+      render();
+    }
+  }, SPLIT_REVEAL_SECONDS*1000);
 }

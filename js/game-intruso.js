@@ -61,7 +61,7 @@ function viewIntruso(){
       if(item.w===c.intruder.w) cls+=' correct';
       else if(c.chosen && item.w===c.chosen.w) cls+=' wrong';
     }
-    return `<button class="${cls}" ${c.answered?'disabled':''} onclick="answerIntruso('${item.w}')">${item.w}</button>`;
+    return `<button class="${cls}" ${c.answered?'disabled':''} onclick="answerIntruso('${escJs(item.w)}')">${item.w}</button>`;
   }).join('');
   let reasonHtml='';
   if(c.answered){

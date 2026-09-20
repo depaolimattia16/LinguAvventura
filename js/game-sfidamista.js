@@ -87,7 +87,7 @@ function viewSfidaMista(){
         if(item.w===c.intruder.w) cls+=' correct';
         else if(g.chosen && item.w===g.chosen) cls+=' wrong';
       }
-      return `<button class="${cls}" ${g.answered?'disabled':''} onclick="answerSfidaMista('${item.w}')">${item.w}</button>`;
+      return `<button class="${cls}" ${g.answered?'disabled':''} onclick="answerSfidaMista('${escJs(item.w)}')">${item.w}</button>`;
     }).join('');
     bodyHtml = `<div class="quiz-prompt">Qual è l'intruso?</div><div class="quiz-grid-4">${tilesHtml}</div>`;
   } else if(c.kind==='misteriosa'){

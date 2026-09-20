@@ -31,6 +31,13 @@ function sortedKeysByLabel(keys, labelsMap){
   return [...keys].sort((a,b)=> stripLeadingArticle(labelsMap[a]||a).localeCompare(stripLeadingArticle(labelsMap[b]||b), 'it'));
 }
 
+/* Rende sicuro un testo (es. una parola con l'apostrofo, come "un'amica") per essere inserito
+   dentro un attributo onclick="...('testo')": senza questo, l'apostrofo del testo chiuderebbe
+   la stringa JS a metà e il click smetterebbe di funzionare per quella domanda. */
+function escJs(str){
+  return String(str).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+}
+
 /* Condivise dai giochi a round (Che cos'è, Trova l'intruso, Ortografia...) */
 function feedbackBlock(correct, _unused, nextFn){
   return `<div class="feedback ${correct?'ok':'bad'}">${correct?'✅ Giusto!':'❌ Non proprio...'}</div>
