@@ -137,8 +137,9 @@ function raceColumnHtml(race, side, meta, makeOnClick){
   } else if(s.answered && !s.correct){
     statusHtml = `<p class="feedback bad" style="margin-top:6px">Sbagliato, aspetta...</p>`;
   }
+  const winClass = race.winner===side ? ' winner-flash' : '';
   return `
-  <div class="split-col ${meta.cls}">
+  <div class="split-col ${meta.cls}${winClass}">
     <h3>${meta.emoji} Squadra ${meta.label}</h3>
     ${bodyHtml}
     ${statusHtml}
@@ -190,6 +191,7 @@ function viewClassroom(){
   if(state.classWinner){
     const w = TEAM_META[state.classWinner];
     return `
+    ${confettiHtml()}
     <div class="quiz-card">
       <h2>🏆 Ha vinto la squadra ${w.emoji} ${w.label}!</h2>
       <div class="team-row">
@@ -274,7 +276,7 @@ function startTugOfWar(){
   clearIntervals();
   state.view = 'tugOfWar';
   if(!state.tugContentTypes || state.tugContentTypes.length===0) state.tugContentTypes=['checose'];
-  state.tug = {position:0, winner:null, race:null};
+  state.tug = {position:0, winner:null, race:null, animateFromPct:null};
   nextTugRound();
   render();
 }
@@ -284,11 +286,26 @@ function nextTugRound(){
 }
 function answerTugSide(side, opt){
   if(state.tug.winner) return;
+  const fromPct = 50 + (state.tug.position / TUG_HALF) * 42;
   raceAnswer(state.tug.race, side, opt, (winSide)=>{
     if(winSide==='blu') state.tug.position -= 1; else state.tug.position += 1;
     if(state.tug.position <= -TUG_HALF) state.tug.winner = 'blu';
     else if(state.tug.position >= TUG_HALF) state.tug.winner = 'rosso';
+    state.tug.animateFromPct = fromPct; // il render dentro raceAnswer dipingerà ancora la vecchia posizione
   });
+  if(state.tug.animateFromPct != null){
+    const toPct = 50 + (state.tug.position / TUG_HALF) * 42;
+    // Stesso trucco della ruota: un render() pieno crea un nodo nuovo, quindi la transizione CSS
+    // non avrebbe nulla da cui partire. Aspettiamo che il browser disegni la posizione vecchia,
+    // poi spostiamo lo stesso nodo direttamente: così la fune scivola davvero.
+    requestAnimationFrame(()=>{
+      requestAnimationFrame(()=>{
+        const knotEl = document.querySelector('.tug-knot');
+        if(knotEl) knotEl.style.left = toPct+'%';
+      });
+    });
+    state.tug.animateFromPct = null;
+  }
 }
 function nextTugRoundBtn(){
   if(state.tug.winner) return;
@@ -300,6 +317,7 @@ function viewTugOfWar(){
   if(g.winner){
     const w = TEAM_META[g.winner];
     return `
+    ${confettiHtml()}
     <div class="quiz-card">
       <h2>🏆 Ha vinto la squadra ${w.emoji} ${w.label}!</h2>
       <p>Ha trascinato la fune tutta dalla sua parte.</p>
@@ -311,7 +329,8 @@ function viewTugOfWar(){
     </div>`;
   }
   const race = g.race;
-  const pct = 50 + (g.position / TUG_HALF) * 42;
+  const currentPct = 50 + (g.position / TUG_HALF) * 42;
+  const pct = g.animateFromPct != null ? g.animateFromPct : currentPct;
   return `
   <div class="tug-field">
     <span class="tug-goal left">🔵</span>
@@ -367,6 +386,7 @@ function startShipBattle(){
     rosso:{hp:SHIP_START_HP},
     winner:null,
     race:null,
+    justHit:null,
   };
   nextShipRound();
   render();
@@ -380,8 +400,10 @@ function answerShipSide(side, opt){
   raceAnswer(state.ship.race, side, opt, (winSide)=>{
     const target = winSide==='blu' ? 'rosso' : 'blu';
     state.ship[target].hp -= 1;
+    state.ship.justHit = target; // il render dentro raceAnswer dipinge il colpo appena preso
     if(state.ship[target].hp <= 0) state.ship.winner = winSide;
   });
+  state.ship.justHit = null; // consumato: l'animazione è già partita sul nodo appena creato
 }
 function nextShipRoundBtn(){
   if(state.ship.winner) return;
@@ -393,11 +415,21 @@ function heartsHtml(hp, max){
   for(let i=0;i<max;i++) out += i<hp ? '❤️' : '🖤';
   return out;
 }
+function shipBoxHtml(g, side, emoji, label){
+  const hit = g.justHit === side;
+  return `
+  <div class="ship-box ${hit?'hit-shake':''}">
+    <div style="font-size:2rem;position:relative">🚢${hit?'<span class="ship-explosion">💥</span>':''}</div>
+    <div>${heartsHtml(g[side].hp, SHIP_START_HP)}</div>
+    <div class="hint">${emoji} Squadra ${label}</div>
+  </div>`;
+}
 function viewShipBattle(){
   const g = state.ship;
   if(g.winner){
     const w = TEAM_META[g.winner];
     return `
+    ${confettiHtml()}
     <div class="quiz-card">
       <h2>🏆 Ha vinto la squadra ${w.emoji} ${w.label}!</h2>
       <p>Ha affondato la nave avversaria.</p>
@@ -411,8 +443,8 @@ function viewShipBattle(){
   const race = g.race;
   return `
   <div class="ship-row">
-    <div class="ship-box"><div style="font-size:2rem">🚢</div><div>${heartsHtml(g.blu.hp, SHIP_START_HP)}</div><div class="hint">🔵 Squadra Blu</div></div>
-    <div class="ship-box"><div style="font-size:2rem">🚢</div><div>${heartsHtml(g.rosso.hp, SHIP_START_HP)}</div><div class="hint">🔴 Squadra Rossa</div></div>
+    ${shipBoxHtml(g, 'blu', '🔵', 'Blu')}
+    ${shipBoxHtml(g, 'rosso', '🔴', 'Rossa')}
   </div>
   <p class="hint" style="text-align:center">Stessa domanda per tutti e due: chi tocca la risposta giusta per primo spara.</p>
   <div class="split-row">

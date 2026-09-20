@@ -57,10 +57,11 @@ function modeBackTarget(mode){
 }
 function roundSummary(score,total,mode){
   return `
+  ${score===total && total>0 ? confettiHtml() : ''}
   <div class="quiz-card">
     <h2>Round completato!</h2>
     <div class="quiz-word" style="font-size:2.4rem">${score} / ${total}</div>
-    <p>Ottimo lavoro, continua così!</p>
+    <p>${score===total && total>0 ? 'Tutto giusto, fantastico! 🎉' : 'Ottimo lavoro, continua così!'}</p>
     <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px">
       <button class="btn btn-coral" onclick="restartMode('${mode}')">Rigioca</button>
       <button class="btn btn-ghost" onclick="${modeBackTarget(mode)}()">Altre sfide</button>
@@ -80,4 +81,18 @@ function restartMode(mode){
   else if(mode==='composti') startComposti();
   else if(mode==='anagramma') startAnagramma();
   else if(mode==='sfidamista') startSfidaMista();
+}
+
+/* Un po' di coriandoli per le schermate di vittoria (posizione e tempi casuali ad ogni chiamata). */
+function confettiHtml(){
+  const emojis = ['🎉','✨','🎊','⭐','🎈'];
+  let out = '<div class="confetti-wrap">';
+  for(let i=0;i<14;i++){
+    const left = Math.round(Math.random()*94);
+    const delay = (Math.random()*0.5).toFixed(2);
+    const dur = (1.4 + Math.random()*0.7).toFixed(2);
+    out += `<span class="confetti-piece" style="left:${left}%;animation-delay:${delay}s;animation-duration:${dur}s">${emojis[i % emojis.length]}</span>`;
+  }
+  out += '</div>';
+  return out;
 }
