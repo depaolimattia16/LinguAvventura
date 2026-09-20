@@ -21,7 +21,7 @@ function viewHome(){
     <button class="menu-card" onclick="goSettings()"><span class="emoji">📚</span><h3>Argomenti</h3><span class="desc">Scegli su cosa allenarti in grammatica</span></button>
     <button class="menu-card" onclick="goProgress()"><span class="emoji">🏆</span><h3>Progressi</h3><span class="desc">XP, giorni di fila e medaglie</span></button>
     <button class="menu-card" onclick="goTeoriaChoose()"><span class="emoji">📘</span><h3>Teoria</h3><span class="desc">Le regole spiegate in breve</span></button>
-    <button class="menu-card" onclick="goClassStats()"><span class="emoji">📊</span><h3>Statistiche</h3><span class="desc">Come va la classe (serve Supabase collegato)</span></button>
+    <button class="menu-card" onclick="goClassStats()"><span class="emoji">📊</span><h3>Statistiche</h3><span class="desc">Come va la classe</span></button>
   </div>`;
 }
 

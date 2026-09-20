@@ -8,7 +8,7 @@ function startParolaMisteriosa(){
 function nextParolaMisteriosa(){
   const sentence = pickRandom(SENTENCES);
   const tokenIndex = Math.floor(Math.random()*sentence.length);
-  const options = shuffle(['nome','verbo','aggettivo','articolo']);
+  const options = ['nome','verbo','aggettivo','articolo']; // ordine fisso, sempre le stesse etichette
   state.game.current = {sentence, tokenIndex, options, answered:false};
 }
 function viewParolaMisteriosa(){

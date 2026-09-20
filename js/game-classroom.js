@@ -5,11 +5,11 @@ function viewClassroomChoose(){
   <h2>Modalità classe</h2>
   <p class="hint">Scegli come usarla alla LIM.</p>
   <div class="mode-list">
-    <button class="mode-card" onclick="startClassroomShared()"><span class="emoji">📺</span><div class="txt"><strong>Schermo condiviso</strong><span>Una domanda per tutti, vince la prima squadra ad arrivare a 10 punti</span></div></button>
-    <button class="mode-card" onclick="goTugChoose()"><span class="emoji">🪢</span><div class="txt"><strong>Tiro alla fune</strong><span>Una domanda alla volta: chi risponde giusto tira la fune dalla propria parte</span></div></button>
     <button class="mode-card" onclick="goShipChoose()"><span class="emoji">🚢</span><div class="txt"><strong>Battaglia navale</strong><span>Ogni risposta giusta spara un colpo alla nave avversaria</span></div></button>
     <button class="mode-card" onclick="goWheelChoose()"><span class="emoji">🎡</span><div class="txt"><strong>Ruota della fortuna</strong><span>Gira la ruota per i punti, poi rispondi</span></div></button>
+    <button class="mode-card" onclick="startClassroomShared()"><span class="emoji">📺</span><div class="txt"><strong>Schermo condiviso</strong><span>Una domanda per tutti, vince la prima squadra ad arrivare a 10 punti</span></div></button>
     <button class="mode-card" onclick="goClassroomSplitChoose()"><span class="emoji">⚔️</span><div class="txt"><strong>Squadra contro squadra</strong><span>Schermo diviso a metà, a tempo: scegli tu il contenuto</span></div></button>
+    <button class="mode-card" onclick="goTugChoose()"><span class="emoji">🪢</span><div class="txt"><strong>Tiro alla fune</strong><span>Una domanda alla volta: chi risponde giusto tira la fune dalla propria parte</span></div></button>
   </div>`;
 }
 
@@ -37,27 +37,27 @@ function generateContentQuestion(type){
     const tipiList = activeTipiList();
     const pool = wordsByTipi(tipiList);
     const word = pickRandom(pool);
-    const options = shuffle(tipiList.slice());
+    const options = tipiList.slice(); // ordine fisso: le etichette sono sempre le stesse, mescolarle è solo fastidioso
     current = {kind:'grammar', display:word.w, correct:word.t, options, labels:TIPI_LABELS};
   } else if(type==='primitivi'){
     const primitivi = PRIMITIVI_DERIVATI.filter(w=>w.tipo==='primitivo');
     const derivati = PRIMITIVI_DERIVATI.filter(w=>w.tipo==='derivato');
     const item = Math.random() < 0.5 ? pickRandom(primitivi) : pickRandom(derivati);
-    const options = shuffle(['primitivo','derivato']);
+    const options = ['primitivo','derivato']; // ordine fisso, sempre le stesse due etichette
     current = {kind:'grammar', display:item.w, correct:item.tipo, options, labels:PRIMDERIV_LABELS};
   } else if(type==='sincontr'){
     const kind = Math.random()<0.5 ? 'sinonimi' : 'contrari';
     const pair = pickRandom(SINONIMI_CONTRARI[kind]);
-    const options = shuffle(Object.keys(SINCONTR_LABELS));
+    const options = Object.keys(SINCONTR_LABELS); // ordine fisso, sempre le stesse due etichette
     current = {kind:'grammar', display:pair[0]+' / '+pair[1], correct:kind, options, labels:SINCONTR_LABELS};
   } else if(type==='alterati'){
     const item = pickRandom(NOMI_ALTERATI);
-    const options = shuffle(Object.keys(ALTERATO_LABELS));
+    const options = Object.keys(ALTERATO_LABELS); // ordine fisso, sempre le stesse quattro etichette
     current = {kind:'grammar', display:item.w, correct:item.tipo, options, labels:ALTERATO_LABELS};
   } else if(type==='composti'){
     const isComposto = Math.random()<0.5;
     const item = isComposto ? pickRandom(NOMI_COMPOSTI.composti) : {w:pickRandom(NOMI_COMPOSTI.semplici)};
-    const options = shuffle(Object.keys(SEMPCOMP_LABELS));
+    const options = Object.keys(SEMPCOMP_LABELS); // ordine fisso, sempre le stesse due etichette
     current = {kind:'grammar', display:item.w, correct:isComposto?'composto':'semplice', options, labels:SEMPCOMP_LABELS};
   } else {
     const topic = ORTHO_TOPICS[type];
@@ -96,6 +96,72 @@ function contentQuestionBodyHtml(c, makeOnClick, gridClass){
   return `${wordHtml}<div class="${gridClass}">${optsHtml}</div>`;
 }
 
+/* --- Motore condiviso "gara a due": stessa domanda su entrambi i lati dello schermo diviso,
+   chi tocca la risposta giusta per primo vince il punto del round. Usato da Tiro alla fune,
+   Battaglia navale e Ruota della fortuna. --- */
+function newRace(type){
+  return {
+    question: generateContentQuestion(type),
+    blu:{answered:false, correct:null, chosen:null},
+    rosso:{answered:false, correct:null, chosen:null},
+    winner:null, // 'blu' | 'rosso' | 'none' (entrambi sbagliato) | null (round in corso)
+  };
+}
+function raceAnswer(race, side, opt, onWin){
+  if(race.winner) return; // round già deciso, si aspetta "avanti"
+  const s = race[side];
+  if(s.answered) return; // questo lato ha già tentato
+  s.answered = true;
+  s.chosen = opt;
+  s.correct = opt === contentQuestionCorrectValue(race.question);
+  if(s.correct){
+    race.winner = side;
+    if(onWin) onWin(side);
+  } else {
+    const other = side==='blu' ? 'rosso' : 'blu';
+    if(race[other].answered) race.winner = 'none'; // sbagliato da entrambe le parti
+  }
+  render();
+}
+function raceColumnHtml(race, side, meta, makeOnClick){
+  const q = race.question;
+  const s = race[side];
+  const correctVal = contentQuestionCorrectValue(q);
+  const roundClosed = !!race.winner;
+  const bodyHtml = contentQuestionBodyHtmlForRace(q, s, roundClosed, makeOnClick, 'options-grid-single');
+  let statusHtml = '';
+  if(roundClosed){
+    if(race.winner===side) statusHtml = `<p class="feedback ok" style="margin-top:6px">🏆 Risposto per primi!</p>`;
+    else if(race.winner==='none') statusHtml = `<p class="hint" style="margin-top:6px">Nessuna delle due, questa volta.</p>`;
+    else statusHtml = `<p class="hint" style="margin-top:6px">Ha risposto prima l'altra squadra.</p>`;
+  } else if(s.answered && !s.correct){
+    statusHtml = `<p class="feedback bad" style="margin-top:6px">Sbagliato, aspetta...</p>`;
+  }
+  return `
+  <div class="split-col ${meta.cls}">
+    <h3>${meta.emoji} Squadra ${meta.label}</h3>
+    ${bodyHtml}
+    ${statusHtml}
+  </div>`;
+}
+// Come contentQuestionBodyHtml, ma lo stato "risposto" è quello del singolo lato (s), non della domanda condivisa,
+// e la risposta giusta si rivela solo quando il round è chiuso (per non favorire l'altra squadra in corsa).
+function contentQuestionBodyHtmlForRace(q, s, roundClosed, makeOnClick, gridClass){
+  const correctVal = contentQuestionCorrectValue(q);
+  const wordText = q.kind==='grammar'
+    ? q.display
+    : (q.orthoMode==='transform' ? q.item.s : (q.orthoMode==='sentence' ? q.item.sentence : ''));
+  const optsHtml = q.options.map(opt=>{
+    let cls='option-btn';
+    if(roundClosed && opt===correctVal) cls+=' correct';
+    else if(s.answered && opt===s.chosen && !s.correct) cls+=' wrong';
+    const disabled = s.answered || roundClosed;
+    return `<button class="${cls}" ${disabled?'disabled':''} ${disabled?'':`onclick="${makeOnClick(opt)}"`}>${q.kind==='grammar'?q.labels[opt]:opt}</button>`;
+  }).join('');
+  const wordHtml = wordText ? `<div class="quiz-word" style="${q.kind==='ortho'?'font-size:1.3rem':'font-size:1.5rem'}">${wordText}</div>` : '';
+  return `${wordHtml}<div class="${gridClass}">${optsHtml}</div>`;
+}
+
 /* --- Schermo condiviso: nessun timer, si va avanti a mano, vince chi arriva prima a 10 --- */
 const CLASSROOM_WIN_SCORE = 10;
 const TEAM_META = {
@@ -116,7 +182,7 @@ function nextClassroomWord(){
   const tipiList = activeTipiList();
   const pool = wordsByTipi(tipiList);
   const word = pickRandom(pool);
-  const options = shuffle(tipiList.slice());
+  const options = tipiList.slice(); // ordine fisso: le etichette sono sempre le stesse, mescolarle è solo fastidioso
   state.game.current = {word, options, answered:false};
 }
 function viewClassroom(){
@@ -182,7 +248,7 @@ function goTugChoose(){
 }
 function viewTugChoose(){
   const selected = state.tugContentTypes;
-  const rows = Object.keys(CONTENT_TYPES).map(k=>{
+  const rows = sortedKeysByLabel(Object.keys(CONTENT_TYPES), Object.fromEntries(Object.entries(CONTENT_TYPES).map(([k,v])=>[k,v.label]))).map(k=>{
     const meta = CONTENT_TYPES[k];
     const checked = selected.includes(k);
     return `<label class="check-row"><input type="checkbox" ${checked?'checked':''} onchange="toggleTugContent('${k}')"> ${meta.emoji} ${meta.label}</label>`;
@@ -208,13 +274,26 @@ function startTugOfWar(){
   clearIntervals();
   state.view = 'tugOfWar';
   if(!state.tugContentTypes || state.tugContentTypes.length===0) state.tugContentTypes=['checose'];
-  state.tug = {position:0, winner:null, current:null};
-  nextTugQuestion();
+  state.tug = {position:0, winner:null, race:null};
+  nextTugRound();
   render();
 }
-function nextTugQuestion(){
+function nextTugRound(){
   const type = pickRandom(state.tugContentTypes);
-  state.tug.current = generateContentQuestion(type);
+  state.tug.race = newRace(type);
+}
+function answerTugSide(side, opt){
+  if(state.tug.winner) return;
+  raceAnswer(state.tug.race, side, opt, (winSide)=>{
+    if(winSide==='blu') state.tug.position -= 1; else state.tug.position += 1;
+    if(state.tug.position <= -TUG_HALF) state.tug.winner = 'blu';
+    else if(state.tug.position >= TUG_HALF) state.tug.winner = 'rosso';
+  });
+}
+function nextTugRoundBtn(){
+  if(state.tug.winner) return;
+  nextTugRound();
+  render();
 }
 function viewTugOfWar(){
   const g = state.tug;
@@ -231,7 +310,7 @@ function viewTugOfWar(){
       </div>
     </div>`;
   }
-  const c = g.current;
+  const race = g.race;
   const pct = 50 + (g.position / TUG_HALF) * 42;
   return `
   <div class="tug-field">
@@ -239,33 +318,12 @@ function viewTugOfWar(){
     <div class="tug-knot" style="left:${pct}%">🚩</div>
     <span class="tug-goal right">🔴</span>
   </div>
-  <div class="quiz-card">
-    ${contentQuestionBodyHtml(c, null)}
-    ${!c.answered
-      ? `<button class="btn btn-ink" style="margin-top:14px" onclick="revealTug()">Mostra la risposta</button>`
-      : `
-        <p class="feedback ok" style="margin-top:10px">Risposta giusta: ${contentQuestionCorrectLabel(c)}</p>
-        <p class="hint">Chi ha risposto per primo, giusto?</p>
-        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:6px">
-          <button class="btn btn-ink" onclick="tugPoint('blu')">🔵 Blu</button>
-          <button class="btn btn-coral" onclick="tugPoint('rosso')">🔴 Rosso</button>
-          <button class="btn btn-ghost" onclick="tugPoint(null)">Nessuno →</button>
-        </div>`
-    }
-  </div>`;
-}
-function revealTug(){
-  state.tug.current.answered = true;
-  render();
-}
-function tugPoint(team){
-  const g = state.tug;
-  if(team==='blu') g.position -= 1;
-  else if(team==='rosso') g.position += 1;
-  if(g.position <= -TUG_HALF) g.winner = 'blu';
-  else if(g.position >= TUG_HALF) g.winner = 'rosso';
-  else nextTugQuestion();
-  render();
+  <p class="hint" style="text-align:center">Stessa domanda per tutti e due: chi tocca la risposta giusta per primo tira la fune.</p>
+  <div class="split-row">
+    ${raceColumnHtml(race, 'blu', SPLIT_TEAMS.blu, opt=>`answerTugSide('blu','${opt}')`)}
+    ${raceColumnHtml(race, 'rosso', SPLIT_TEAMS.rosso, opt=>`answerTugSide('rosso','${opt}')`)}
+  </div>
+  ${race.winner ? `<button class="btn btn-ink" style="margin-top:14px;width:100%" onclick="nextTugRoundBtn()">Prossima domanda →</button>` : ''}`;
 }
 
 /* --- Battaglia navale: ogni risposta giusta spara alla nave avversaria --- */
@@ -278,7 +336,7 @@ function goShipChoose(){
 }
 function viewShipChoose(){
   const selected = state.shipContentTypes;
-  const rows = Object.keys(CONTENT_TYPES).map(k=>{
+  const rows = sortedKeysByLabel(Object.keys(CONTENT_TYPES), Object.fromEntries(Object.entries(CONTENT_TYPES).map(([k,v])=>[k,v.label]))).map(k=>{
     const meta = CONTENT_TYPES[k];
     const checked = selected.includes(k);
     return `<label class="check-row"><input type="checkbox" ${checked?'checked':''} onchange="toggleShipContent('${k}')"> ${meta.emoji} ${meta.label}</label>`;
@@ -308,14 +366,27 @@ function startShipBattle(){
     blu:{hp:SHIP_START_HP},
     rosso:{hp:SHIP_START_HP},
     winner:null,
-    current:null,
+    race:null,
   };
-  nextShipQuestion();
+  nextShipRound();
   render();
 }
-function nextShipQuestion(){
+function nextShipRound(){
   const type = pickRandom(state.shipContentTypes);
-  state.ship.current = generateContentQuestion(type);
+  state.ship.race = newRace(type);
+}
+function answerShipSide(side, opt){
+  if(state.ship.winner) return;
+  raceAnswer(state.ship.race, side, opt, (winSide)=>{
+    const target = winSide==='blu' ? 'rosso' : 'blu';
+    state.ship[target].hp -= 1;
+    if(state.ship[target].hp <= 0) state.ship.winner = winSide;
+  });
+}
+function nextShipRoundBtn(){
+  if(state.ship.winner) return;
+  nextShipRound();
+  render();
 }
 function heartsHtml(hp, max){
   let out = '';
@@ -337,40 +408,18 @@ function viewShipBattle(){
       </div>
     </div>`;
   }
-  const c = g.current;
+  const race = g.race;
   return `
   <div class="ship-row">
     <div class="ship-box"><div style="font-size:2rem">🚢</div><div>${heartsHtml(g.blu.hp, SHIP_START_HP)}</div><div class="hint">🔵 Squadra Blu</div></div>
     <div class="ship-box"><div style="font-size:2rem">🚢</div><div>${heartsHtml(g.rosso.hp, SHIP_START_HP)}</div><div class="hint">🔴 Squadra Rossa</div></div>
   </div>
-  <div class="quiz-card">
-    ${contentQuestionBodyHtml(c, null)}
-    ${!c.answered
-      ? `<button class="btn btn-ink" style="margin-top:14px" onclick="revealShip()">Mostra la risposta</button>`
-      : `
-        <p class="feedback ok" style="margin-top:10px">Risposta giusta: ${contentQuestionCorrectLabel(c)}</p>
-        <p class="hint">Chi ha risposto per primo, spara!</p>
-        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:6px">
-          <button class="btn btn-ink" onclick="shipHit('blu')">🔵 Blu colpisce</button>
-          <button class="btn btn-coral" onclick="shipHit('rosso')">🔴 Rosso colpisce</button>
-          <button class="btn btn-ghost" onclick="shipHit(null)">Nessuno →</button>
-        </div>`
-    }
-  </div>`;
-}
-function revealShip(){
-  state.ship.current.answered = true;
-  render();
-}
-function shipHit(team){
-  const g = state.ship;
-  if(team){
-    const target = team==='blu' ? 'rosso' : 'blu';
-    g[target].hp -= 1;
-    if(g[target].hp <= 0){ g.winner = team; render(); return; }
-  }
-  nextShipQuestion();
-  render();
+  <p class="hint" style="text-align:center">Stessa domanda per tutti e due: chi tocca la risposta giusta per primo spara.</p>
+  <div class="split-row">
+    ${raceColumnHtml(race, 'blu', SPLIT_TEAMS.blu, opt=>`answerShipSide('blu','${opt}')`)}
+    ${raceColumnHtml(race, 'rosso', SPLIT_TEAMS.rosso, opt=>`answerShipSide('rosso','${opt}')`)}
+  </div>
+  ${race.winner ? `<button class="btn btn-ink" style="margin-top:14px;width:100%" onclick="nextShipRoundBtn()">Prossima domanda →</button>` : ''}`;
 }
 
 /* --- Ruota della fortuna: si gira per i punti in palio, poi si risponde --- */
@@ -383,7 +432,7 @@ function goWheelChoose(){
 }
 function viewWheelChoose(){
   const selected = state.wheelContentTypes;
-  const rows = Object.keys(CONTENT_TYPES).map(k=>{
+  const rows = sortedKeysByLabel(Object.keys(CONTENT_TYPES), Object.fromEntries(Object.entries(CONTENT_TYPES).map(([k,v])=>[k,v.label]))).map(k=>{
     const meta = CONTENT_TYPES[k];
     const checked = selected.includes(k);
     return `<label class="check-row"><input type="checkbox" ${checked?'checked':''} onchange="toggleWheelContent('${k}')"> ${meta.emoji} ${meta.label}</label>`;
@@ -410,11 +459,11 @@ function startWheel(){
   state.view = 'wheel';
   if(!state.wheelContentTypes || state.wheelContentTypes.length===0) state.wheelContentTypes=['checose'];
   state.wheel = {
-    team:{blu:0,rosso:0,verde:0},
+    team:{blu:0,rosso:0},
     rotation:0,
     spinning:false,
     value:null,
-    current:null,
+    race:null,
   };
   render();
 }
@@ -427,16 +476,38 @@ function spinWheel(){
   const targetCenter = idx*segAngle + segAngle/2;
   const spins = 5;
   const baseRotation = g.rotation - (g.rotation % 360);
-  g.rotation = baseRotation + spins*360 + (360 - targetCenter);
+  const finalRotation = baseRotation + spins*360 + (360 - targetCenter);
   g.spinning = true;
   g.pendingValue = value;
-  render();
+  render(); // disegna la ruota ferma, ancora alla rotazione precedente
+  // Un render() pieno sostituisce il div della ruota: la transizione CSS non avrebbe
+  // nulla da cui partire e scatterebbe dritta al valore finale, senza girare visibilmente.
+  // Aspettiamo che il browser disegni lo stato di partenza, poi tocchiamo lo stesso nodo
+  // direttamente: così la transizione ha un prima e un dopo da animare davvero.
+  requestAnimationFrame(()=>{
+    requestAnimationFrame(()=>{
+      const wheelEl = document.querySelector('.wheel');
+      if(wheelEl) wheelEl.style.transform = 'rotate('+finalRotation+'deg)';
+    });
+  });
   setTimeout(()=>{
+    g.rotation = finalRotation;
     g.spinning = false;
     g.value = g.pendingValue;
-    g.current = generateContentQuestion(pickRandom(state.wheelContentTypes));
+    g.race = newRace(pickRandom(state.wheelContentTypes));
     render();
   }, 3000);
+}
+function answerWheelSide(side, opt){
+  if(!state.wheel.value) return;
+  raceAnswer(state.wheel.race, side, opt, (winSide)=>{
+    state.wheel.team[winSide] += state.wheel.value;
+  });
+}
+function nextWheelRoundBtn(){
+  state.wheel.value = null;
+  state.wheel.race = null;
+  render();
 }
 function viewWheel(){
   const g = state.wheel;
@@ -449,48 +520,27 @@ function viewWheel(){
   let bottomHtml;
   if(g.spinning){
     bottomHtml = `<p class="hint" style="text-align:center">🎡 Girando...</p>`;
-  } else if(!g.current){
+  } else if(!g.race){
     bottomHtml = `<button class="btn btn-coral" style="width:100%" onclick="spinWheel()">🎡 Gira la ruota</button>`;
   } else {
-    const c = g.current;
     bottomHtml = `
-    <p class="quiz-prompt" style="text-align:center">In palio: <strong>${g.value} punti</strong></p>
-    ${contentQuestionBodyHtml(c, null)}
-    ${!c.answered
-      ? `<button class="btn btn-ink" style="margin-top:14px" onclick="revealWheel()">Mostra la risposta</button>`
-      : `
-        <p class="feedback ok" style="margin-top:10px">Risposta giusta: ${contentQuestionCorrectLabel(c)}</p>
-        <p class="hint">Chi ha risposto per primo?</p>
-        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:6px">
-          <button class="btn btn-ink" onclick="wheelPoint('blu')">🔵 Blu</button>
-          <button class="btn btn-coral" onclick="wheelPoint('rosso')">🔴 Rosso</button>
-          <button class="btn btn-grass" onclick="wheelPoint('verde')">🟢 Verde</button>
-          <button class="btn btn-ghost" onclick="wheelPoint(null)">Nessuno</button>
-        </div>`
-    }`;
+    <p class="quiz-prompt" style="text-align:center">In palio: <strong>${g.value} punti</strong> — chi risponde giusto per primo li prende</p>
+    <div class="split-row">
+      ${raceColumnHtml(g.race, 'blu', SPLIT_TEAMS.blu, opt=>`answerWheelSide('blu','${opt}')`)}
+      ${raceColumnHtml(g.race, 'rosso', SPLIT_TEAMS.rosso, opt=>`answerWheelSide('rosso','${opt}')`)}
+    </div>
+    ${g.race.winner ? `<button class="btn btn-ink" style="margin-top:14px;width:100%" onclick="nextWheelRoundBtn()">Gira di nuovo →</button>` : ''}`;
   }
   return `
   <div class="team-row" style="margin-bottom:4px">
     <div class="team-box team-blu"><div>🔵 Blu</div><div class="score">${team.blu}</div></div>
     <div class="team-box team-rosso"><div>🔴 Rosso</div><div class="score">${team.rosso}</div></div>
-    <div class="team-box team-verde"><div>🟢 Verde</div><div class="score">${team.verde}</div></div>
   </div>
   <div class="wheel-wrap">
     <div class="wheel-pointer">▼</div>
     <div class="wheel" style="transform:rotate(${g.rotation}deg)">${segsHtml}</div>
   </div>
-  <div class="quiz-card">${bottomHtml}</div>`;
-}
-function revealWheel(){
-  state.wheel.current.answered = true;
-  render();
-}
-function wheelPoint(team){
-  const g = state.wheel;
-  if(team) g.team[team] += g.value;
-  g.value = null;
-  g.current = null;
-  render();
+  ${g.race ? bottomHtml : `<div class="quiz-card">${bottomHtml}</div>`}`;
 }
 
 /* --- Squadra contro squadra: schermo diviso, a tempo, avanza da sola, contenuto a scelta --- */
@@ -508,7 +558,7 @@ function goClassroomSplitChoose(){
 }
 function viewClassroomSplitChoose(){
   const selected = state.splitContentTypes;
-  const rows = Object.keys(CONTENT_TYPES).map(k=>{
+  const rows = sortedKeysByLabel(Object.keys(CONTENT_TYPES), Object.fromEntries(Object.entries(CONTENT_TYPES).map(([k,v])=>[k,v.label]))).map(k=>{
     const meta = CONTENT_TYPES[k];
     const checked = selected.includes(k);
     return `<label class="check-row"><input type="checkbox" ${checked?'checked':''} onchange="toggleSplitContent('${k}')"> ${meta.emoji} ${meta.label}</label>`;

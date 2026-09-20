@@ -4,7 +4,7 @@ function viewSettings(){
   const ns = settings.nomiSkills;
   const as = settings.aggSkills;
   const arts = settings.artSkills;
-  const tipiRows = Object.keys(TIPI_LABELS).map(k=>`
+  const tipiRows = sortedKeysByLabel(Object.keys(TIPI_LABELS), TIPI_LABELS).map(k=>`
     <label class="check-row"><input type="checkbox" ${t[k]?'checked':''} onchange="toggleTipo('${k}')"> ${TIPI_LABELS[k]}</label>
   `).join('');
   const nomeSkillRows = `

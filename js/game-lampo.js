@@ -21,7 +21,7 @@ function nextLampoQuestion(){
   const tipiList = activeTipiList();
   const pool = wordsByTipi(tipiList);
   const word = pickRandom(pool);
-  const options = shuffle(tipiList.slice());
+  const options = tipiList.slice(); // ordine fisso: le etichette sono sempre le stesse, mescolarle è solo fastidioso
   state.game.current = {word, options};
 }
 function viewLampo(){

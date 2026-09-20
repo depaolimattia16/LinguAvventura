@@ -17,7 +17,7 @@ function fillOrthoBanks(data){
 }
 function goOrtografiaChoose(){ state.view='ortografiaChoose'; render(); }
 function viewOrtografiaChoose(){
-  const cards = Object.keys(ORTHO_TOPICS).map(k=>{
+  const cards = sortedKeysByLabel(Object.keys(ORTHO_TOPICS), Object.fromEntries(Object.entries(ORTHO_TOPICS).map(([k,v])=>[k,v.label]))).map(k=>{
     const n = ORTHO_TOPICS[k].bank.length;
     return `<button class="mode-card" onclick="startOrtografiaTopic('${k}')"><span class="emoji">🔤</span><div class="txt"><strong>${ORTHO_TOPICS[k].label}</strong><span>${n} esempi</span></div></button>`;
   }).join('');
@@ -39,7 +39,7 @@ function goOrtografiaMistaChoose(){
 }
 function viewOrtografiaMistaChoose(){
   const selected = state.orthoMistaTypes;
-  const rows = Object.keys(ORTHO_TOPICS).map(k=>{
+  const rows = sortedKeysByLabel(Object.keys(ORTHO_TOPICS), Object.fromEntries(Object.entries(ORTHO_TOPICS).map(([k,v])=>[k,v.label]))).map(k=>{
     const checked = selected.includes(k);
     return `<label class="check-row"><input type="checkbox" ${checked?'checked':''} onchange="toggleOrthoMistaType('${k}')"> ${ORTHO_TOPICS[k].label}</label>`;
   }).join('');

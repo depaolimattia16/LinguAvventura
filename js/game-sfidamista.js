@@ -4,7 +4,7 @@ function buildRound_checose(){
   const pool = wordsByTipi(tipiList);
   if(pool.length===0) return null;
   const word = pickRandom(pool);
-  const options = shuffle(tipiList.slice());
+  const options = tipiList.slice(); // ordine fisso: le etichette sono sempre le stesse, mescolarle è solo fastidioso
   return {kind:'checose', word, options};
 }
 function buildRound_intruso(){
@@ -15,7 +15,7 @@ function buildRound_intruso(){
 function buildRound_misteriosa(){
   const sentence = pickRandom(SENTENCES);
   const tokenIndex = Math.floor(Math.random()*sentence.length);
-  const options = shuffle(['nome','verbo','aggettivo','articolo']);
+  const options = ['nome','verbo','aggettivo','articolo']; // ordine fisso, sempre le stesse etichette
   return {kind:'misteriosa', sentence, tokenIndex, options};
 }
 function buildRound_primitivi(){
@@ -23,7 +23,7 @@ function buildRound_primitivi(){
   const derivati = PRIMITIVI_DERIVATI.filter(w=>w.tipo==='derivato');
   if(primitivi.length===0 || derivati.length===0) return null;
   const item = Math.random() < 0.5 ? pickRandom(primitivi) : pickRandom(derivati);
-  const options = shuffle(['primitivo','derivato']);
+  const options = ['primitivo','derivato']; // ordine fisso, sempre le stesse due etichette
   return {kind:'primitivi', item, options};
 }
 function buildRound_analisi(){
@@ -38,7 +38,7 @@ function buildRound_analisi(){
   const cfg = ANALYSIS_CONFIG[type];
   const sq = cfg.stepDef[stepKey];
   const word = pickRandom(poolFor(type));
-  const options = shuffle(sq.opts.slice());
+  const options = sq.opts.slice(); // ordine fisso, come nell'Analisi grammaticale vera e propria
   return {kind:'analisi', type, sq, word, options};
 }
 const MIXED_BUILDERS = {

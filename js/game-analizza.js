@@ -94,7 +94,7 @@ function poolFor(type){
 }
 function goAnalizzaChoose(){ state.view='analizzaChoose'; render(); }
 function viewAnalizzaChoose(){
-  const types = ['nome','aggettivo','articolo','verbo','pronome','preposizione','avverbio'];
+  const types = sortedKeysByLabel(['nome','aggettivo','articolo','verbo','pronome','preposizione','avverbio'], Object.fromEntries(Object.entries(ANALYSIS_CONFIG).map(([k,v])=>[k,v.label])));
   const cards = types.map(t=>{
     const n = activeStepsFor(t).length;
     const hasWords = poolFor(t).length>0;

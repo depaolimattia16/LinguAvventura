@@ -23,7 +23,7 @@ function nextPrimitiviQuestion(){
   const primitivi = PRIMITIVI_DERIVATI.filter(w=>w.tipo==='primitivo');
   const derivati = PRIMITIVI_DERIVATI.filter(w=>w.tipo==='derivato');
   const item = Math.random() < 0.5 ? pickRandom(primitivi) : pickRandom(derivati);
-  const options = shuffle(['primitivo','derivato']);
+  const options = ['primitivo','derivato']; // ordine fisso, sempre le stesse due etichette
   state.game.current = {item, options, answered:false, chosen:null};
 }
 function viewPrimitivi(){

@@ -4,7 +4,7 @@ function viewTeoriaChoose(){
   const groupHtml = (group, label) => `
     <div class="mode-section-label">${label}</div>
     <div class="mode-list">
-      ${TEORIA[group].map(t=>`<button class="mode-card" onclick="showTeoria('${group}','${t.key}')"><span class="emoji">${t.icon}</span><div class="txt"><strong>${t.title}</strong></div></button>`).join('')}
+      ${[...TEORIA[group]].sort((a,b)=>stripLeadingArticle(a.title).localeCompare(stripLeadingArticle(b.title),'it')).map(t=>`<button class="mode-card" onclick="showTeoria('${group}','${t.key}')"><span class="emoji">${t.icon}</span><div class="txt"><strong>${t.title}</strong></div></button>`).join('')}
     </div>`;
   return `
   <h2>Teoria</h2>

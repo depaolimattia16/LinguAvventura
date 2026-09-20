@@ -59,7 +59,7 @@ js/
   game-lampo.js       "Sfida lampo"
   game-mostro.js      "Il mostro della grammatica"
   game-ortografia.js  "Ortografia" (10 regole, più sfida mista e anagramma)
-  game-classroom.js   "Modalità classe" (schermo condiviso, tiro alla fune, battaglia navale, ruota della fortuna, squadra contro squadra — per la LIM)
+  game-classroom.js   "Modalità classe" (schermo condiviso, tiro alla fune, battaglia navale, ruota della fortuna — tutte e tre a schermo diviso, stessa domanda, vince chi risponde giusto per primo — più squadra contro squadra, a tempo — per la LIM)
   app.js              carica i file in /data, poi avvia l'app (ultimo file caricato)
 ```
 

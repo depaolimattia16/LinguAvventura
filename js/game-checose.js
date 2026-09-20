@@ -5,8 +5,8 @@ function viewCheCosEChoose(){
   <h2>Che cos'è?</h2>
   <p class="hint">Scegli come vuoi giocare.</p>
   <div class="mode-list">
-    <button class="mode-card" onclick="startCheCosE()"><span class="emoji">🎯</span><div class="txt"><strong>Classica</strong><span>10 domande, senza fretta</span></div></button>
     <button class="mode-card" onclick="startLampo()"><span class="emoji">⚡</span><div class="txt"><strong>A tempo</strong><span>60 secondi, più risposte puoi dare</span></div></button>
+    <button class="mode-card" onclick="startCheCosE()"><span class="emoji">🎯</span><div class="txt"><strong>Classica</strong><span>10 domande, senza fretta</span></div></button>
     <button class="mode-card" onclick="startMostro()"><span class="emoji">🐉</span><div class="txt"><strong>Contro il mostro</strong><span>Rispondi bene per sconfiggerlo</span></div></button>
     <button class="mode-card" onclick="startParolaMisteriosa()"><span class="emoji">🔍</span><div class="txt"><strong>Dentro una frase</strong><span>Trova la parola evidenziata nel contesto</span></div></button>
     <button class="mode-card" onclick="startOrdina()"><span class="emoji">🗂️</span><div class="txt"><strong>Ordina</strong><span>Smista più parole insieme nel contenitore giusto</span></div></button>
@@ -35,7 +35,7 @@ function rollDice(){
     r.rolling = false;
     r.landedIdx = idx;
     const tipiList = activeTipiList();
-    const options = shuffle(tipiList.slice());
+    const options = tipiList.slice(); // ordine fisso: le etichette sono sempre le stesse, mescolarle è solo fastidioso
     r.current = {word:r.words[idx], options, answered:false, chosen:null};
     render();
   }, 500);
@@ -175,7 +175,7 @@ function nextCheCosEQuestion(){
   const tipiList = activeTipiList();
   const pool = wordsByTipi(tipiList);
   const word = pickRandom(pool);
-  const options = shuffle(tipiList.slice());
+  const options = tipiList.slice(); // ordine fisso: le etichette sono sempre le stesse, mescolarle è solo fastidioso
   state.game.current = {word, options, answered:false};
 }
 function viewCheCosE(){

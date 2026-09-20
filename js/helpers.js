@@ -15,6 +15,22 @@ function activeTipiList(){
 }
 function wordsByTipi(list){ return WORDS.filter(w=>list.includes(w.t)); }
 
+/* Ordina un elenco di chiavi in base all'etichetta italiana corrispondente (es. TIPI_LABELS),
+   così i sotto-menu si presentano sempre in ordine alfabetico anche se i dati sono in un altro ordine.
+   Ignora un eventuale articolo iniziale (il/lo/la/l'/i/gli/le/un/uno/una) SOLO se seguito da una vera
+   parola (es. "Il nome" -> "nome"), non quando la parola è essa stessa il nome di un argomento
+   (es. "Gli - Li" resta com'è: qui "Gli" non è un articolo, è il suono di cui si parla). */
+function stripLeadingArticle(s){
+  const m = s.match(/^(il|lo|la|i|gli|le|un|uno|una)\s+(.+)$/i);
+  if(m && /^[a-zàèéìòù]/.test(m[2])) return m[2];
+  const m2 = s.match(/^l['’](.+)$/i);
+  if(m2) return m2[1];
+  return s;
+}
+function sortedKeysByLabel(keys, labelsMap){
+  return [...keys].sort((a,b)=> stripLeadingArticle(labelsMap[a]||a).localeCompare(stripLeadingArticle(labelsMap[b]||b), 'it'));
+}
+
 /* Condivise dai giochi a round (Che cos'è, Trova l'intruso, Ortografia...) */
 function feedbackBlock(correct, _unused, nextFn){
   return `<div class="feedback ${correct?'ok':'bad'}">${correct?'✅ Giusto!':'❌ Non proprio...'}</div>

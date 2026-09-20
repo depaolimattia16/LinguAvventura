@@ -5,9 +5,9 @@ function viewLessicoChoose(){
   <h2>Lessico</h2>
   <p class="hint">Il significato delle parole, non la loro grammatica.</p>
   <div class="mode-list">
-    <button class="mode-card" onclick="startSinContr()"><span class="emoji">🔀</span><div class="txt"><strong>Sinonimi e contrari</strong><span>Questa coppia di parole cosa sono?</span></div></button>
     <button class="mode-card" onclick="startAlterati()"><span class="emoji">🔎</span><div class="txt"><strong>Nomi alterati</strong><span>Accrescitivo, diminutivo, vezzeggiativo o dispregiativo?</span></div></button>
     <button class="mode-card" onclick="startComposti()"><span class="emoji">🧩</span><div class="txt"><strong>Nomi composti</strong><span>Semplice o composto da due parole?</span></div></button>
+    <button class="mode-card" onclick="startSinContr()"><span class="emoji">🔀</span><div class="txt"><strong>Sinonimi e contrari</strong><span>Questa coppia di parole cosa sono?</span></div></button>
   </div>`;
 }
 
@@ -65,7 +65,7 @@ function startAlterati(){
 }
 function nextAlterati(){
   const item = pickRandom(NOMI_ALTERATI);
-  const options = shuffle(Object.keys(ALTERATO_LABELS));
+  const options = Object.keys(ALTERATO_LABELS); // ordine fisso, sempre le stesse quattro etichette
   state.game.current = {item, options, answered:false, chosen:null};
 }
 function viewAlterati(){
