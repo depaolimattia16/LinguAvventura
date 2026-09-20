@@ -1,3 +1,15 @@
+/* ============ PRIMITIVI E DERIVATI: scelta tra "Indovina" e "Memoria" ============ */
+function goPrimitiviChoose(){ state.view='primitiviChoose'; render(); }
+function viewPrimitiviChoose(){
+  return `
+  <h2>Primitivi e derivati</h2>
+  <p class="hint">Scegli come vuoi giocare.</p>
+  <div class="mode-list">
+    <button class="mode-card" onclick="startPrimitivi()"><span class="emoji">🎯</span><div class="txt"><strong>Indovina</strong><span>Primitivo o derivato?</span></div></button>
+    <button class="mode-card" onclick="startMemoria()"><span class="emoji">🧠</span><div class="txt"><strong>Memoria</strong><span>Trova le coppie: la parola e la sua famiglia</span></div></button>
+  </div>`;
+}
+
 /* ============ PRIMITIVI E DERIVATI (esercizio a sé, non fa parte dell'Analisi) ============ */
 function startPrimitivi(){
   state.gameMode='primitivi';

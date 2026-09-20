@@ -29,6 +29,7 @@ function modeBackTarget(mode){
   const map = {
     checose:'goCheCosEChoose',
     misteriosa:'goCheCosEChoose',
+    rollread:'goCheCosEChoose',
     ortografia:'goOrtografiaChoose',
     ortografiaMista:'goOrtografiaMistaChoose',
   };
@@ -53,5 +54,6 @@ function restartMode(mode){
   else if(mode==='ortografiaMista') startOrtografiaMista();
   else if(mode==='misteriosa') startParolaMisteriosa();
   else if(mode==='primitivi') startPrimitivi();
+  else if(mode==='rollread') startRollRead();
   else if(mode==='sfidamista') startSfidaMista();
 }

@@ -2,7 +2,7 @@
 /* Il database (parole, frasi, ortografia) vive in file JSON dentro /data,
    così è modificabile e consultabile senza toccare il codice. */
 async function loadContentData(){
-  const [words, sentences, ortho, primitivi, teoria] = await Promise.all([
+  const [words, sentences, ortho, primitiviData, teoria] = await Promise.all([
     fetch('data/words.json').then(r=>r.json()),
     fetch('data/sentences.json').then(r=>r.json()),
     fetch('data/ortografia.json').then(r=>r.json()),
@@ -12,7 +12,12 @@ async function loadContentData(){
   WORDS = words;
   SENTENCES = sentences;
   fillOrthoBanks(ortho);
-  PRIMITIVI_DERIVATI = primitivi;
+  PRIMITIVI_FAMIGLIE = primitiviData.famiglie;
+  PRIMITIVI_DERIVATI = [];
+  PRIMITIVI_FAMIGLIE.forEach(f=>{
+    PRIMITIVI_DERIVATI.push({w:f.primitivo, tipo:'primitivo'});
+    f.derivati.forEach(d=> PRIMITIVI_DERIVATI.push({w:d, tipo:'derivato'}));
+  });
   TEORIA = teoria;
 }
 
@@ -22,7 +27,10 @@ loadContentData().then(()=>{
   // così l'app resta a zero attrito finché non decidi tu di collegare le statistiche.
   state.view = (supabaseClient && !getNickname()) ? 'nickname' : 'home';
   render();
-  if(supabaseClient) flushPendingQueue(); // riprova a spedire eventuali risposte rimaste in sospeso
+  if(supabaseClient){
+    flushPendingQueue(); // riprova a spedire eventuali risposte rimaste in sospeso
+    trackSiteVisit(); // conta la visita (al massimo una volta al giorno per dispositivo)
+  }
 }).catch(err=>{
   console.error('Errore nel caricamento dei dati:', err);
   const app = document.getElementById('app');

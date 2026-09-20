@@ -286,6 +286,87 @@
   .split-score{font-family:'Baloo 2';font-size:2.2rem;font-weight:800;color:var(--ink);margin-bottom:10px;}
   .options-grid-single{display:grid;grid-template-columns:1fr;gap:8px;margin-top:8px;}
 
+  /* classroom - tiro alla fune */
+  .tug-field{
+    position:relative;height:64px;border-radius:32px;margin:14px 0 4px;
+    background:linear-gradient(to right, #3D6FE0 0%, #3D6FE0 12%, var(--paper) 50%, var(--coral) 88%, var(--coral) 100%);
+    border:3px solid var(--charcoal);
+  }
+  .tug-goal{position:absolute;top:50%;transform:translateY(-50%);font-size:1.5rem;}
+  .tug-goal.left{left:8px;}
+  .tug-goal.right{right:8px;}
+  .tug-knot{
+    position:absolute;top:50%;transform:translate(-50%,-50%);
+    font-size:2rem;transition:left .5s ease;
+  }
+
+  /* memoria */
+  .memoria-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px;margin-top:16px;}
+  .memoria-card{
+    aspect-ratio:1/1;border-radius:12px;border:2px solid var(--paper-line);
+    background:var(--ink);color:#fff;font-family:'Baloo 2';font-weight:700;
+    font-size:1.6rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    padding:4px;text-align:center;line-height:1.1;word-break:break-word;
+  }
+  .memoria-card.flipped{background:var(--sun);color:var(--charcoal);border-color:var(--sun-dark);font-size:.82rem;}
+  .memoria-card.matched{background:var(--grass);color:#fff;border-color:var(--grass-dark);font-size:.82rem;cursor:default;}
+
+  /* ordina */
+  .ordina-pool{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px;min-height:50px;}
+  .ordina-chip{
+    font-family:'Baloo 2';font-weight:700;background:#fff;border:2px solid var(--paper-line);
+    border-radius:10px;padding:10px 14px;cursor:pointer;color:var(--ink);
+  }
+  .ordina-chip.selected{background:var(--sun);border-color:var(--sun-dark);}
+  .ordina-chip.wrong{background:var(--coral);color:#fff;border-color:var(--coral-dark);}
+  .ordina-bins{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:18px;}
+  .ordina-bin{
+    background:var(--card-bg);border:2px dashed var(--paper-line);border-radius:12px;
+    padding:12px 8px;cursor:pointer;text-align:center;min-height:70px;font-family:inherit;
+  }
+  .ordina-bin:hover{border-color:var(--ink);}
+  .ordina-bin-label{font-family:'Baloo 2';font-weight:700;color:var(--ink);}
+  .ordina-bin-items{font-size:.8rem;color:var(--charcoal-soft);margin-top:6px;word-break:break-word;}
+
+  /* tira e leggi */
+  .rollread-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0;}
+  .rollread-cell{
+    position:relative;background:var(--card-bg);border:2px solid var(--paper-line);
+    border-radius:12px;padding:16px 8px;text-align:center;font-family:'Baloo 2';font-weight:700;
+    color:var(--ink);
+  }
+  .rollread-cell.landed{background:var(--sun);border-color:var(--sun-dark);}
+  .rollread-num{
+    position:absolute;top:4px;left:6px;font-size:.7rem;color:var(--charcoal-soft);
+  }
+
+  /* battaglia navale */
+  .ship-row{display:flex;gap:12px;justify-content:center;margin:14px 0;flex-wrap:wrap;}
+  .ship-box{
+    flex:1;min-width:130px;text-align:center;background:var(--card-bg);
+    border:2px solid var(--paper-line);border-radius:14px;padding:12px;
+  }
+
+  /* ruota della fortuna */
+  .wheel-wrap{position:relative;width:200px;height:200px;margin:16px auto 8px;}
+  .wheel{
+    width:100%;height:100%;border-radius:50%;border:5px solid var(--charcoal);
+    position:relative;transition:transform 3s cubic-bezier(.17,.67,.16,.99);
+    background:conic-gradient(
+      var(--coral) 0deg 45deg, var(--sun) 45deg 90deg, var(--grass) 90deg 135deg, var(--ink) 135deg 180deg,
+      var(--coral) 180deg 225deg, var(--sun) 225deg 270deg, var(--grass) 270deg 315deg, var(--ink) 315deg 360deg
+    );
+  }
+  .wheel-label{
+    position:absolute;top:50%;left:50%;transform-origin:0 0;
+    font-family:'Baloo 2';font-weight:800;color:#fff;font-size:1.05rem;
+    margin-left:-14px;margin-top:-10px;width:28px;text-align:center;
+  }
+  .wheel-pointer{
+    position:absolute;top:-16px;left:50%;transform:translateX(-50%);
+    font-size:1.8rem;z-index:2;color:var(--charcoal);
+  }
+
   .toast{
     position:fixed;left:50%;bottom:18px;transform:translateX(-50%);
     background:var(--ink);color:#fff;padding:12px 20px;border-radius:12px;

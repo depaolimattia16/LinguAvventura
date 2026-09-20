@@ -33,7 +33,7 @@ function viewModeSelect(){
     <button class="mode-card" onclick="goCheCosEChoose()"><span class="emoji">❓</span><div class="txt"><strong>Che cos'è?</strong><span>Nome, verbo, aggettivo o articolo — classica, a tempo, contro il mostro o in una frase</span></div></button>
     <button class="mode-card" onclick="goAnalizzaChoose()"><span class="emoji">🔎</span><div class="txt"><strong>Analisi grammaticale</strong><span>Nome, aggettivo, articolo, verbo, o una frase intera</span></div></button>
     <button class="mode-card" onclick="startIntruso()"><span class="emoji">🕵️</span><div class="txt"><strong>Trova l'intruso</strong><span>Tre parole simili, una diversa</span></div></button>
-    <button class="mode-card" onclick="startPrimitivi()"><span class="emoji">🌱</span><div class="txt"><strong>Primitivi e derivati</strong><span>Questa parola da dove nasce?</span></div></button>
+    <button class="mode-card" onclick="goPrimitiviChoose()"><span class="emoji">🌱</span><div class="txt"><strong>Primitivi e derivati</strong><span>Indovina o gioca a memoria</span></div></button>
     <button class="mode-card" onclick="startSfidaMista()"><span class="emoji">🎲</span><div class="txt"><strong>Sfida mista</strong><span>Un po' di tutto: pesca a caso da ogni modalità</span></div></button>
   </div>`;
 }

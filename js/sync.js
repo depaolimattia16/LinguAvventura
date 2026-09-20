@@ -63,6 +63,34 @@ async function flushPendingQueue(){
   flushingQueue = false;
 }
 
+/* Conta una visita al sito, al massimo una volta al giorno per dispositivo
+   (così i ricaricamenti ripetuti non gonfiano il numero). Non blocca mai
+   l'app: se fallisce, semplicemente quella visita non viene contata. */
+async function trackSiteVisit(){
+  if(!supabaseClient) return;
+  try{
+    const today = new Date().toISOString().slice(0,10);
+    let lastDay = null;
+    try{ lastDay = localStorage.getItem('lv_last_visit_day'); }catch(e){}
+    if(lastDay === today) return;
+    const { error } = await supabaseClient.rpc('increment_site_views');
+    if(!error){
+      try{ localStorage.setItem('lv_last_visit_day', today); }catch(e){}
+    }
+  }catch(e){
+    console.error('Conteggio visite fallito (non blocca nulla):', e);
+  }
+}
+async function getSiteViews(){
+  if(!supabaseClient) return null;
+  try{
+    const { data, error } = await supabaseClient.from('site_stats').select('views').eq('id',1).single();
+    if(error) throw error;
+    return data.views;
+  }catch(e){
+    return null;
+  }
+}
 /* Se sul dispositivo c'era già un po' di storico locale (XP/risposte) da
    PRIMA di scegliere un nickname, lo carica una volta sola come sintesi
    (senza il dettaglio per argomento, che prima non veniva registrato),

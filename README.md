@@ -42,17 +42,18 @@ js/
   view-teoria.js      pagina "Teoria" (regole spiegate in breve, con link all'esercizio)
   view-settings.js    pagina "Argomenti" (attiva/disattiva caratteristiche)
   view-progress.js    pagina "Progressi" (XP, medaglie, statistiche personali)
-  game-checose.js     modalità "Che cos'è?"
+  game-checose.js     modalità "Che cos'è?" (classica, a tempo, mostro, frase, ordina, tira e leggi)
   game-analizza.js    "Analisi grammaticale" (nome, aggettivo, articolo, verbo)
   game-analizzatutto.js  "Analizza tutto" (frase intera, parola per parola)
   game-misteriosa.js  "Parola misteriosa"
-  game-primitivi.js   "Primitivi e derivati"
+  game-primitivi.js   "Primitivi e derivati" (Indovina)
+  game-memoria.js     "Primitivi e derivati" (Memoria: abbina le coppie)
   game-sfidamista.js  "Sfida mista" (pesca a caso da tutte le altre modalità di grammatica)
   game-intruso.js     "Trova l'intruso"
   game-lampo.js       "Sfida lampo"
   game-mostro.js      "Il mostro della grammatica"
   game-ortografia.js  "Ortografia" (ce/cie, ge/gie, sce/sci, gli/li, cu/qu, doppie, la H)
-  game-classroom.js   "Modalità classe" (per la LIM)
+  game-classroom.js   "Modalità classe" (schermo condiviso, tiro alla fune, battaglia navale, ruota della fortuna, squadra contro squadra — per la LIM)
   app.js              carica i file in /data, poi avvia l'app (ultimo file caricato)
 ```
 
@@ -71,7 +72,7 @@ Tutto il contenuto "didattico" sta in `/data`, come JSON puro — nessuna sintas
   Per aggiungere una parola, copia una riga simile (stesso tipo `t`) e cambia i valori. Attenzione alle virgole tra un oggetto e l'altro: un JSON con una virgola di troppo o mancante non si carica più — se non sei sicuro, incolla il file in un validatore JSON online prima di salvare.
 - **`data/sentences.json`** — un array di frasi, ogni frase è un array di parole taggate come sopra (con in più, per i verbi, persona/numero/tempo/modo).
 - **`data/ortografia.json`** — un oggetto con una lista per ogni regola (`cege`, `scesci`, `glili`, `cuqu`, `doppie`, `letterah`), ciascuna con coppie `{ "ok": "...", "bad": "..." }` (oppure `{ "s": "...", "ok": "...", "bad": "..." }` per Ce/Cie-Ge/Gie, o `{ "sentence": "...", "ok": "...", "bad": "..." }` per la lettera H).
-- **`data/primitivi-derivati.json`** — un array di `{ "w": "...", "tipo": "primitivo" }` oppure `"tipo": "derivato"`.
+- **`data/primitivi-derivati.json`** — un oggetto con `famiglie`: un array di `{ "primitivo": "...", "derivati": ["...", "..."] }`. Serve sia per "Indovina" (primitivo o derivato) sia per "Memoria" (abbina le coppie della stessa famiglia).
 
 Per una NUOVA regola di ortografia (non solo nuove parole in una esistente) serve anche aggiungere una voce a `ORTHO_TOPICS` dentro `js/game-ortografia.js`. Le costanti `*_LABELS` in `js/data.js` definiscono le etichette mostrate a schermo (es. "Maschile"/"Femminile").
 
