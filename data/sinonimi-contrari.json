@@ -1,0 +1,36 @@
+{
+  "sinonimi": [
+    ["contento","felice"],
+    ["veloce","rapido"],
+    ["bello","carino"],
+    ["grande","enorme"],
+    ["piccolo","minuscolo"],
+    ["iniziare","cominciare"],
+    ["finire","terminare"],
+    ["triste","malinconico"],
+    ["forte","robusto"],
+    ["facile","semplice"],
+    ["difficile","complicato"],
+    ["strada","via"],
+    ["casa","abitazione"],
+    ["guardare","osservare"],
+    ["vecchio","anziano"]
+  ],
+  "contrari": [
+    ["caldo","freddo"],
+    ["grande","piccolo"],
+    ["alto","basso"],
+    ["bello","brutto"],
+    ["veloce","lento"],
+    ["felice","triste"],
+    ["pieno","vuoto"],
+    ["sopra","sotto"],
+    ["dentro","fuori"],
+    ["giorno","notte"],
+    ["bianco","nero"],
+    ["ricco","povero"],
+    ["forte","debole"],
+    ["facile","difficile"],
+    ["aperto","chiuso"]
+  ]
+}

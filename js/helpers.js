@@ -30,8 +30,12 @@ function modeBackTarget(mode){
     checose:'goCheCosEChoose',
     misteriosa:'goCheCosEChoose',
     rollread:'goCheCosEChoose',
+    sincontr:'goLessicoChoose',
+    alterati:'goLessicoChoose',
+    composti:'goLessicoChoose',
     ortografia:'goOrtografiaChoose',
     ortografiaMista:'goOrtografiaMistaChoose',
+    anagramma:'goOrtografiaChoose',
   };
   return map[mode] || 'goModeSelect';
 }
@@ -55,5 +59,9 @@ function restartMode(mode){
   else if(mode==='misteriosa') startParolaMisteriosa();
   else if(mode==='primitivi') startPrimitivi();
   else if(mode==='rollread') startRollRead();
+  else if(mode==='sincontr') startSinContr();
+  else if(mode==='alterati') startAlterati();
+  else if(mode==='composti') startComposti();
+  else if(mode==='anagramma') startAnagramma();
   else if(mode==='sfidamista') startSfidaMista();
 }

@@ -1024,5 +1024,331 @@
       "ok": "hanno",
       "bad": "anno"
     }
+  ],
+  "sillabe": [
+    {
+      "ok": "ca-sa",
+      "bad": "cas-a"
+    },
+    {
+      "ok": "mam-ma",
+      "bad": "ma-mma"
+    },
+    {
+      "ok": "al-be-ro",
+      "bad": "alb-ero"
+    },
+    {
+      "ok": "qua-der-no",
+      "bad": "qu-ader-no"
+    },
+    {
+      "ok": "scuo-la",
+      "bad": "scu-ola"
+    },
+    {
+      "ok": "gat-to",
+      "bad": "ga-tto"
+    },
+    {
+      "ok": "fio-re",
+      "bad": "fi-ore"
+    },
+    {
+      "ok": "stra-da",
+      "bad": "str-ada"
+    },
+    {
+      "ok": "pe-sce",
+      "bad": "pes-ce"
+    },
+    {
+      "ok": "li-bro",
+      "bad": "lib-ro"
+    },
+    {
+      "ok": "zai-no",
+      "bad": "za-ino"
+    },
+    {
+      "ok": "fi-ne-stra",
+      "bad": "fin-estra"
+    },
+    {
+      "ok": "ca-ne",
+      "bad": "can-e"
+    },
+    {
+      "ok": "so-le",
+      "bad": "sol-e"
+    },
+    {
+      "ok": "tre-no",
+      "bad": "tren-o"
+    }
+  ],
+  "accento": [
+    {
+      "sentence": "Marco ___ simpatico.",
+      "ok": "è",
+      "bad": "e"
+    },
+    {
+      "sentence": "Oggi ___ una bella giornata.",
+      "ok": "è",
+      "bad": "e"
+    },
+    {
+      "sentence": "Lei ___ la mia maestra.",
+      "ok": "è",
+      "bad": "e"
+    },
+    {
+      "sentence": "Io ___ Luca giochiamo insieme.",
+      "ok": "e",
+      "bad": "è"
+    },
+    {
+      "sentence": "Prendo la penna ___ il quaderno.",
+      "ok": "e",
+      "bad": "è"
+    },
+    {
+      "sentence": "Vado a scuola ___ poi torno a casa.",
+      "ok": "e",
+      "bad": "è"
+    },
+    {
+      "sentence": "Il nonno mi ___ un regalo.",
+      "ok": "dà",
+      "bad": "da"
+    },
+    {
+      "sentence": "La maestra ___ i compiti.",
+      "ok": "dà",
+      "bad": "da"
+    },
+    {
+      "sentence": "Chi mi ___ una mano?",
+      "ok": "dà",
+      "bad": "da"
+    },
+    {
+      "sentence": "Vengo ___ scuola a piedi.",
+      "ok": "da",
+      "bad": "dà"
+    },
+    {
+      "sentence": "Il treno parte ___ Roma.",
+      "ok": "da",
+      "bad": "dà"
+    },
+    {
+      "sentence": "Questo regalo è ___ parte mia.",
+      "ok": "da",
+      "bad": "dà"
+    },
+    {
+      "sentence": "Il gatto è ___, vicino alla finestra.",
+      "ok": "là",
+      "bad": "la"
+    },
+    {
+      "sentence": "Metti il libro ___ sullo scaffale.",
+      "ok": "là",
+      "bad": "la"
+    },
+    {
+      "sentence": "Guarda ___! C'è un arcobaleno.",
+      "ok": "là",
+      "bad": "la"
+    },
+    {
+      "sentence": "Prendi ___ borsa rossa.",
+      "ok": "la",
+      "bad": "là"
+    },
+    {
+      "sentence": "___ mia amica si chiama Sara.",
+      "ok": "la",
+      "bad": "là"
+    },
+    {
+      "sentence": "Ho perso ___ chiave di casa.",
+      "ok": "la",
+      "bad": "là"
+    },
+    {
+      "sentence": "___, vengo anch'io alla festa.",
+      "ok": "sì",
+      "bad": "si"
+    },
+    {
+      "sentence": "Hai finito i compiti? ___, ho finito.",
+      "ok": "sì",
+      "bad": "si"
+    },
+    {
+      "sentence": "___, hai ragione tu.",
+      "ok": "sì",
+      "bad": "si"
+    },
+    {
+      "sentence": "Lui ___ lava le mani prima di mangiare.",
+      "ok": "si",
+      "bad": "sì"
+    },
+    {
+      "sentence": "La porta ___ apre piano.",
+      "ok": "si",
+      "bad": "sì"
+    },
+    {
+      "sentence": "I bambini ___ divertono al parco.",
+      "ok": "si",
+      "bad": "sì"
+    },
+    {
+      "sentence": "Vuoi un po' di ___ caldo?",
+      "ok": "tè",
+      "bad": "te"
+    },
+    {
+      "sentence": "Preferisci il ___ o il caffè?",
+      "ok": "tè",
+      "bad": "te"
+    },
+    {
+      "sentence": "Ho preparato una tazza di ___.",
+      "ok": "tè",
+      "bad": "te"
+    },
+    {
+      "sentence": "Vengo con ___ al cinema.",
+      "ok": "te",
+      "bad": "tè"
+    },
+    {
+      "sentence": "Questo regalo è per ___.",
+      "ok": "te",
+      "bad": "tè"
+    },
+    {
+      "sentence": "Penso spesso a ___.",
+      "ok": "te",
+      "bad": "tè"
+    }
+  ],
+  "apostrofo": [
+    {
+      "ok": "l'amico",
+      "bad": "lo amico"
+    },
+    {
+      "ok": "l'aula",
+      "bad": "la aula"
+    },
+    {
+      "ok": "un'amica",
+      "bad": "una amica"
+    },
+    {
+      "ok": "un amico",
+      "bad": "un'amico"
+    },
+    {
+      "ok": "quest'anno",
+      "bad": "questo anno"
+    },
+    {
+      "ok": "quell'albero",
+      "bad": "quello albero"
+    },
+    {
+      "ok": "l'isola",
+      "bad": "la isola"
+    },
+    {
+      "ok": "l'orologio",
+      "bad": "lo orologio"
+    },
+    {
+      "ok": "un'ora",
+      "bad": "una ora"
+    },
+    {
+      "ok": "un orologio",
+      "bad": "un'orologio"
+    },
+    {
+      "ok": "l'erba",
+      "bad": "la erba"
+    },
+    {
+      "ok": "quest'oca",
+      "bad": "questa oca"
+    }
+  ],
+  "punteggiatura": [
+    {
+      "sentence": "Come ti chiami___",
+      "ok": "?",
+      "bad": "."
+    },
+    {
+      "sentence": "Che bella sorpresa___",
+      "ok": "!",
+      "bad": "."
+    },
+    {
+      "sentence": "Oggi è una bella giornata___",
+      "ok": ".",
+      "bad": "?"
+    },
+    {
+      "sentence": "Dove abiti___",
+      "ok": "?",
+      "bad": "!"
+    },
+    {
+      "sentence": "Attento, cade___",
+      "ok": "!",
+      "bad": "."
+    },
+    {
+      "sentence": "Mi piace leggere___",
+      "ok": ".",
+      "bad": "!"
+    },
+    {
+      "sentence": "Quanti anni hai___",
+      "ok": "?",
+      "bad": "."
+    },
+    {
+      "sentence": "Aiuto___",
+      "ok": "!",
+      "bad": "?"
+    },
+    {
+      "sentence": "Il gatto dorme sul divano___",
+      "ok": ".",
+      "bad": "!"
+    },
+    {
+      "sentence": "Perché piangi___",
+      "ok": "?",
+      "bad": "!"
+    },
+    {
+      "sentence": "Che paura___",
+      "ok": "!",
+      "bad": "?"
+    },
+    {
+      "sentence": "Vado a scuola ogni mattina___",
+      "ok": ".",
+      "bad": "?"
+    }
   ]
 }

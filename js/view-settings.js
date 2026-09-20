@@ -35,6 +35,19 @@ function viewSettings(){
   const verboBasiRows = Object.keys(VERBOBASE_LABELS).map(k=>`
     <label class="check-row"><input type="checkbox" ${vbase[k]?'checked':''} onchange="toggleVerboBase('${k}')"> ${VERBOBASE_LABELS[k]}</label>
   `).join('');
+  const ps = settings.pronomeSkills;
+  const pronomeSkillRows = `
+    <label class="check-row"><input type="checkbox" ${ps.persona?'checked':''} onchange="togglePronomeSkill('persona')"> Persona</label>
+    <label class="check-row"><input type="checkbox" ${ps.numero?'checked':''} onchange="togglePronomeSkill('numero')"> Numero</label>
+  `;
+  const preps = settings.preposizioneSkills;
+  const preposizioneSkillRows = `
+    <label class="check-row"><input type="checkbox" ${preps.tipo?'checked':''} onchange="togglePreposizioneSkill('tipo')"> Semplice / articolata</label>
+  `;
+  const avs = settings.avverbioSkills;
+  const avverbioSkillRows = `
+    <label class="check-row"><input type="checkbox" ${avs.tipo?'checked':''} onchange="toggleAvverbioSkill('tipo')"> Tempo / luogo / modo / quantità</label>
+  `;
   return `
   <h2>Argomenti</h2>
   <p class="hint">Scegli su cosa vuoi allenare la classe nelle modalità di Grammatica. (L'Ortografia ha sempre tutte le regole disponibili: non serve attivarle qui.)</p>
@@ -58,6 +71,18 @@ function viewSettings(){
   <div class="settings-block">
     <h3>Analisi del verbo</h3>
     ${verboSkillRows}
+  </div>
+  <div class="settings-block">
+    <h3>Analisi del pronome</h3>
+    ${pronomeSkillRows}
+  </div>
+  <div class="settings-block">
+    <h3>Analisi della preposizione</h3>
+    ${preposizioneSkillRows}
+  </div>
+  <div class="settings-block">
+    <h3>Analisi dell'avverbio</h3>
+    ${avverbioSkillRows}
   </div>
   <div class="blackboard">
     <h3>Quali verbi avete già fatto</h3>
@@ -103,6 +128,27 @@ function toggleVerboSkill(k){
 }
 function toggleVerboBase(k){
   settings.verboBasi[k] = !settings.verboBasi[k];
+  saveSettings();
+  render();
+}
+function togglePronomeSkill(k){
+  const active = Object.keys(settings.pronomeSkills).filter(x=>settings.pronomeSkills[x]);
+  if(settings.pronomeSkills[k] && active.length<=1){ showToast('Deve restare attiva almeno una caratteristica'); return; }
+  settings.pronomeSkills[k] = !settings.pronomeSkills[k];
+  saveSettings();
+  render();
+}
+function togglePreposizioneSkill(k){
+  const active = Object.keys(settings.preposizioneSkills).filter(x=>settings.preposizioneSkills[x]);
+  if(settings.preposizioneSkills[k] && active.length<=1){ showToast('Deve restare attiva almeno una caratteristica'); return; }
+  settings.preposizioneSkills[k] = !settings.preposizioneSkills[k];
+  saveSettings();
+  render();
+}
+function toggleAvverbioSkill(k){
+  const active = Object.keys(settings.avverbioSkills).filter(x=>settings.avverbioSkills[x]);
+  if(settings.avverbioSkills[k] && active.length<=1){ showToast('Deve restare attiva almeno una caratteristica'); return; }
+  settings.avverbioSkills[k] = !settings.avverbioSkills[k];
   saveSettings();
   render();
 }

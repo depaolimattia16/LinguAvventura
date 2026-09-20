@@ -1,0 +1,17 @@
+{
+  "composti": [
+    {"w":"portafoglio","parti":["porta","foglio"]},
+    {"w":"capostazione","parti":["capo","stazione"]},
+    {"w":"asciugamano","parti":["asciuga","mano"]},
+    {"w":"apriscatole","parti":["apri","scatole"]},
+    {"w":"cavatappi","parti":["cava","tappi"]},
+    {"w":"parafulmine","parti":["para","fulmine"]},
+    {"w":"grattacielo","parti":["gratta","cielo"]},
+    {"w":"portacenere","parti":["porta","cenere"]},
+    {"w":"spazzaneve","parti":["spazza","neve"]},
+    {"w":"copriletto","parti":["copri","letto"]},
+    {"w":"pescecane","parti":["pesce","cane"]},
+    {"w":"portaombrelli","parti":["porta","ombrelli"]}
+  ],
+  "semplici": ["cane","gatto","libro","sedia","fiore","mare","casa","sole","luna","scuola","penna","quaderno"]
+}

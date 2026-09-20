@@ -27,7 +27,7 @@ function buildRound_primitivi(){
   return {kind:'primitivi', item, options};
 }
 function buildRound_analisi(){
-  const types = ['nome','aggettivo','articolo','verbo'].filter(t=>{
+  const types = ['nome','aggettivo','articolo','verbo','pronome','preposizione','avverbio'].filter(t=>{
     const steps = activeStepsFor(t).filter(s=>s!=='tipo_parola');
     return steps.length>0 && poolFor(t).length>0;
   });

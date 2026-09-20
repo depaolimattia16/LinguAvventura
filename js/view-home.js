@@ -16,6 +16,7 @@ function viewHome(){
   <div class="menu-grid">
     <button class="menu-card" onclick="goModeSelect()"><span class="emoji">🧠</span><h3>Grammatica</h3><span class="desc">Nomi, verbi, aggettivi, articoli: 5 modalità di gioco</span></button>
     <button class="menu-card" onclick="goOrtografiaChoose()"><span class="emoji">🔤</span><h3>Ortografia</h3><span class="desc">Ce/cie, ge/gie, gli/li, cu/qu, doppie, la H</span></button>
+    <button class="menu-card" onclick="goLessicoChoose()"><span class="emoji">📖</span><h3>Lessico</h3><span class="desc">Sinonimi, contrari, alterati, composti</span></button>
     <button class="menu-card" onclick="goClassroomChoose()"><span class="emoji">📺</span><h3>Modalità classe</h3><span class="desc">Da usare alla LIM, tutti insieme</span></button>
     <button class="menu-card" onclick="goSettings()"><span class="emoji">📚</span><h3>Argomenti</h3><span class="desc">Scegli su cosa allenarti in grammatica</span></button>
     <button class="menu-card" onclick="goProgress()"><span class="emoji">🏆</span><h3>Progressi</h3><span class="desc">XP, giorni di fila e medaglie</span></button>

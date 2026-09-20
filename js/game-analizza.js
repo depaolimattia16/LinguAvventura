@@ -1,4 +1,5 @@
-/* ============ ANALISI GRAMMATICALE (nome / aggettivo / articolo / verbo) ============ */
+/* ============ ANALISI GRAMMATICALE (nome / aggettivo / articolo / verbo / pronome / preposizione / avverbio) ============ */
+const TIPO_PAROLA_OPTS = ['nome','verbo','aggettivo','articolo','pronome','preposizione','avverbio'];
 const ANALYSIS_CONFIG = {
   nome:{
     icon:'📛', label:'Nome',
@@ -6,7 +7,7 @@ const ANALYSIS_CONFIG = {
     skillsKey:'nomiSkills',
     order:['tipo','categoria','forma','genere','numero'],
     stepDef:{
-      tipo_parola:{q:'Che cos\'è questa parola?', opts:['nome','verbo','aggettivo','articolo'], labels:TIPI_LABELS, field:'t'},
+      tipo_parola:{q:'Che cos\'è questa parola?', opts:TIPO_PAROLA_OPTS, labels:TIPI_LABELS, field:'t'},
       tipo:{q:'Che tipo di nome è?', opts:['comune','proprio'], labels:NOMETIPO_LABELS, field:'tipo'},
       categoria:{q:'Indica una...', opts:['persona','animale','cosa'], labels:CAT_LABELS, field:'cat'},
       forma:{q:'È concreto, astratto o collettivo?', opts:['concreto','astratto','collettivo'], labels:FORMA_LABELS, field:'forma'},
@@ -20,7 +21,7 @@ const ANALYSIS_CONFIG = {
     skillsKey:'aggSkills',
     order:['sottotipo','genere','numero'],
     stepDef:{
-      tipo_parola:{q:'Che cos\'è questa parola?', opts:['nome','verbo','aggettivo','articolo'], labels:TIPI_LABELS, field:'t'},
+      tipo_parola:{q:'Che cos\'è questa parola?', opts:TIPO_PAROLA_OPTS, labels:TIPI_LABELS, field:'t'},
       sottotipo:{q:'Che tipo di aggettivo è?', opts:['qualificativo','possessivo','dimostrativo'], labels:AGGTIPO_LABELS, field:'sottotipo'},
       genere:{q:'Genere?', opts:['m','f'], labels:GEN_LABELS, field:'gen'},
       numero:{q:'Numero?', opts:['s','p'], labels:NUM_LABELS, field:'num'},
@@ -32,7 +33,7 @@ const ANALYSIS_CONFIG = {
     skillsKey:'artSkills',
     order:['tipo','genere','numero'],
     stepDef:{
-      tipo_parola:{q:'Che cos\'è questa parola?', opts:['nome','verbo','aggettivo','articolo'], labels:TIPI_LABELS, field:'t'},
+      tipo_parola:{q:'Che cos\'è questa parola?', opts:TIPO_PAROLA_OPTS, labels:TIPI_LABELS, field:'t'},
       tipo:{q:'Determinativo o indeterminativo?', opts:['determinativo','indeterminativo'], labels:ARTTIPO_LABELS, field:'tipo'},
       genere:{q:'Genere?', opts:['m','f'], labels:GEN_LABELS, field:'gen'},
       numero:{q:'Numero?', opts:['s','p'], labels:NUM_LABELS, field:'num'},
@@ -44,11 +45,42 @@ const ANALYSIS_CONFIG = {
     skillsKey:'verboSkills',
     order:['persona','numero','tempo','modo'],
     stepDef:{
-      tipo_parola:{q:'Che cos\'è questa parola?', opts:['nome','verbo','aggettivo','articolo'], labels:TIPI_LABELS, field:'t'},
+      tipo_parola:{q:'Che cos\'è questa parola?', opts:TIPO_PAROLA_OPTS, labels:TIPI_LABELS, field:'t'},
       persona:{q:'Che persona è?', opts:['1','2','3'], labels:PERSONA_LABELS, field:'persona'},
       numero:{q:'Numero?', opts:['s','p'], labels:NUM_LABELS, field:'num'},
       tempo:{q:'Tempo?', opts:['presente','imperfetto','futuro'], labels:TEMPO_LABELS, field:'tempo'},
       modo:{q:'Modo?', opts:['indicativo','congiuntivo','condizionale','imperativo'], labels:MODO_LABELS, field:'modo'},
+    }
+  },
+  pronome:{
+    icon:'👤', label:'Pronome',
+    poolFilter:w=>w.t==='pronome',
+    skillsKey:'pronomeSkills',
+    order:['persona','numero'],
+    stepDef:{
+      tipo_parola:{q:'Che cos\'è questa parola?', opts:TIPO_PAROLA_OPTS, labels:TIPI_LABELS, field:'t'},
+      persona:{q:'Che persona è?', opts:['1','2','3'], labels:PERSONA_LABELS, field:'persona'},
+      numero:{q:'Numero?', opts:['s','p'], labels:NUM_LABELS, field:'num'},
+    }
+  },
+  preposizione:{
+    icon:'🔗', label:'Preposizione',
+    poolFilter:w=>w.t==='preposizione',
+    skillsKey:'preposizioneSkills',
+    order:['tipo'],
+    stepDef:{
+      tipo_parola:{q:'Che cos\'è questa parola?', opts:TIPO_PAROLA_OPTS, labels:TIPI_LABELS, field:'t'},
+      tipo:{q:'Semplice o articolata?', opts:['semplice','articolata'], labels:PREPTIPO_LABELS, field:'tipo'},
+    }
+  },
+  avverbio:{
+    icon:'🌤️', label:'Avverbio',
+    poolFilter:w=>w.t==='avverbio',
+    skillsKey:'avverbioSkills',
+    order:['tipo'],
+    stepDef:{
+      tipo_parola:{q:'Che cos\'è questa parola?', opts:TIPO_PAROLA_OPTS, labels:TIPI_LABELS, field:'t'},
+      tipo:{q:'Di che tipo è questo avverbio?', opts:['tempo','luogo','modo','quantita'], labels:AVVTIPO_LABELS, field:'tipo'},
     }
   }
 };
@@ -62,7 +94,7 @@ function poolFor(type){
 }
 function goAnalizzaChoose(){ state.view='analizzaChoose'; render(); }
 function viewAnalizzaChoose(){
-  const types = ['nome','aggettivo','articolo','verbo'];
+  const types = ['nome','aggettivo','articolo','verbo','pronome','preposizione','avverbio'];
   const cards = types.map(t=>{
     const n = activeStepsFor(t).length;
     const hasWords = poolFor(t).length>0;
@@ -73,7 +105,7 @@ function viewAnalizzaChoose(){
   <h2>Analisi grammaticale</h2>
   <p class="hint">Scegli una parola a caso, una parte del discorso precisa, o analizza una frase intera.</p>
   <div class="mode-list">
-    <button class="mode-card" onclick="startAnalizza(null)"><span class="emoji">🎲</span><div class="txt"><strong>Casuale</strong><span>Nome, aggettivo, articolo o verbo a sorpresa</span></div></button>
+    <button class="mode-card" onclick="startAnalizza(null)"><span class="emoji">🎲</span><div class="txt"><strong>Casuale</strong><span>Una parte del discorso a sorpresa</span></div></button>
     <button class="mode-card" onclick="startAnalizzaTutto()"><span class="emoji">📖</span><div class="txt"><strong>Frase intera</strong><span>Una frase intera, parola per parola</span></div></button>
     ${cards}
   </div>`;
@@ -82,7 +114,7 @@ function startAnalizza(forcedType){
   state.gameMode='analizza';
   let type = forcedType;
   if(!type){
-    const candidates = ['nome','aggettivo','articolo','verbo'].filter(t=>activeStepsFor(t).length>0 && poolFor(t).length>0);
+    const candidates = ['nome','aggettivo','articolo','verbo','pronome','preposizione','avverbio'].filter(t=>activeStepsFor(t).length>0 && poolFor(t).length>0);
     if(candidates.length===0){ state.game={error:true}; state.view='game'; render(); return; }
     type = pickRandom(candidates);
   }

@@ -142,6 +142,7 @@
   .menu-card:nth-child(5){--r:-0.6deg;}
   .menu-card:nth-child(6){--r:0.9deg;}
   .menu-card:nth-child(7){--r:-0.8deg;}
+  .menu-card:nth-child(8){--r:0.7deg;}
   .menu-card .emoji{font-size:1.8rem;}
   .menu-card h3{margin:2px 0 0;color:var(--ink);}
   .menu-card span.desc{color:var(--charcoal-soft);font-size:.9rem;}
@@ -365,6 +366,22 @@
   .wheel-pointer{
     position:absolute;top:-16px;left:50%;transform:translateX(-50%);
     font-size:1.8rem;z-index:2;color:var(--charcoal);
+  }
+
+  /* anagramma */
+  .anagram-slots{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:16px 0 10px;}
+  .anagram-slot{
+    width:40px;height:50px;border:2px solid var(--paper-line);border-radius:8px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Baloo 2';font-weight:800;font-size:1.3rem;color:var(--ink);
+    background:#fff;padding:0;
+  }
+  .anagram-slot.filled{background:var(--sun);border-color:var(--sun-dark);cursor:pointer;}
+  .anagram-bank{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:14px;}
+  .anagram-tile{
+    width:40px;height:50px;border:2px solid var(--paper-line);border-radius:8px;
+    background:var(--ink);color:#fff;font-family:'Baloo 2';font-weight:800;font-size:1.3rem;
+    cursor:pointer;padding:0;
   }
 
   .toast{

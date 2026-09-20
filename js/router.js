@@ -34,6 +34,7 @@ function render(){
   else if(state.view==='ortografiaMistaChoose') app.innerHTML = viewOrtografiaMistaChoose();
   else if(state.view==='checoseChoose') app.innerHTML = viewCheCosEChoose();
   else if(state.view==='primitiviChoose') app.innerHTML = viewPrimitiviChoose();
+  else if(state.view==='lessicoChoose') app.innerHTML = viewLessicoChoose();
   else if(state.view==='teoriaChoose') app.innerHTML = viewTeoriaChoose();
   else if(state.view==='teoriaPage') app.innerHTML = viewTeoriaPage();
   else if(state.view==='game'){
@@ -50,6 +51,10 @@ function render(){
     else if(state.gameMode==='memoria') app.innerHTML = viewMemoria();
     else if(state.gameMode==='ordina') app.innerHTML = viewOrdina();
     else if(state.gameMode==='rollread') app.innerHTML = viewRollRead();
+    else if(state.gameMode==='sincontr') app.innerHTML = viewSinContr();
+    else if(state.gameMode==='alterati') app.innerHTML = viewAlterati();
+    else if(state.gameMode==='composti') app.innerHTML = viewComposti();
+    else if(state.gameMode==='anagramma') app.innerHTML = viewAnagramma();
     else if(state.gameMode==='sfidamista') app.innerHTML = viewSfidaMista();
   }
   window.scrollTo(0,0);
@@ -69,10 +74,11 @@ function renderTopbar(){
       <span class="pill">🔥 ${progress.streak}</span>
     </div>`;
 }
-const ORTHO_GAME_MODES = ['ortografia','ortografiaMista'];
+const ORTHO_GAME_MODES = ['ortografia','ortografiaMista','anagramma'];
 const CHECOSE_GAME_MODES = ['checose','lampo','mostro','misteriosa','ordina','rollread'];
 const ANALIZZA_GAME_MODES = ['analizza','analizzatutto'];
 const PRIMITIVI_GAME_MODES = ['primitivi','memoria'];
+const LESSICO_GAME_MODES = ['sincontr','alterati','composti'];
 function goModeSelectOrHome(){
   if(state.view==='classroom'){ goClassroomChoose(); return; }
   if(state.view==='classroomSplit'){ goClassroomSplitChoose(); return; }
@@ -86,6 +92,7 @@ function goModeSelectOrHome(){
   if(state.view==='ortografiaMistaChoose'){ goOrtografiaChoose(); return; }
   if(state.view==='checoseChoose'){ goModeSelect(); return; }
   if(state.view==='primitiviChoose'){ goModeSelect(); return; }
+  if(state.view==='lessicoChoose'){ goHome(); return; }
   if(state.view==='teoriaPage'){ goTeoriaChoose(); return; }
   if(state.view==='game' && ORTHO_GAME_MODES.includes(state.gameMode)){
     if(state.gameMode==='ortografiaMista'){ goOrtografiaMistaChoose(); return; }
@@ -94,5 +101,6 @@ function goModeSelectOrHome(){
   if(state.view==='game' && CHECOSE_GAME_MODES.includes(state.gameMode)){ goCheCosEChoose(); return; }
   if(state.view==='game' && ANALIZZA_GAME_MODES.includes(state.gameMode)){ goAnalizzaChoose(); return; }
   if(state.view==='game' && PRIMITIVI_GAME_MODES.includes(state.gameMode)){ goPrimitiviChoose(); return; }
+  if(state.view==='game' && LESSICO_GAME_MODES.includes(state.gameMode)){ goLessicoChoose(); return; }
   goModeSelect();
 }

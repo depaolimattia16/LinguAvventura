@@ -1,0 +1,51 @@
+{
+  "famiglie": [
+    {"base":"casa", "alterati":[
+      {"w":"casona","tipo":"accrescitivo"},
+      {"w":"casetta","tipo":"diminutivo"},
+      {"w":"casina","tipo":"vezzeggiativo"},
+      {"w":"casaccia","tipo":"dispregiativo"}
+    ]},
+    {"base":"gatto", "alterati":[
+      {"w":"gattone","tipo":"accrescitivo"},
+      {"w":"gattino","tipo":"diminutivo"},
+      {"w":"gattaccio","tipo":"dispregiativo"}
+    ]},
+    {"base":"naso", "alterati":[
+      {"w":"nasone","tipo":"accrescitivo"},
+      {"w":"nasino","tipo":"diminutivo"}
+    ]},
+    {"base":"libro", "alterati":[
+      {"w":"librone","tipo":"accrescitivo"},
+      {"w":"libretto","tipo":"diminutivo"}
+    ]},
+    {"base":"ragazzo", "alterati":[
+      {"w":"ragazzone","tipo":"accrescitivo"},
+      {"w":"ragazzino","tipo":"diminutivo"},
+      {"w":"ragazzaccio","tipo":"dispregiativo"}
+    ]},
+    {"base":"parola", "alterati":[
+      {"w":"parolina","tipo":"vezzeggiativo"},
+      {"w":"parolaccia","tipo":"dispregiativo"}
+    ]},
+    {"base":"letto", "alterati":[
+      {"w":"lettone","tipo":"accrescitivo"},
+      {"w":"lettino","tipo":"diminutivo"}
+    ]},
+    {"base":"porta", "alterati":[
+      {"w":"portone","tipo":"accrescitivo"}
+    ]},
+    {"base":"scarpa", "alterati":[
+      {"w":"scarpone","tipo":"accrescitivo"},
+      {"w":"scarpetta","tipo":"vezzeggiativo"}
+    ]},
+    {"base":"pane", "alterati":[
+      {"w":"panone","tipo":"accrescitivo"},
+      {"w":"panino","tipo":"diminutivo"}
+    ]},
+    {"base":"bacio", "alterati":[
+      {"w":"bacione","tipo":"accrescitivo"},
+      {"w":"bacetto","tipo":"vezzeggiativo"}
+    ]}
+  ]
+}

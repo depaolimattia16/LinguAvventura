@@ -7,6 +7,10 @@ const ORTHO_TOPICS = {
   cuqu:{label:'Cu - Qu - Cqu - Qqu', mode:'pick', bank:[]},
   doppie:{label:'Le doppie', mode:'pick', bank:[]},
   letterah:{label:'La lettera H', mode:'sentence', bank:[]},
+  sillabe:{label:'Divisione in sillabe', mode:'pick', bank:[]},
+  accento:{label:'Accento', mode:'sentence', bank:[]},
+  apostrofo:{label:'Apostrofo', mode:'pick', bank:[]},
+  punteggiatura:{label:'Punteggiatura', mode:'sentence', bank:[]},
 };
 function fillOrthoBanks(data){
   Object.keys(ORTHO_TOPICS).forEach(k=>{ ORTHO_TOPICS[k].bank = data[k] || []; });
@@ -22,6 +26,7 @@ function viewOrtografiaChoose(){
   <p class="hint">Scegli su quale regola vuoi allenarti.</p>
   <div class="mode-list">
     <button class="mode-card" onclick="goOrtografiaMistaChoose()"><span class="emoji">🎲</span><div class="txt"><strong>Sfida mista</strong><span>Mescola le regole che vuoi</span></div></button>
+    <button class="mode-card" onclick="startAnagramma()"><span class="emoji">🔡</span><div class="txt"><strong>Anagramma</strong><span>Ricomponi la parola con le lettere mescolate</span></div></button>
     ${cards}
   </div>`;
 }

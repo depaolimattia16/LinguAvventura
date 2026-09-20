@@ -1,8 +1,8 @@
 # Linguavventura
 
-App web per il ripasso giocoso della grammatica e dell'ortografia italiana — pensata per una classe quarta primaria, da usare alla LIM o sui dispositivi degli alunni.
+App web per il ripasso giocoso della grammatica, del lessico e dell'ortografia italiana — pensata per una classe quarta primaria, da usare alla LIM o sui dispositivi degli alunni.
 
-Nessun login, nessun database: sono file statici, i progressi (XP, medaglie, record) restano salvati nel `localStorage` del dispositivo.
+Nessun login obbligatorio: è un sito statico, i progressi (XP, medaglie, record) restano salvati nel `localStorage` del dispositivo. Un database (Supabase) è collegabile in un secondo momento, in modo del tutto opzionale, per avere un nickname libero e delle statistiche di classe — vedi più sotto.
 
 ## Sviluppo locale
 
@@ -22,14 +22,18 @@ favicon.svg          il logo (L verde) mostrato nella scheda del browser
 supabase-schema.sql  SQL da eseguire una volta su Supabase per le statistiche di classe (opzionale)
 css/style.css        tutti gli stili
 data/                 IL DATABASE, in JSON puro — apribile e modificabile senza toccare il codice
-  words.json            tutte le parole (nomi, verbi, aggettivi, articoli) con le loro caratteristiche
+  words.json            tutte le parole (nomi, verbi, aggettivi, articoli, pronomi, preposizioni, avverbi) con le loro caratteristiche
   sentences.json         le frasi pronte per "Analizza tutto" e "Parola misteriosa"
-  ortografia.json        le liste per ogni regola di ortografia (ce/cie, ge/gie, gli/li, ecc.)
-  primitivi-derivati.json  le parole per l'esercizio "Primitivi e derivati"
+  ortografia.json        le liste per ogni regola di ortografia (ce/cie, ge/gie, gli/li, cu/qu, doppie, H, sillabe, accento, apostrofo, punteggiatura)
+  primitivi-derivati.json  le parole per "Primitivi e derivati" (Indovina e Memoria)
+  sinonimi-contrari.json  le coppie di parole per il gioco "Sinonimi e contrari"
+  nomi-alterati.json     le famiglie di parole per "Nomi alterati" (accrescitivo/diminutivo/vezzeggiativo/dispregiativo)
+  nomi-composti.json     le parole per "Nomi composti" (semplice o composto da due parole)
+  anagrammi.json         la lista di parole per il gioco "Anagramma"
   teoria.json              le schede di teoria (regole di grammatica e ortografia spiegate in breve)
 js/
   config.js           URL e chiave del tuo progetto Supabase (vuoto di default: vedi sotto)
-  sync.js             gestione del nickname e invio delle risposte a Supabase
+  sync.js             gestione del nickname, invio delle risposte a Supabase, contatore visite
   data.js             le etichette mostrate a schermo e le medaglie (non le parole: quelle sono in /data)
   storage.js          salvataggio/lettura di impostazioni e progressi (localStorage),
                        XP, giorni di fila, medaglie
@@ -37,22 +41,24 @@ js/
                        e la logica comune ai giochi "a round" (punteggio, rigioca)
   router.js           schermata attuale e funzione che disegna la pagina
   view-home.js        home e schermata di scelta modalità
-  view-nickname.js    schermata "come ti chiami?" mostrata la prima volta
+  view-nickname.js    schermata "come ti chiami?" mostrata la prima volta (solo se Supabase è collegato)
   view-stats.js       pagina "Statistiche" per l'insegnante (legge da Supabase)
   view-teoria.js      pagina "Teoria" (regole spiegate in breve, con link all'esercizio)
   view-settings.js    pagina "Argomenti" (attiva/disattiva caratteristiche)
   view-progress.js    pagina "Progressi" (XP, medaglie, statistiche personali)
   game-checose.js     modalità "Che cos'è?" (classica, a tempo, mostro, frase, ordina, tira e leggi)
-  game-analizza.js    "Analisi grammaticale" (nome, aggettivo, articolo, verbo)
+  game-analizza.js    "Analisi grammaticale" (nome, aggettivo, articolo, verbo, pronome, preposizione, avverbio)
   game-analizzatutto.js  "Analizza tutto" (frase intera, parola per parola)
   game-misteriosa.js  "Parola misteriosa"
   game-primitivi.js   "Primitivi e derivati" (Indovina)
   game-memoria.js     "Primitivi e derivati" (Memoria: abbina le coppie)
+  game-lessico.js     "Lessico": sinonimi e contrari, nomi alterati, nomi composti
+  game-anagramma.js   "Anagramma" (dentro Ortografia: ricomponi la parola con le lettere)
   game-sfidamista.js  "Sfida mista" (pesca a caso da tutte le altre modalità di grammatica)
   game-intruso.js     "Trova l'intruso"
   game-lampo.js       "Sfida lampo"
   game-mostro.js      "Il mostro della grammatica"
-  game-ortografia.js  "Ortografia" (ce/cie, ge/gie, sce/sci, gli/li, cu/qu, doppie, la H)
+  game-ortografia.js  "Ortografia" (10 regole, più sfida mista e anagramma)
   game-classroom.js   "Modalità classe" (schermo condiviso, tiro alla fune, battaglia navale, ruota della fortuna, squadra contro squadra — per la LIM)
   app.js              carica i file in /data, poi avvia l'app (ultimo file caricato)
 ```
@@ -73,8 +79,12 @@ Tutto il contenuto "didattico" sta in `/data`, come JSON puro — nessuna sintas
 - **`data/sentences.json`** — un array di frasi, ogni frase è un array di parole taggate come sopra (con in più, per i verbi, persona/numero/tempo/modo).
 - **`data/ortografia.json`** — un oggetto con una lista per ogni regola (`cege`, `scesci`, `glili`, `cuqu`, `doppie`, `letterah`), ciascuna con coppie `{ "ok": "...", "bad": "..." }` (oppure `{ "s": "...", "ok": "...", "bad": "..." }` per Ce/Cie-Ge/Gie, o `{ "sentence": "...", "ok": "...", "bad": "..." }` per la lettera H).
 - **`data/primitivi-derivati.json`** — un oggetto con `famiglie`: un array di `{ "primitivo": "...", "derivati": ["...", "..."] }`. Serve sia per "Indovina" (primitivo o derivato) sia per "Memoria" (abbina le coppie della stessa famiglia).
+- **`data/sinonimi-contrari.json`** — un oggetto con due liste, `sinonimi` e `contrari`, ciascuna un array di coppie `["parola1", "parola2"]`.
+- **`data/nomi-alterati.json`** — un oggetto con `famiglie`: un array di `{ "base": "...", "alterati": [{ "w": "...", "tipo": "accrescitivo|diminutivo|vezzeggiativo|dispregiativo" }] }`.
+- **`data/nomi-composti.json`** — un oggetto con `composti` (array di `{ "w": "...", "parti": ["...", "..."] }`) e `semplici` (un semplice array di parole non composte, per contrasto).
+- **`data/anagrammi.json`** — un semplice array di parole (minuscole, senza spazi o apostrofi).
 
-Per una NUOVA regola di ortografia (non solo nuove parole in una esistente) serve anche aggiungere una voce a `ORTHO_TOPICS` dentro `js/game-ortografia.js`. Le costanti `*_LABELS` in `js/data.js` definiscono le etichette mostrate a schermo (es. "Maschile"/"Femminile").
+Per una NUOVA parte del discorso (oltre a nome/verbo/aggettivo/articolo/pronome/preposizione/avverbio) o una nuova regola di ortografia, oltre ai dati serve anche aggiungere una voce a `ANALYSIS_CONFIG` (in `js/game-analizza.js`) o a `ORTHO_TOPICS` (in `js/game-ortografia.js`). Le costanti `*_LABELS` in `js/data.js` definiscono le etichette mostrate a schermo (es. "Maschile"/"Femminile"). Tutti gli altri giochi (Che cos'è, Trova l'intruso, Sfida lampo, Il mostro, Ordina, Tira e leggi, e tutta la Modalità classe) pescano automaticamente da qualsiasi parte del discorso attiva nelle impostazioni: non serve toccarli.
 
 ## Statistiche di classe (opzionale, richiede Supabase)
 

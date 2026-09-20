@@ -23,6 +23,13 @@ const CONTENT_TYPES = {
   cuqu:{label:'Ortografia: Cu/Qu/Cqu/Qqu', emoji:'🔤'},
   doppie:{label:'Ortografia: Le doppie', emoji:'🔤'},
   letterah:{label:'Ortografia: La lettera H', emoji:'🔤'},
+  sillabe:{label:'Ortografia: Sillabe', emoji:'🔤'},
+  accento:{label:'Ortografia: Accento', emoji:'🔤'},
+  apostrofo:{label:'Ortografia: Apostrofo', emoji:'🔤'},
+  punteggiatura:{label:'Ortografia: Punteggiatura', emoji:'🔤'},
+  sincontr:{label:'Sinonimi e contrari', emoji:'🔀'},
+  alterati:{label:'Nomi alterati', emoji:'🔎'},
+  composti:{label:'Nomi composti', emoji:'🧩'},
 };
 function generateContentQuestion(type){
   let current;
@@ -38,6 +45,20 @@ function generateContentQuestion(type){
     const item = Math.random() < 0.5 ? pickRandom(primitivi) : pickRandom(derivati);
     const options = shuffle(['primitivo','derivato']);
     current = {kind:'grammar', display:item.w, correct:item.tipo, options, labels:PRIMDERIV_LABELS};
+  } else if(type==='sincontr'){
+    const kind = Math.random()<0.5 ? 'sinonimi' : 'contrari';
+    const pair = pickRandom(SINONIMI_CONTRARI[kind]);
+    const options = shuffle(Object.keys(SINCONTR_LABELS));
+    current = {kind:'grammar', display:pair[0]+' / '+pair[1], correct:kind, options, labels:SINCONTR_LABELS};
+  } else if(type==='alterati'){
+    const item = pickRandom(NOMI_ALTERATI);
+    const options = shuffle(Object.keys(ALTERATO_LABELS));
+    current = {kind:'grammar', display:item.w, correct:item.tipo, options, labels:ALTERATO_LABELS};
+  } else if(type==='composti'){
+    const isComposto = Math.random()<0.5;
+    const item = isComposto ? pickRandom(NOMI_COMPOSTI.composti) : {w:pickRandom(NOMI_COMPOSTI.semplici)};
+    const options = shuffle(Object.keys(SEMPCOMP_LABELS));
+    current = {kind:'grammar', display:item.w, correct:isComposto?'composto':'semplice', options, labels:SEMPCOMP_LABELS};
   } else {
     const topic = ORTHO_TOPICS[type];
     const item = pickRandom(topic.bank);

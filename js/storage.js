@@ -1,12 +1,15 @@
 /* ============ STORAGE ============ */
 function loadSettings(){
   const defaults = {
-    tipi:{nome:true, verbo:true, aggettivo:true, articolo:true},
+    tipi:{nome:true, verbo:true, aggettivo:true, articolo:true, pronome:true, preposizione:true, avverbio:true},
     nomiSkills:{tipo:true, categoria:true, forma:true, genere:true, numero:true},
     aggSkills:{sottotipo:true, genere:true, numero:true},
     artSkills:{tipo:true, genere:true, numero:true},
     verboSkills:{persona:true, numero:true, tempo:true, modo:true},
-    verboBasi:{essere:true, avere:true, parlare:false, credere:false, dormire:false}
+    verboBasi:{essere:true, avere:true, parlare:false, credere:false, dormire:false},
+    pronomeSkills:{persona:true, numero:true},
+    preposizioneSkills:{tipo:true},
+    avverbioSkills:{tipo:true}
   };
   try{
     const raw = localStorage.getItem('lv_settings');
@@ -18,7 +21,10 @@ function loadSettings(){
         aggSkills:{...defaults.aggSkills, ...(p.aggSkills||{})},
         artSkills:{...defaults.artSkills, ...(p.artSkills||{})},
         verboSkills:{...defaults.verboSkills, ...(p.verboSkills||{})},
-        verboBasi:{...defaults.verboBasi, ...(p.verboBasi||{})}
+        verboBasi:{...defaults.verboBasi, ...(p.verboBasi||{})},
+        pronomeSkills:{...defaults.pronomeSkills, ...(p.pronomeSkills||{})},
+        preposizioneSkills:{...defaults.preposizioneSkills, ...(p.preposizioneSkills||{})},
+        avverbioSkills:{...defaults.avverbioSkills, ...(p.avverbioSkills||{})}
       };
     }
   }catch(e){}

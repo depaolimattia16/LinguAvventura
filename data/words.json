@@ -10369,5 +10369,397 @@
     "sottotipo": "qualificativo",
     "gen": "m",
     "num": "s"
+  },
+  {
+    "w": "io",
+    "t": "pronome",
+    "persona": "1",
+    "num": "s"
+  },
+  {
+    "w": "tu",
+    "t": "pronome",
+    "persona": "2",
+    "num": "s"
+  },
+  {
+    "w": "lui",
+    "t": "pronome",
+    "persona": "3",
+    "num": "s"
+  },
+  {
+    "w": "lei",
+    "t": "pronome",
+    "persona": "3",
+    "num": "s"
+  },
+  {
+    "w": "noi",
+    "t": "pronome",
+    "persona": "1",
+    "num": "p"
+  },
+  {
+    "w": "voi",
+    "t": "pronome",
+    "persona": "2",
+    "num": "p"
+  },
+  {
+    "w": "loro",
+    "t": "pronome",
+    "persona": "3",
+    "num": "p"
+  },
+  {
+    "w": "di",
+    "t": "preposizione",
+    "tipo": "semplice"
+  },
+  {
+    "w": "a",
+    "t": "preposizione",
+    "tipo": "semplice"
+  },
+  {
+    "w": "da",
+    "t": "preposizione",
+    "tipo": "semplice"
+  },
+  {
+    "w": "in",
+    "t": "preposizione",
+    "tipo": "semplice"
+  },
+  {
+    "w": "con",
+    "t": "preposizione",
+    "tipo": "semplice"
+  },
+  {
+    "w": "su",
+    "t": "preposizione",
+    "tipo": "semplice"
+  },
+  {
+    "w": "per",
+    "t": "preposizione",
+    "tipo": "semplice"
+  },
+  {
+    "w": "tra",
+    "t": "preposizione",
+    "tipo": "semplice"
+  },
+  {
+    "w": "fra",
+    "t": "preposizione",
+    "tipo": "semplice"
+  },
+  {
+    "w": "del",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "dello",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "della",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "dei",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "degli",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "delle",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "al",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "allo",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "alla",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "ai",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "agli",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "alle",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "dal",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "dallo",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "dalla",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "dai",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "dagli",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "dalle",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "nel",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "nello",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "nella",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "nei",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "negli",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "nelle",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "sul",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "sullo",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "sulla",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "sui",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "sugli",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "sulle",
+    "t": "preposizione",
+    "tipo": "articolata"
+  },
+  {
+    "w": "oggi",
+    "t": "avverbio",
+    "tipo": "tempo"
+  },
+  {
+    "w": "ieri",
+    "t": "avverbio",
+    "tipo": "tempo"
+  },
+  {
+    "w": "domani",
+    "t": "avverbio",
+    "tipo": "tempo"
+  },
+  {
+    "w": "ora",
+    "t": "avverbio",
+    "tipo": "tempo"
+  },
+  {
+    "w": "sempre",
+    "t": "avverbio",
+    "tipo": "tempo"
+  },
+  {
+    "w": "mai",
+    "t": "avverbio",
+    "tipo": "tempo"
+  },
+  {
+    "w": "spesso",
+    "t": "avverbio",
+    "tipo": "tempo"
+  },
+  {
+    "w": "presto",
+    "t": "avverbio",
+    "tipo": "tempo"
+  },
+  {
+    "w": "tardi",
+    "t": "avverbio",
+    "tipo": "tempo"
+  },
+  {
+    "w": "qui",
+    "t": "avverbio",
+    "tipo": "luogo"
+  },
+  {
+    "w": "qua",
+    "t": "avverbio",
+    "tipo": "luogo"
+  },
+  {
+    "w": "lì",
+    "t": "avverbio",
+    "tipo": "luogo"
+  },
+  {
+    "w": "là",
+    "t": "avverbio",
+    "tipo": "luogo"
+  },
+  {
+    "w": "sopra",
+    "t": "avverbio",
+    "tipo": "luogo"
+  },
+  {
+    "w": "sotto",
+    "t": "avverbio",
+    "tipo": "luogo"
+  },
+  {
+    "w": "dentro",
+    "t": "avverbio",
+    "tipo": "luogo"
+  },
+  {
+    "w": "fuori",
+    "t": "avverbio",
+    "tipo": "luogo"
+  },
+  {
+    "w": "vicino",
+    "t": "avverbio",
+    "tipo": "luogo"
+  },
+  {
+    "w": "lontano",
+    "t": "avverbio",
+    "tipo": "luogo"
+  },
+  {
+    "w": "bene",
+    "t": "avverbio",
+    "tipo": "modo"
+  },
+  {
+    "w": "male",
+    "t": "avverbio",
+    "tipo": "modo"
+  },
+  {
+    "w": "velocemente",
+    "t": "avverbio",
+    "tipo": "modo"
+  },
+  {
+    "w": "lentamente",
+    "t": "avverbio",
+    "tipo": "modo"
+  },
+  {
+    "w": "piano",
+    "t": "avverbio",
+    "tipo": "modo"
+  },
+  {
+    "w": "volentieri",
+    "t": "avverbio",
+    "tipo": "modo"
+  },
+  {
+    "w": "molto",
+    "t": "avverbio",
+    "tipo": "quantita"
+  },
+  {
+    "w": "poco",
+    "t": "avverbio",
+    "tipo": "quantita"
+  },
+  {
+    "w": "troppo",
+    "t": "avverbio",
+    "tipo": "quantita"
+  },
+  {
+    "w": "abbastanza",
+    "t": "avverbio",
+    "tipo": "quantita"
+  },
+  {
+    "w": "tanto",
+    "t": "avverbio",
+    "tipo": "quantita"
+  },
+  {
+    "w": "niente",
+    "t": "avverbio",
+    "tipo": "quantita"
   }
 ]
