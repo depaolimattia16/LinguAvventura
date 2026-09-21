@@ -35,6 +35,8 @@ function computeAppHtml(){
   else if(state.view==='lessicoChoose') return viewLessicoChoose();
   else if(state.view==='teoriaChoose') return viewTeoriaChoose();
   else if(state.view==='teoriaPage') return viewTeoriaPage();
+  else if(state.view==='dettatoChoose') return viewDettatoChoose();
+  else if(state.view==='dettatoResult') return viewDettatoResult();
   else if(state.view==='game'){
     if(state.gameMode==='checose') return viewCheCosE();
     else if(state.gameMode==='analizza') return viewAnalizza();
@@ -61,6 +63,10 @@ function computeAppHtml(){
    settembre 2026: Chrome/Edge/Safari/Firefox), il cambio tra una schermata e l'altra fa
    una breve dissolvenza automatica invece di scattare di colpo — senza dover animare
    ogni singolo elemento a mano. Nei browser che non la supportano, funziona come prima. */
+/* Alcune schermate (le gare a due, i timer) hanno bisogno che il tocco successivo funzioni
+   SUBITO, senza aspettare la dissolvenza: qui si salta la transizione apposta. */
+let skipNextTransition = false;
+function renderInstant(){ skipNextTransition = true; render(); }
 function render(){
   const apply = () => {
     renderTopbar();
@@ -68,14 +74,16 @@ function render(){
     app.innerHTML = computeAppHtml();
     window.scrollTo(0,0);
   };
-  if(typeof document !== 'undefined' && document.startViewTransition){
+  const useTransition = !skipNextTransition;
+  skipNextTransition = false;
+  if(useTransition && typeof document !== 'undefined' && document.startViewTransition){
     document.startViewTransition(apply);
   } else {
     apply();
   }
 }
 
-const MAPPA_VIEWS = ['game','classroom','classroomSplit','classroomChoose','classroomSplitChoose','tugChoose','tugOfWar','shipChoose','shipBattle','wheelChoose','wheel','analizzaChoose','ortografiaChoose','ortografiaMistaChoose','checoseChoose','teoriaPage','primitiviChoose'];
+const MAPPA_VIEWS = ['game','classroom','classroomSplit','classroomChoose','classroomSplitChoose','tugChoose','tugOfWar','shipChoose','shipBattle','wheelChoose','wheel','analizzaChoose','ortografiaChoose','ortografiaMistaChoose','checoseChoose','teoriaPage','primitiviChoose','dettatoResult'];
 function renderTopbar(){
   const tb = document.getElementById('topbar');
   if(state.view==='home' || state.view==='nickname'){ tb.innerHTML=''; return; }
@@ -109,6 +117,7 @@ function goModeSelectOrHome(){
   if(state.view==='primitiviChoose'){ goModeSelect(); return; }
   if(state.view==='lessicoChoose'){ goHome(); return; }
   if(state.view==='teoriaPage'){ goTeoriaChoose(); return; }
+  if(state.view==='dettatoResult'){ goDettatoChoose(); return; }
   if(state.view==='game' && ORTHO_GAME_MODES.includes(state.gameMode)){
     if(state.gameMode==='ortografiaMista'){ goOrtografiaMistaChoose(); return; }
     goOrtografiaChoose(); return;

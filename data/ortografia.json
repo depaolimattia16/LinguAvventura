@@ -1085,6 +1085,86 @@
     {
       "ok": "tre-no",
       "bad": "tren-o"
+    },
+    {
+      "ok": "por-ta",
+      "bad": "po-rta"
+    },
+    {
+      "ok": "ma-no",
+      "bad": "man-o"
+    },
+    {
+      "ok": "lu-na",
+      "bad": "lun-a"
+    },
+    {
+      "ok": "pa-ne",
+      "bad": "pan-e"
+    },
+    {
+      "ok": "ven-to",
+      "bad": "ve-nto"
+    },
+    {
+      "ok": "tem-po",
+      "bad": "te-mpo"
+    },
+    {
+      "ok": "ac-qua",
+      "bad": "a-cqua"
+    },
+    {
+      "ok": "giar-di-no",
+      "bad": "gia-rdi-no"
+    },
+    {
+      "ok": "om-brel-lo",
+      "bad": "omb-rel-lo"
+    },
+    {
+      "ok": "mon-ta-gna",
+      "bad": "mon-tag-na"
+    },
+    {
+      "ok": "bi-ci-clet-ta",
+      "bad": "bi-ci-cle-tta"
+    },
+    {
+      "ok": "ra-gaz-zo",
+      "bad": "ra-ga-zzo"
+    },
+    {
+      "ok": "for-mag-gio",
+      "bad": "for-ma-ggio"
+    },
+    {
+      "ok": "e-le-fan-te",
+      "bad": "el-e-fan-te"
+    },
+    {
+      "ok": "far-fal-la",
+      "bad": "far-fa-lla"
+    },
+    {
+      "ok": "ca-len-da-rio",
+      "bad": "ca-len-dar-io"
+    },
+    {
+      "ok": "pri-ma-ve-ra",
+      "bad": "prim-a-ve-ra"
+    },
+    {
+      "ok": "au-to-mo-bi-le",
+      "bad": "a-uto-mo-bi-le"
+    },
+    {
+      "ok": "tem-pe-ra-tu-ra",
+      "bad": "temp-era-tu-ra"
+    },
+    {
+      "ok": "fran-co-bol-lo",
+      "bad": "fran-cob-ol-lo"
     }
   ],
   "accento": [

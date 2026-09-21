@@ -38,7 +38,32 @@ function escJs(str){
   return String(str).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
 }
 
+/* Costruisce una sequenza di 'count' elementi presi da pool, tutti diversi tra loro finché
+   il pool lo permette; se il pool è più piccolo di count, ricomincia con un nuovo mescolamento
+   invece di ripetere subito lo stesso elemento appena visto. Usata all'inizio di ogni round
+   da 10 domande, così dentro lo stesso round non si ripete mai la stessa parola. */
+function makeUniqueQueue(pool, count){
+  if(!pool || pool.length===0) return [];
+  let queue = [];
+  while(queue.length < count){
+    let batch = shuffle(pool.slice());
+    if(queue.length>0 && batch.length>1 && queue[queue.length-1]===batch[0]){
+      const tmp=batch[0]; batch[0]=batch[1]; batch[1]=tmp;
+    }
+    queue = queue.concat(batch);
+  }
+  return queue.slice(0, count);
+}
+
 /* Condivise dai giochi a round (Che cos'è, Trova l'intruso, Ortografia...) */
+/* Sostituisce il vecchio testo grigio "Round X di Y · Punteggio: Z" con due pillole colorate,
+   una per il numero di domanda e una per il punteggio (se c'è). */
+function progressHeader(leftText, rightText){
+  return `<div class="progress-header">
+    <span class="progress-pill round">${leftText}</span>
+    ${rightText ? `<span class="progress-pill score">${rightText}</span>` : ''}
+  </div>`;
+}
 function feedbackBlock(correct, _unused, nextFn){
   return `<div class="feedback ${correct?'ok':'bad'}">${correct?'✅ Giusto!':'❌ Non proprio...'}</div>
   <button class="btn btn-ink" style="margin-top:14px" onclick="${nextFn}">Avanti →</button>`;

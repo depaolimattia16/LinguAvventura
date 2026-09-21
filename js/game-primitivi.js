@@ -13,16 +13,15 @@ function viewPrimitiviChoose(){
 /* ============ PRIMITIVI E DERIVATI (esercizio a sé, non fa parte dell'Analisi) ============ */
 function startPrimitivi(){
   state.gameMode='primitivi';
-  state.game={qIndex:0,total:10,score:0};
+  const primitivi = PRIMITIVI_DERIVATI.filter(w=>w.tipo==='primitivo');
+  const derivati = PRIMITIVI_DERIVATI.filter(w=>w.tipo==='derivato');
+  const queue = shuffle([...makeUniqueQueue(primitivi,5), ...makeUniqueQueue(derivati,5)]);
+  state.game={qIndex:0,total:10,score:0,queue};
   nextPrimitiviQuestion();
   state.view='game'; render();
 }
 function nextPrimitiviQuestion(){
-  // pesco 50/50 tra primitivi e derivati, così il gioco resta equilibrato
-  // anche se in lista ci sono più derivati che primitivi
-  const primitivi = PRIMITIVI_DERIVATI.filter(w=>w.tipo==='primitivo');
-  const derivati = PRIMITIVI_DERIVATI.filter(w=>w.tipo==='derivato');
-  const item = Math.random() < 0.5 ? pickRandom(primitivi) : pickRandom(derivati);
+  const item = state.game.queue[state.game.qIndex];
   const options = ['primitivo','derivato']; // ordine fisso, sempre le stesse due etichette
   state.game.current = {item, options, answered:false, chosen:null};
 }
@@ -41,7 +40,7 @@ function viewPrimitivi(){
     return `<button class="${cls}" ${c.answered?'disabled':''} onclick="answerPrimitivi('${t}')">${PRIMDERIV_LABELS[t]}</button>`;
   }).join('');
   return `
-  <div class="progress-line">Domanda ${g.qIndex+1} di ${g.total} · Punteggio: ${g.score}</div>
+  ${progressHeader('Domanda '+(g.qIndex+1)+' di '+g.total, 'Punteggio: '+g.score)}
   <div class="quiz-card">
     <div class="quiz-prompt">È primitivo o derivato?</div>
     <div class="quiz-word">${c.item.w}</div>

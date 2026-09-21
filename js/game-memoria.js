@@ -44,7 +44,7 @@ function viewMemoria(){
     return `<button class="${cls}" ${c.matched?'disabled':''} onclick="flipMemoriaCard(${idx})">${label}</button>`;
   }).join('');
   return `
-  <div class="progress-line">Coppie trovate: ${m.matchedCount} di ${m.totalPairs} · Tentativi: ${m.attempts}</div>
+  ${progressHeader('Coppie trovate: '+m.matchedCount+' di '+m.totalPairs, 'Tentativi: '+m.attempts)}
   <div class="memoria-grid">${cardsHtml}</div>
   ${!m.resolved ? `<button class="btn btn-ink" style="margin-top:14px;width:100%" onclick="continueMemoria()">Continua</button>` : ''}
   `;

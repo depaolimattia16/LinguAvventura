@@ -37,7 +37,7 @@ function rollDice(){
     const tipiList = activeTipiList();
     const options = tipiList.slice(); // ordine fisso: le etichette sono sempre le stesse, mescolarle è solo fastidioso
     r.current = {word:r.words[idx], options, answered:false, chosen:null};
-    render();
+    renderInstant();
   }, 500);
 }
 function viewRollRead(){
@@ -68,7 +68,7 @@ function viewRollRead(){
     ${c.answered ? feedbackBlock(c.chosen===c.word.t, null, 'nextRollReadBtn()') : ''}`;
   }
   return `
-  <div class="progress-line">Tiro ${r.qIndex+1} di ${r.total} · Punteggio: ${r.score}</div>
+  ${progressHeader('Tiro '+(r.qIndex+1)+' di '+r.total, 'Punteggio: '+r.score)}
   <div class="rollread-grid">${gridHtml}</div>
   <div class="quiz-card">${bottomHtml}</div>`;
 }
@@ -135,7 +135,7 @@ function viewOrdina(){
     </button>`;
   }).join('');
   return `
-  <div class="progress-line">Da smistare: ${o.words.length - o.placedCount} · Errori: ${o.mistakes}</div>
+  ${progressHeader('Da smistare: '+(o.words.length - o.placedCount), 'Errori: '+o.mistakes)}
   <p class="hint" style="text-align:center">Tocca una parola, poi tocca il contenitore giusto.</p>
   <div class="ordina-pool">${poolHtml}</div>
   <div class="ordina-bins">${binsHtml}</div>`;
@@ -159,7 +159,7 @@ function placeInOrdinaBin(tipo){
     o.mistakes++;
     item.wrongFlash = true;
     o.selectedIdx = null;
-    setTimeout(()=>{ item.wrongFlash = false; render(); }, 600);
+    setTimeout(()=>{ item.wrongFlash = false; renderInstant(); }, 600);
   }
   render();
 }
@@ -167,14 +167,14 @@ function placeInOrdinaBin(tipo){
 /* ============ CHE COS'È ============ */
 function startCheCosE(){
   state.gameMode='checose';
-  state.game={qIndex:0,total:10,score:0};
+  const pool = wordsByTipi(activeTipiList());
+  state.game={qIndex:0,total:10,score:0,queue:makeUniqueQueue(pool,10)};
   nextCheCosEQuestion();
   state.view='game'; render();
 }
 function nextCheCosEQuestion(){
   const tipiList = activeTipiList();
-  const pool = wordsByTipi(tipiList);
-  const word = pickRandom(pool);
+  const word = state.game.queue[state.game.qIndex];
   const options = tipiList.slice(); // ordine fisso: le etichette sono sempre le stesse, mescolarle è solo fastidioso
   state.game.current = {word, options, answered:false};
 }
@@ -193,7 +193,7 @@ function viewCheCosE(){
     return `<button class="${cls}" ${c.answered?'disabled':''} onclick="answerCheCosE('${t}')">${TIPI_LABELS[t]}</button>`;
   }).join('');
   return `
-  <div class="progress-line">Domanda ${g.qIndex+1} di ${g.total} · Punteggio: ${g.score}</div>
+  ${progressHeader('Domanda '+(g.qIndex+1)+' di '+g.total, 'Punteggio: '+g.score)}
   <div class="quiz-card">
     <div class="quiz-prompt">Che cos'è...</div>
     <div class="quiz-word">${c.word.w}</div>

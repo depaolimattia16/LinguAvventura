@@ -14,14 +14,15 @@ function viewLessicoChoose(){
 /* --- Sinonimi e contrari --- */
 function startSinContr(){
   state.gameMode='sincontr';
-  state.game = {qIndex:0, total:10, score:0};
+  const sinQueue = makeUniqueQueue(SINONIMI_CONTRARI.sinonimi,5).map(pair=>({pair,kind:'sinonimi'}));
+  const contrQueue = makeUniqueQueue(SINONIMI_CONTRARI.contrari,5).map(pair=>({pair,kind:'contrari'}));
+  state.game = {qIndex:0, total:10, score:0, queue:shuffle([...sinQueue, ...contrQueue])};
   nextSinContr();
   state.view='game'; render();
 }
 function nextSinContr(){
-  const kind = Math.random()<0.5 ? 'sinonimi' : 'contrari';
-  const pair = pickRandom(SINONIMI_CONTRARI[kind]);
-  state.game.current = {pair, kind, answered:false, chosen:null};
+  const q = state.game.queue[state.game.qIndex];
+  state.game.current = {pair:q.pair, kind:q.kind, answered:false, chosen:null};
 }
 function viewSinContr(){
   const g = state.game;
@@ -33,7 +34,7 @@ function viewSinContr(){
     return `<button class="${cls}" ${c.answered?'disabled':''} onclick="answerSinContr('${k}')">${SINCONTR_LABELS[k]}</button>`;
   }).join('');
   return `
-  <div class="progress-line">Round ${g.qIndex+1} di ${g.total} · Punteggio: ${g.score}</div>
+  ${progressHeader('Round '+(g.qIndex+1)+' di '+g.total, 'Punteggio: '+g.score)}
   <div class="quiz-card">
     <div class="quiz-prompt">Che rapporto c'è tra queste due parole?</div>
     <div class="quiz-word" style="font-size:1.7rem">${c.pair[0]} &nbsp;/&nbsp; ${c.pair[1]}</div>
@@ -59,12 +60,12 @@ function nextSinContrBtn(){
 /* --- Nomi alterati --- */
 function startAlterati(){
   state.gameMode='alterati';
-  state.game = {qIndex:0, total:10, score:0};
+  state.game = {qIndex:0, total:10, score:0, queue:makeUniqueQueue(NOMI_ALTERATI,10)};
   nextAlterati();
   state.view='game'; render();
 }
 function nextAlterati(){
-  const item = pickRandom(NOMI_ALTERATI);
+  const item = state.game.queue[state.game.qIndex];
   const options = Object.keys(ALTERATO_LABELS); // ordine fisso, sempre le stesse quattro etichette
   state.game.current = {item, options, answered:false, chosen:null};
 }
@@ -78,7 +79,7 @@ function viewAlterati(){
     return `<button class="${cls}" ${c.answered?'disabled':''} onclick="answerAlterati('${k}')">${ALTERATO_LABELS[k]}</button>`;
   }).join('');
   return `
-  <div class="progress-line">Round ${g.qIndex+1} di ${g.total} · Punteggio: ${g.score}</div>
+  ${progressHeader('Round '+(g.qIndex+1)+' di '+g.total, 'Punteggio: '+g.score)}
   <div class="quiz-card">
     <div class="quiz-prompt">Che tipo di alterazione è questa parola?</div>
     <div class="quiz-word">${c.item.w}</div>
@@ -104,14 +105,15 @@ function nextAlteratiBtn(){
 /* --- Nomi composti --- */
 function startComposti(){
   state.gameMode='composti';
-  state.game = {qIndex:0, total:10, score:0};
+  const compQueue = makeUniqueQueue(NOMI_COMPOSTI.composti,5).map(item=>({item, tipo:'composto'}));
+  const sempQueue = makeUniqueQueue(NOMI_COMPOSTI.semplici,5).map(w=>({item:{w}, tipo:'semplice'}));
+  state.game = {qIndex:0, total:10, score:0, queue:shuffle([...compQueue, ...sempQueue])};
   nextComposti();
   state.view='game'; render();
 }
 function nextComposti(){
-  const isComposto = Math.random()<0.5;
-  const item = isComposto ? pickRandom(NOMI_COMPOSTI.composti) : {w:pickRandom(NOMI_COMPOSTI.semplici)};
-  state.game.current = {item, tipo:isComposto?'composto':'semplice', answered:false, chosen:null};
+  const q = state.game.queue[state.game.qIndex];
+  state.game.current = {item:q.item, tipo:q.tipo, answered:false, chosen:null};
 }
 function viewComposti(){
   const g = state.game;
@@ -123,7 +125,7 @@ function viewComposti(){
     return `<button class="${cls}" ${c.answered?'disabled':''} onclick="answerComposti('${k}')">${SEMPCOMP_LABELS[k]}</button>`;
   }).join('');
   return `
-  <div class="progress-line">Round ${g.qIndex+1} di ${g.total} · Punteggio: ${g.score}</div>
+  ${progressHeader('Round '+(g.qIndex+1)+' di '+g.total, 'Punteggio: '+g.score)}
   <div class="quiz-card">
     <div class="quiz-prompt">Semplice o composto?</div>
     <div class="quiz-word">${c.item.w}</div>

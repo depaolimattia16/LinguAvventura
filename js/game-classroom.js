@@ -121,7 +121,7 @@ function raceAnswer(race, side, opt, onWin){
     const other = side==='blu' ? 'rosso' : 'blu';
     if(race[other].answered) race.winner = 'none'; // sbagliato da entrambe le parti
   }
-  render();
+  renderInstant();
 }
 function raceColumnHtml(race, side, meta, makeOnClick){
   const q = race.question;
@@ -228,16 +228,16 @@ function viewClassroom(){
 }
 function revealClassroom(){
   state.game.current.answered = true;
-  render();
+  renderInstant();
 }
-function nextClassroomBtn(){ nextClassroomWord(); render(); }
+function nextClassroomBtn(){ nextClassroomWord(); renderInstant(); }
 function addTeamPoint(team){
   if(state.classWinner) return;
   state.classTeam[team]++;
   if(state.classTeam[team] >= CLASSROOM_WIN_SCORE){
     state.classWinner = team;
   }
-  render();
+  renderInstant();
 }
 
 /* --- Tiro alla fune: una domanda condivisa, il punto sposta la fune verso la squadra --- */
@@ -309,7 +309,7 @@ function answerTugSide(side, opt){
 function nextTugRoundBtn(){
   if(state.tug.winner) return;
   nextTugRound();
-  render();
+  renderInstant();
 }
 function viewTugOfWar(){
   const g = state.tug;
@@ -406,7 +406,7 @@ function answerShipSide(side, opt){
 function nextShipRoundBtn(){
   if(state.ship.winner) return;
   nextShipRound();
-  render();
+  renderInstant();
 }
 function heartsHtml(hp, max){
   let out = '';
@@ -508,7 +508,7 @@ function spinWheel(){
   const finalRotation = baseRotation + spins*360 + (360 - targetCenter);
   g.spinning = true;
   g.pendingValue = value;
-  render(); // disegna la ruota ferma, ancora alla rotazione precedente
+  renderInstant(); // disegna la ruota ferma, ancora alla rotazione precedente
   // Un render() pieno sostituisce il div della ruota: la transizione CSS non avrebbe
   // nulla da cui partire e scatterebbe dritta al valore finale, senza girare visibilmente.
   // Aspettiamo che il browser disegni lo stato di partenza, poi tocchiamo lo stesso nodo
@@ -524,7 +524,7 @@ function spinWheel(){
     g.spinning = false;
     g.value = g.pendingValue;
     g.race = newRace(pickRandom(state.wheelContentTypes));
-    render();
+    renderInstant();
   }, 3000);
 }
 function answerWheelSide(side, opt){
@@ -536,7 +536,7 @@ function answerWheelSide(side, opt){
 function nextWheelRoundBtn(){
   state.wheel.value = null;
   state.wheel.race = null;
-  render();
+  renderInstant();
 }
 function viewWheel(){
   const g = state.wheel;
@@ -634,7 +634,7 @@ function splitTick(){
     state.split.finished = true;
     clearIntervals();
   }
-  render();
+  renderInstant();
 }
 function splitColumnHtml(side){
   const meta = SPLIT_TEAMS[side];
@@ -692,11 +692,11 @@ function answerSplit(side, value){
   s.current.answered = true;
   s.current.chosen = value;
   if(correct) s.score++;
-  render();
+  renderInstant();
   setTimeout(()=>{
     if(!state.split.finished){
       loadSplitWord(side);
-      render();
+      renderInstant();
     }
   }, SPLIT_REVEAL_SECONDS*1000);
 }

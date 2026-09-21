@@ -13,7 +13,7 @@ function startLampo(){
       finishRound();
       saveProgress();
     }
-    render();
+    renderInstant();
   },1000);
   state.view='game'; render();
 }
@@ -41,7 +41,7 @@ function viewLampo(){
   const c = g.current;
   const optsHtml = c.options.map(t=>`<button class="option-btn" onclick="answerLampo('${t}')">${TIPI_LABELS[t]}</button>`).join('');
   return `
-  <div class="progress-line">⏱ ${g.timeLeft}s · Corrette: ${g.score}</div>
+  ${progressHeader('⏱ '+g.timeLeft+'s', 'Corrette: '+g.score)}
   <div class="quiz-card">
     <div class="quiz-prompt">Che cos'è...</div>
     <div class="quiz-word">${c.word.w}</div>
@@ -55,5 +55,5 @@ function answerLampo(t){
   if(correct) g.score++;
   recordAnswer(correct, 'lampo');
   nextLampoQuestion();
-  render();
+  renderInstant();
 }

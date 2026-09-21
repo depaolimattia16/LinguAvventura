@@ -1,12 +1,12 @@
 /* ============ PAROLA MISTERIOSA ============ */
 function startParolaMisteriosa(){
   state.gameMode='misteriosa';
-  state.game={qIndex:0,total:10,score:0};
+  state.game={qIndex:0,total:10,score:0,queue:makeUniqueQueue(SENTENCES,10)};
   nextParolaMisteriosa();
   state.view='game'; render();
 }
 function nextParolaMisteriosa(){
-  const sentence = pickRandom(SENTENCES);
+  const sentence = state.game.queue[state.game.qIndex];
   const tokenIndex = Math.floor(Math.random()*sentence.length);
   const options = ['nome','verbo','aggettivo','articolo']; // ordine fisso, sempre le stesse etichette
   state.game.current = {sentence, tokenIndex, options, answered:false};
@@ -28,7 +28,7 @@ function viewParolaMisteriosa(){
     return `<button class="${cls}" ${c.answered?'disabled':''} onclick="answerParolaMisteriosa('${t}')">${TIPI_LABELS[t]}</button>`;
   }).join('');
   return `
-  <div class="progress-line">Domanda ${g.qIndex+1} di ${g.total} · Punteggio: ${g.score}</div>
+  ${progressHeader('Domanda '+(g.qIndex+1)+' di '+g.total, 'Punteggio: '+g.score)}
   <div class="quiz-card">
     <p style="font-family:'Baloo 2';font-size:1.3rem;color:var(--ink)">${sentenceHtml}</p>
     <div class="quiz-prompt" style="margin-top:14px">Che cos'è la parola evidenziata?</div>

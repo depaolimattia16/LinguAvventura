@@ -62,16 +62,19 @@ function toggleOrthoMistaType(k){
 function startOrtografiaMista(){
   state.gameMode='ortografiaMista';
   if(!state.orthoMistaTypes || state.orthoMistaTypes.length===0) state.orthoMistaTypes = Object.keys(ORTHO_TOPICS).slice();
-  state.game={qIndex:0,total:10,score:0};
+  const pool = [];
+  state.orthoMistaTypes.forEach(topicKey=>{
+    ORTHO_TOPICS[topicKey].bank.forEach(item=> pool.push({topicKey, item}));
+  });
+  state.game={qIndex:0,total:10,score:0,queue:makeUniqueQueue(pool,10)};
   nextOrtografiaMistaQuestion();
   state.view='game'; render();
 }
 function nextOrtografiaMistaQuestion(){
-  const topicKey = pickRandom(state.orthoMistaTypes);
-  const topic = ORTHO_TOPICS[topicKey];
-  const item = pickRandom(topic.bank);
-  const options = shuffle([item.ok, item.bad]);
-  state.game.current = {topicKey, topic, item, options, answered:false, chosen:null};
+  const q = state.game.queue[state.game.qIndex];
+  const topic = ORTHO_TOPICS[q.topicKey];
+  const options = shuffle([q.item.ok, q.item.bad]);
+  state.game.current = {topicKey:q.topicKey, topic, item:q.item, options, answered:false, chosen:null};
 }
 function viewOrtografiaMista(){
   const g = state.game;
@@ -91,7 +94,7 @@ function viewOrtografiaMista(){
   const promptText = c.topic.mode==='transform' ? "Qual è il plurale corretto di..." : (c.topic.mode==='sentence' ? '' : "Quale delle due è scritta bene?");
   const wordText = c.topic.mode==='transform' ? c.item.s : (c.topic.mode==='sentence' ? c.item.sentence : '');
   return `
-  <div class="progress-line">${c.topic.label} · Domanda ${g.qIndex+1} di ${g.total} · Punteggio: ${g.score}</div>
+  ${progressHeader(c.topic.label+' · Domanda '+(g.qIndex+1)+' di '+g.total, 'Punteggio: '+g.score)}
   <div class="quiz-card">
     ${promptText ? `<div class="quiz-prompt">${promptText}</div>` : ''}
     ${wordText ? `<div class="quiz-word" style="${c.topic.mode==='sentence'?'font-size:1.5rem':''}">${wordText}</div>` : ''}
@@ -116,13 +119,13 @@ function nextOrtografiaMistaBtn(){
 }
 function startOrtografiaTopic(topicKey){
   state.gameMode='ortografia';
-  state.game={topic:topicKey,qIndex:0,total:10,score:0};
+  const bank = ORTHO_TOPICS[topicKey].bank;
+  state.game={topic:topicKey,qIndex:0,total:10,score:0,queue:makeUniqueQueue(bank,10)};
   nextOrtografiaQuestion();
   state.view='game'; render();
 }
 function nextOrtografiaQuestion(){
-  const bank = ORTHO_TOPICS[state.game.topic].bank;
-  const item = pickRandom(bank);
+  const item = state.game.queue[state.game.qIndex];
   const options = shuffle([item.ok, item.bad]);
   state.game.current = {item, options, answered:false};
 }
@@ -145,7 +148,7 @@ function viewOrtografia(){
   const promptText = topic.mode==='transform' ? "Qual è il plurale corretto di..." : (topic.mode==='sentence' ? '' : "Quale delle due è scritta bene?");
   const wordText = topic.mode==='transform' ? c.item.s : (topic.mode==='sentence' ? c.item.sentence : '');
   return `
-  <div class="progress-line">${topic.label} · Domanda ${g.qIndex+1} di ${g.total} · Punteggio: ${g.score}</div>
+  ${progressHeader(topic.label+' · Domanda '+(g.qIndex+1)+' di '+g.total, 'Punteggio: '+g.score)}
   <div class="quiz-card">
     ${promptText ? `<div class="quiz-prompt">${promptText}</div>` : ''}
     ${wordText ? `<div class="quiz-word" style="${topic.mode==='sentence'?'font-size:1.5rem':''}">${wordText}</div>` : ''}

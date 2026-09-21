@@ -40,11 +40,21 @@ function generateIntruso(){
 }
 function startIntruso(){
   state.gameMode='intruso';
-  state.game={qIndex:0,total:10,score:0};
-  const r = generateIntruso();
+  state.game={qIndex:0,total:10,score:0,usedIntruders:[]};
+  const r = generateIntrusoUnique();
   if(!r){ state.game.error=true; state.view='game'; render(); return; }
   state.game.current = {...r, answered:false};
   state.view='game'; render();
+}
+function generateIntrusoUnique(){
+  let r = null;
+  for(let i=0;i<8;i++){
+    r = generateIntruso();
+    if(!r) return null;
+    if(!state.game.usedIntruders.includes(r.intruder.w)) break;
+  }
+  if(r) state.game.usedIntruders.push(r.intruder.w);
+  return r;
 }
 function viewIntruso(){
   const g = state.game;
@@ -68,7 +78,7 @@ function viewIntruso(){
     reasonHtml = `<p style="font-family:'Baloo 2';color:var(--ink-soft);margin-top:10px">Le altre avevano in comune: <strong>${c.labels[c.majorKey]}</strong>. "${c.intruder.w}" invece era: <strong>${c.labels[c.minorKey]}</strong>.</p>`;
   }
   return `
-  <div class="progress-line">Round ${g.qIndex+1} di ${g.total} · Punteggio: ${g.score}</div>
+  ${progressHeader('Round '+(g.qIndex+1)+' di '+g.total, 'Punteggio: '+g.score)}
   <div class="quiz-card">
     <div class="quiz-prompt">Qual è l'intruso?</div>
     <div class="quiz-grid-4">${tilesHtml}</div>
@@ -89,7 +99,7 @@ function answerIntruso(wStr){
 function nextIntrusoBtn(){
   state.game.qIndex++;
   if(state.game.qIndex < state.game.total){
-    const r = generateIntruso();
+    const r = generateIntrusoUnique();
     if(r) state.game.current = {...r, answered:false};
     else { state.game.error=true; }
   } else finishRound();

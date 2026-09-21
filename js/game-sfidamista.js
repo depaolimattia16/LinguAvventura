@@ -115,7 +115,7 @@ function viewSfidaMista(){
     bodyHtml = `<div class="quiz-prompt">${c.sq.q}</div><div class="quiz-word">${c.word.w}</div><div class="options-grid">${optsHtml}</div>`;
   }
   return `
-  <div class="progress-line">Domanda ${g.qIndex+1} di ${g.total} · Punteggio: ${g.score}</div>
+  ${progressHeader('Domanda '+(g.qIndex+1)+' di '+g.total, 'Punteggio: '+g.score)}
   <div class="quiz-card">
     ${bodyHtml}
     ${g.answered ? feedbackBlock(g.lastCorrect, null, 'nextSfidaMistaBtn()') : ''}

@@ -3,12 +3,12 @@ const ANAGRAMMA_TOTAL = 8;
 function startAnagramma(){
   state.gameMode='anagramma';
   state.view='game';
-  state.anagram = {qIndex:0, total:ANAGRAMMA_TOTAL, score:0, current:null};
+  state.anagram = {qIndex:0, total:ANAGRAMMA_TOTAL, score:0, current:null, queue:makeUniqueQueue(ANAGRAMMI, ANAGRAMMA_TOTAL)};
   nextAnagramma();
   render();
 }
 function nextAnagramma(){
-  const word = pickRandom(ANAGRAMMI);
+  const word = state.anagram.queue[state.anagram.qIndex];
   const letters = shuffle(word.split('').map((ch,i)=>({ch, id:i, used:false})));
   state.anagram.current = {word, letters, placed:[], answered:false, correct:null};
 }
@@ -68,7 +68,7 @@ function viewAnagramma(){
       : `<p class="feedback bad" style="margin-top:10px">❌ Non è "${c.placed.map(l=>l.ch).join('')}". Riprova!</p><button class="btn btn-ink" style="margin-top:8px" onclick="retryAnagramma()">Riprova</button>`;
   }
   return `
-  <div class="progress-line">Parola ${g.qIndex+1} di ${g.total} · Punteggio: ${g.score}</div>
+  ${progressHeader('Parola '+(g.qIndex+1)+' di '+g.total, 'Punteggio: '+g.score)}
   <div class="quiz-card">
     <div class="quiz-prompt">Ricomponi la parola:</div>
     <div class="anagram-slots">${slotsHtml}</div>

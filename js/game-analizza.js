@@ -145,7 +145,7 @@ function viewAnalizza(){
     return `<button class="${cls}" ${g.answered?'disabled':''} onclick="answerAnalizza('${opt}')">${sq.labels[opt]}</button>`;
   }).join('');
   return `
-  <div class="progress-line">${cfg.label} · Parola ${g.stepIndex+1} di ${g.steps.length}</div>
+  ${progressHeader(cfg.label+' · Parola '+(g.stepIndex+1)+' di '+g.steps.length, '')}
   <div class="quiz-card">
     <div class="quiz-prompt">${sq.q}</div>
     <div class="quiz-word">${g.word.w}</div>

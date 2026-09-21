@@ -34,7 +34,7 @@ function viewAnalizzaTutto(){
     return `<button class="${cls}" ${g.answered?'disabled':''} onclick="answerAnalizzaTutto('${opt}')">${sq.labels[opt]}</button>`;
   }).join('');
   return `
-  <div class="progress-line">Parola ${g.tokenIndex+1} di ${g.sentence.length}</div>
+  ${progressHeader('Parola '+(g.tokenIndex+1)+' di '+g.sentence.length, '')}
   <div class="quiz-card">
     <p style="font-family:'Baloo 2';font-size:1.2rem;color:var(--ink-soft);margin-bottom:16px">${sentenceHtml}</p>
     <div class="quiz-prompt">${sq.q}</div>

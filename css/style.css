@@ -143,6 +143,7 @@
   .menu-card:nth-child(6){--r:0.9deg;}
   .menu-card:nth-child(7){--r:-0.8deg;}
   .menu-card:nth-child(8){--r:0.7deg;}
+  .menu-card:nth-child(9){--r:-0.5deg;}
   .menu-card .emoji{font-size:1.8rem;}
   .menu-card h3{margin:2px 0 0;color:var(--ink);}
   .menu-card span.desc{color:var(--charcoal-soft);font-size:.9rem;}
@@ -203,6 +204,19 @@
   .feedback.ok{color:var(--grass-dark);}
   .feedback.bad{color:var(--coral-dark);}
   .progress-line{color:var(--charcoal-soft);font-size:.85rem;margin-bottom:4px;}
+  .progress-header{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:10px;}
+  .progress-pill{
+    font-family:'Baloo 2';font-weight:700;font-size:.85rem;
+    padding:5px 14px;border-radius:999px;border:2px solid transparent;white-space:nowrap;
+  }
+  .progress-pill.round{background:rgba(43,69,112,.1);color:var(--ink);border-color:var(--ink);}
+  .progress-pill.score{background:rgba(244,185,66,.28);color:var(--sun-dark);border-color:var(--sun-dark);}
+
+  /* modalità insegnante / dettato */
+  .dettato-list{columns:2;column-gap:24px;padding-left:22px;line-height:1.9;font-size:1.05rem;}
+  .dettato-list li{break-inside:avoid;}
+  .dettato-text p{margin:10px 0;line-height:1.6;font-size:1.05rem;}
+  @media (max-width:480px){ .dettato-list{columns:1;} }
   .quiz-grid-4{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px;}
   @media(max-width:420px){.quiz-grid-4{grid-template-columns:1fr;}}
   .word-tile{
