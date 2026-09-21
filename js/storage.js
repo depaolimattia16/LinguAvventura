@@ -78,6 +78,7 @@ function recordAnswer(correct, topic){
   if(progress.totalCorrect >= 100) awardBadge('cento_risposte');
   saveProgress();
   logAttempt(topic || 'sconosciuto', correct);
+  if(correct) playCorrectSound(); else playWrongSound();
 }
 
 function awardBadge(id){

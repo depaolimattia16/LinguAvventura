@@ -9,13 +9,9 @@ function goClassStats(){
 async function loadClassStats(){
   if(!supabaseClient){ classStats = {error:'not-configured'}; if(state.view==='classStats') render(); return; }
   try{
-    const [attemptsRes, views] = await Promise.all([
-      supabaseClient.from('attempts').select('nickname, topic, correct').limit(5000),
-      getSiteViews(),
-    ]);
-    if(attemptsRes.error) throw attemptsRes.error;
-    classStats = summarizeAttempts(attemptsRes.data || []);
-    classStats.siteViews = views;
+    const { data, error } = await supabaseClient.from('attempts').select('nickname, topic, correct').limit(5000);
+    if(error) throw error;
+    classStats = summarizeAttempts(data || []);
   }catch(e){
     console.error('Errore nel caricamento delle statistiche:', e);
     classStats = {error:'fetch-failed'};
@@ -65,13 +61,11 @@ function viewClassStats(){
       <button class="btn btn-ink" style="margin-top:10px" onclick="loadClassStats()">Riprova</button>
     </div>`;
   }
-  const viewsLine = classStats.siteViews!=null ? `<p class="hint">👀 ${classStats.siteViews} visite al sito in totale (una al giorno per dispositivo).</p>` : '';
   if(classStats.totalRows===0){
-    return `<h2>Statistiche di classe</h2>${viewsLine}<div class="quiz-card"><p>Nessuna risposta registrata ancora. Torna qui dopo che qualcuno avrà giocato.</p></div>`;
+    return `<h2>Statistiche di classe</h2><div class="quiz-card"><p>Nessuna risposta registrata ancora. Torna qui dopo che qualcuno avrà giocato.</p></div>`;
   }
   return `
   <h2>Statistiche di classe</h2>
-  ${viewsLine}
   <p class="hint">${classStats.totalRows} risposte registrate in totale. In cima le cose più difficili.</p>
   <h3 style="margin-top:18px">Per studente</h3>
   <div class="stat-grid">${statCardsFrom(classStats.byNickname, n=>n)}</div>

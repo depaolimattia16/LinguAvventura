@@ -93,6 +93,7 @@ function renderTopbar(){
     <button class="back-btn" onclick="${onMappa ? 'goModeSelectOrHome()' : 'goHome()'}">‹ ${onMappa?'Mappa':'Home'}</button>
     <div class="stats">
       ${nickname ? `<button class="pill" style="border:none;cursor:pointer;font-family:inherit" onclick="changeNickname()">👤 ${nickname}</button>` : ''}
+      <button class="pill" style="border:none;cursor:pointer;font-family:inherit" onclick="toggleSound()" aria-label="Attiva/disattiva i suoni">${soundEnabled?'🔊':'🔇'}</button>
       <span class="pill">⭐ ${progress.xp} XP</span>
       <span class="pill">🔥 ${progress.streak}</span>
     </div>`;

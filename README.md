@@ -34,6 +34,7 @@ data/                 IL DATABASE, in JSON puro — apribile e modificabile senz
 js/
   config.js           URL e chiave del tuo progetto Supabase (vuoto di default: vedi sotto)
   sync.js             gestione del nickname, invio delle risposte a Supabase, contatore visite
+  sound.js            suoni (giusto/sbagliato/vittoria), generati al volo — niente file audio da caricare
   data.js             le etichette mostrate a schermo e le medaglie (non le parole: quelle sono in /data)
   storage.js          salvataggio/lettura di impostazioni e progressi (localStorage),
                        XP, giorni di fila, medaglie

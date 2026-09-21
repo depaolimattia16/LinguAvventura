@@ -236,6 +236,7 @@ function addTeamPoint(team){
   state.classTeam[team]++;
   if(state.classTeam[team] >= CLASSROOM_WIN_SCORE){
     state.classWinner = team;
+    playVictorySound();
   }
   renderInstant();
 }
@@ -288,8 +289,8 @@ function answerTugSide(side, opt){
   const fromPct = 50 + (state.tug.position / TUG_HALF) * 42;
   raceAnswer(state.tug.race, side, opt, (winSide)=>{
     if(winSide==='blu') state.tug.position -= 1; else state.tug.position += 1;
-    if(state.tug.position <= -TUG_HALF) state.tug.winner = 'blu';
-    else if(state.tug.position >= TUG_HALF) state.tug.winner = 'rosso';
+    if(state.tug.position <= -TUG_HALF){ state.tug.winner = 'blu'; playVictorySound(); }
+    else if(state.tug.position >= TUG_HALF){ state.tug.winner = 'rosso'; playVictorySound(); }
     state.tug.animateFromPct = fromPct; // il render dentro raceAnswer dipingerà ancora la vecchia posizione
   });
   if(state.tug.animateFromPct != null){
@@ -399,7 +400,7 @@ function answerShipSide(side, opt){
     const target = winSide==='blu' ? 'rosso' : 'blu';
     state.ship[target].hp -= 1;
     state.ship.justHit = target; // il render dentro raceAnswer dipinge il colpo appena preso
-    if(state.ship[target].hp <= 0) state.ship.winner = winSide;
+    if(state.ship[target].hp <= 0){ state.ship.winner = winSide; playVictorySound(); }
   });
   state.ship.justHit = null; // consumato: l'animazione è già partita sul nodo appena creato
 }
@@ -633,6 +634,7 @@ function splitTick(){
     state.split.timeLeft = 0;
     state.split.finished = true;
     clearIntervals();
+    playVictorySound();
   }
   renderInstant();
 }

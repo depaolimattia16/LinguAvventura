@@ -120,9 +120,10 @@
   .btn:disabled{opacity:.4;cursor:not-allowed;transform:none;}
 
   /* hero */
-  .hero{text-align:center;padding:10px 0 6px;}
-  .hero .mascot{width:110px;height:110px;margin:0 auto 6px;}
-  .hero p{color:var(--charcoal-soft);max-width:44ch;margin:6px auto 0;}
+  .hero{text-align:center;padding:4px 0 4px;}
+  .hero .mascot{width:64px;height:64px;margin:0 auto 4px;}
+  .hero h1{font-size:clamp(1.3rem,4vw,1.7rem);}
+  .hero p{color:var(--charcoal-soft);max-width:44ch;margin:4px auto 0;font-size:.92rem;}
 
   /* menu grid */
   .menu-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:22px;}
