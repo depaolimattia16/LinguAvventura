@@ -1,9 +1,9 @@
 /* ============ ANAGRAMMA (ricomponi la parola: tap sulle lettere sotto, tap su una lettera piazzata per toglierla) ============ */
-const ANAGRAMMA_TOTAL = 8;
 function startAnagramma(){
   state.gameMode='anagramma';
   state.view='game';
-  state.anagram = {qIndex:0, total:ANAGRAMMA_TOTAL, score:0, current:null, queue:makeUniqueQueue(ANAGRAMMI, ANAGRAMMA_TOTAL)};
+  const n = settings.questionCount;
+  state.anagram = {qIndex:0, total:n, score:0, current:null, queue:makeUniqueQueue(ANAGRAMMI, n)};
   nextAnagramma();
   render();
 }

@@ -13,10 +13,12 @@ function viewPrimitiviChoose(){
 /* ============ PRIMITIVI E DERIVATI (esercizio a sé, non fa parte dell'Analisi) ============ */
 function startPrimitivi(){
   state.gameMode='primitivi';
+  const n = settings.questionCount;
+  const half1 = Math.ceil(n/2), half2 = Math.floor(n/2);
   const primitivi = PRIMITIVI_DERIVATI.filter(w=>w.tipo==='primitivo');
   const derivati = PRIMITIVI_DERIVATI.filter(w=>w.tipo==='derivato');
-  const queue = shuffle([...makeUniqueQueue(primitivi,5), ...makeUniqueQueue(derivati,5)]);
-  state.game={qIndex:0,total:10,score:0,queue};
+  const queue = shuffle([...makeUniqueQueue(primitivi,half1), ...makeUniqueQueue(derivati,half2)]);
+  state.game={qIndex:0,total:n,score:0,queue};
   nextPrimitiviQuestion();
   state.view='game'; render();
 }

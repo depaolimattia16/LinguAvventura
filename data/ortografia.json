@@ -319,6 +319,26 @@
     {
       "ok": "incoscienza",
       "bad": "incoscenza"
+    },
+    {
+      "ok": "conoscenza",
+      "bad": "conoscienza"
+    },
+    {
+      "ok": "crescenza",
+      "bad": "crescienza"
+    },
+    {
+      "ok": "conoscente",
+      "bad": "conosciente"
+    },
+    {
+      "ok": "nascerà",
+      "bad": "nascierà"
+    },
+    {
+      "ok": "crescerà",
+      "bad": "crescierà"
     }
   ],
   "glili": [
@@ -481,6 +501,18 @@
     {
       "ok": "scogliera",
       "bad": "scoliera"
+    },
+    {
+      "ok": "artiglio",
+      "bad": "artilio"
+    },
+    {
+      "ok": "cespuglio",
+      "bad": "cespulio"
+    },
+    {
+      "ok": "gorgoglio",
+      "bad": "gorgolio"
     }
   ],
   "cuqu": [
@@ -631,6 +663,18 @@
     {
       "ok": "acquedotto",
       "bad": "aquedotto"
+    },
+    {
+      "ok": "cuscino",
+      "bad": "quscino"
+    },
+    {
+      "ok": "quieto",
+      "bad": "cuieto"
+    },
+    {
+      "ok": "acquistare",
+      "bad": "aquistare"
     }
   ],
   "doppie": [
@@ -821,6 +865,30 @@
     {
       "ok": "carrello",
       "bad": "carello"
+    },
+    {
+      "ok": "nonna",
+      "bad": "nona"
+    },
+    {
+      "ok": "penna",
+      "bad": "pena"
+    },
+    {
+      "ok": "sette",
+      "bad": "sete"
+    },
+    {
+      "ok": "cassa",
+      "bad": "casa"
+    },
+    {
+      "ok": "rossa",
+      "bad": "rosa"
+    },
+    {
+      "ok": "polli",
+      "bad": "poli"
     }
   ],
   "letterah": [
@@ -846,11 +914,6 @@
     },
     {
       "sentence": "___ visto il film?",
-      "ok": "hai",
-      "bad": "ai"
-    },
-    {
-      "sentence": "Quanti anni ___?",
       "ok": "hai",
       "bad": "ai"
     },
@@ -1023,6 +1086,326 @@
       "sentence": "Non ___ visto niente.",
       "ok": "hanno",
       "bad": "anno"
+    },
+    {
+      "sentence": "Non ___ tempo per uscire.",
+      "ok": "ho",
+      "bad": "o"
+    },
+    {
+      "sentence": "___ paura del buio.",
+      "ok": "ho",
+      "bad": "o"
+    },
+    {
+      "sentence": "Quando arrivo a casa, ___ sempre fame.",
+      "ok": "ho",
+      "bad": "o"
+    },
+    {
+      "sentence": "Vuoi il tè ___ il caffè?",
+      "ok": "o",
+      "bad": "ho"
+    },
+    {
+      "sentence": "Studi ___ giochi, decidi tu.",
+      "ok": "o",
+      "bad": "ho"
+    },
+    {
+      "sentence": "Mangi la pasta ___ il riso?",
+      "ok": "o",
+      "bad": "ho"
+    },
+    {
+      "sentence": "Tu ___ un cane bellissimo.",
+      "ok": "hai",
+      "bad": "ai"
+    },
+    {
+      "sentence": "Quanti anni ___?",
+      "ok": "hai",
+      "bad": "ai"
+    },
+    {
+      "sentence": "___ fratelli o sorelle?",
+      "ok": "hai",
+      "bad": "ai"
+    },
+    {
+      "sentence": "___ finito i compiti?",
+      "ok": "hai",
+      "bad": "ai"
+    },
+    {
+      "sentence": "Vado ___ giardini con la nonna.",
+      "ok": "ai",
+      "bad": "hai"
+    },
+    {
+      "sentence": "Regalo i fiori ___ miei amici.",
+      "ok": "ai",
+      "bad": "hai"
+    },
+    {
+      "sentence": "Il babbo ___ comprato il pane.",
+      "ok": "ha",
+      "bad": "a"
+    },
+    {
+      "sentence": "Lei ___ due gatti in casa.",
+      "ok": "ha",
+      "bad": "a"
+    },
+    {
+      "sentence": "Il treno ___ un ritardo di dieci minuti.",
+      "ok": "ha",
+      "bad": "a"
+    },
+    {
+      "sentence": "Vado ___ scuola a piedi.",
+      "ok": "a",
+      "bad": "ha"
+    },
+    {
+      "sentence": "Domani vado ___ trovare la nonna.",
+      "ok": "a",
+      "bad": "ha"
+    },
+    {
+      "sentence": "Do il libro ___ Marco.",
+      "ok": "a",
+      "bad": "ha"
+    },
+    {
+      "sentence": "I bambini ___ finito di giocare.",
+      "ok": "hanno",
+      "bad": "anno"
+    },
+    {
+      "sentence": "Le mie amiche ___ portato i regali.",
+      "ok": "hanno",
+      "bad": "anno"
+    },
+    {
+      "sentence": "___ vinto la partita.",
+      "ok": "hanno",
+      "bad": "anno"
+    },
+    {
+      "sentence": "Quest'___ è stato speciale.",
+      "ok": "anno",
+      "bad": "hanno"
+    },
+    {
+      "sentence": "Tra un ___ finirò la quarta.",
+      "ok": "anno",
+      "bad": "hanno"
+    },
+    {
+      "sentence": "L'___ scorso abbiamo fatto una gita.",
+      "ok": "anno",
+      "bad": "hanno"
+    },
+    {
+      "sentence": "Vuoi la torta ___ il gelato?",
+      "ok": "o",
+      "bad": "ho"
+    },
+    {
+      "sentence": "Corri ___ cammini piano?",
+      "ok": "o",
+      "bad": "ho"
+    },
+    {
+      "sentence": "Prendi il treno ___ l'autobus?",
+      "ok": "o",
+      "bad": "ho"
+    },
+    {
+      "sentence": "Disegni un cane ___ un gatto?",
+      "ok": "o",
+      "bad": "ho"
+    },
+    {
+      "sentence": "Vieni oggi ___ domani?",
+      "ok": "o",
+      "bad": "ho"
+    },
+    {
+      "sentence": "Leggi il libro ___ guardi la TV?",
+      "ok": "o",
+      "bad": "ho"
+    },
+    {
+      "sentence": "Scegli la penna rossa ___ quella blu.",
+      "ok": "o",
+      "bad": "ho"
+    },
+    {
+      "sentence": "Bevi il latte ___ il succo di frutta?",
+      "ok": "o",
+      "bad": "ho"
+    },
+    {
+      "sentence": "Giochi a pallone ___ a nascondino?",
+      "ok": "o",
+      "bad": "ho"
+    },
+    {
+      "sentence": "Vuoi restare ___ vuoi uscire?",
+      "ok": "o",
+      "bad": "ho"
+    },
+    {
+      "sentence": "Porto i biscotti ___ miei compagni.",
+      "ok": "ai",
+      "bad": "hai"
+    },
+    {
+      "sentence": "Scrivo una lettera ___ nonni.",
+      "ok": "ai",
+      "bad": "hai"
+    },
+    {
+      "sentence": "Do la palla ___ bambini piccoli.",
+      "ok": "ai",
+      "bad": "hai"
+    },
+    {
+      "sentence": "Penso spesso ___ giorni delle vacanze.",
+      "ok": "ai",
+      "bad": "hai"
+    },
+    {
+      "sentence": "Racconto la storia ___ miei amici.",
+      "ok": "ai",
+      "bad": "hai"
+    },
+    {
+      "sentence": "Do da mangiare ___ pesci rossi.",
+      "ok": "ai",
+      "bad": "hai"
+    },
+    {
+      "sentence": "Mando un messaggio ___ tuoi genitori.",
+      "ok": "ai",
+      "bad": "hai"
+    },
+    {
+      "sentence": "Partecipo sempre ___ giochi di squadra.",
+      "ok": "ai",
+      "bad": "hai"
+    },
+    {
+      "sentence": "Offro un regalo ___ tuoi cugini.",
+      "ok": "ai",
+      "bad": "hai"
+    },
+    {
+      "sentence": "Chiedo scusa ___ miei compagni di classe.",
+      "ok": "ai",
+      "bad": "hai"
+    },
+    {
+      "sentence": "Vado ___ casa della nonna.",
+      "ok": "a",
+      "bad": "ha"
+    },
+    {
+      "sentence": "Corro ___ perdifiato nel prato.",
+      "ok": "a",
+      "bad": "ha"
+    },
+    {
+      "sentence": "Torno ___ casa alle quattro.",
+      "ok": "a",
+      "bad": "ha"
+    },
+    {
+      "sentence": "Gioco ___ pallone con i miei amici.",
+      "ok": "a",
+      "bad": "ha"
+    },
+    {
+      "sentence": "Vado ___ dormire presto stasera.",
+      "ok": "a",
+      "bad": "ha"
+    },
+    {
+      "sentence": "Mi piace andare ___ cavallo.",
+      "ok": "a",
+      "bad": "ha"
+    },
+    {
+      "sentence": "Resto ___ casa perché piove.",
+      "ok": "a",
+      "bad": "ha"
+    },
+    {
+      "sentence": "Vado ___ letto dopo cena.",
+      "ok": "a",
+      "bad": "ha"
+    },
+    {
+      "sentence": "Andiamo tutti insieme ___ scuola.",
+      "ok": "a",
+      "bad": "ha"
+    },
+    {
+      "sentence": "Do il pallone ___ mio fratello.",
+      "ok": "a",
+      "bad": "ha"
+    },
+    {
+      "sentence": "Ogni ___ festeggiamo il mio compleanno.",
+      "ok": "anno",
+      "bad": "hanno"
+    },
+    {
+      "sentence": "Quest'___ ho imparato tante cose nuove.",
+      "ok": "anno",
+      "bad": "hanno"
+    },
+    {
+      "sentence": "L'___ prossimo andrò in quinta.",
+      "ok": "anno",
+      "bad": "hanno"
+    },
+    {
+      "sentence": "Un ___ ha dodici mesi.",
+      "ok": "anno",
+      "bad": "hanno"
+    },
+    {
+      "sentence": "A che ___ hai iniziato la scuola?",
+      "ok": "anno",
+      "bad": "hanno"
+    },
+    {
+      "sentence": "Il nuovo ___ scolastico inizia a settembre.",
+      "ok": "anno",
+      "bad": "hanno"
+    },
+    {
+      "sentence": "Ho fatto questo disegno un ___ fa.",
+      "ok": "anno",
+      "bad": "hanno"
+    },
+    {
+      "sentence": "Tra un ___ avrò dieci anni.",
+      "ok": "anno",
+      "bad": "hanno"
+    },
+    {
+      "sentence": "Quest'___ la gita sarà al mare.",
+      "ok": "anno",
+      "bad": "hanno"
+    },
+    {
+      "sentence": "Ogni ___ piantiamo un albero a scuola.",
+      "ok": "anno",
+      "bad": "hanno"
     }
   ],
   "sillabe": [
@@ -1165,6 +1548,138 @@
     {
       "ok": "fran-co-bol-lo",
       "bad": "fran-cob-ol-lo"
+    },
+    {
+      "ok": "ta-vo-lo",
+      "bad": "tav-o-lo"
+    },
+    {
+      "ok": "se-dia",
+      "bad": "sed-ia"
+    },
+    {
+      "ok": "ma-ti-ta",
+      "bad": "mat-ita"
+    },
+    {
+      "ok": "gom-ma",
+      "bad": "go-mma"
+    },
+    {
+      "ok": "ri-ghel-lo",
+      "bad": "righ-el-lo"
+    },
+    {
+      "ok": "a-stuc-cio",
+      "bad": "as-tucc-io"
+    },
+    {
+      "ok": "zuc-che-ro",
+      "bad": "zu-cche-ro"
+    },
+    {
+      "ok": "bot-ti-glia",
+      "bad": "bott-i-glia"
+    },
+    {
+      "ok": "cioc-co-la-to",
+      "bad": "cio-ccola-to"
+    },
+    {
+      "ok": "spa-ghet-ti",
+      "bad": "spag-he-tti"
+    },
+    {
+      "ok": "pa-ni-no",
+      "bad": "pan-i-no"
+    },
+    {
+      "ok": "ge-la-to",
+      "bad": "gel-a-to"
+    },
+    {
+      "ok": "li-mo-ne",
+      "bad": "lim-o-ne"
+    },
+    {
+      "ok": "a-ran-cia",
+      "bad": "ar-an-cia"
+    },
+    {
+      "ok": "a-na-nas",
+      "bad": "an-a-nas"
+    },
+    {
+      "ok": "va-li-gia",
+      "bad": "val-i-gia"
+    },
+    {
+      "ok": "co-ni-glio",
+      "bad": "con-i-glio"
+    },
+    {
+      "ok": "pas-seg-gia-ta",
+      "bad": "pa-sseggia-ta"
+    },
+    {
+      "ok": "om-brel-lo-ne",
+      "bad": "ombr-el-lo-ne"
+    },
+    {
+      "ok": "pas-se-ro",
+      "bad": "pa-sse-ro"
+    },
+    {
+      "ok": "tar-ta-ru-ga",
+      "bad": "tart-a-ru-ga"
+    },
+    {
+      "ok": "coc-ci-nel-la",
+      "bad": "co-ccine-lla"
+    },
+    {
+      "ok": "gi-ra-so-le",
+      "bad": "gir-a-so-le"
+    },
+    {
+      "ok": "for-mi-ca",
+      "bad": "form-i-ca"
+    },
+    {
+      "ok": "squa-lo",
+      "bad": "squ-alo"
+    },
+    {
+      "ok": "pin-gui-no",
+      "bad": "ping-ui-no"
+    },
+    {
+      "ok": "fra-go-la",
+      "bad": "frag-o-la"
+    },
+    {
+      "ok": "bi-scot-to",
+      "bad": "bis-cot-to"
+    },
+    {
+      "ok": "ca-val-lo",
+      "bad": "cav-al-lo"
+    },
+    {
+      "ok": "cap-pel-lo",
+      "bad": "capp-el-lo"
+    },
+    {
+      "ok": "ap-pun-ta-men-to",
+      "bad": "appu-nta-men-to"
+    },
+    {
+      "ok": "im-ma-gi-na-zio-ne",
+      "bad": "imma-gina-zio-ne"
+    },
+    {
+      "ok": "fer-ro-vi-a",
+      "bad": "fer-ro-via"
     }
   ],
   "accento": [
@@ -1317,6 +1832,81 @@
       "sentence": "Penso spesso a ___.",
       "ok": "te",
       "bad": "tè"
+    },
+    {
+      "sentence": "Il cielo ___ azzurro oggi.",
+      "ok": "è",
+      "bad": "e"
+    },
+    {
+      "sentence": "Il mio cane ___ molto fedele.",
+      "ok": "è",
+      "bad": "e"
+    },
+    {
+      "sentence": "Vado al mare ___ nuoto tutto il giorno.",
+      "ok": "e",
+      "bad": "è"
+    },
+    {
+      "sentence": "La maestra ci ___ sempre buoni consigli.",
+      "ok": "dà",
+      "bad": "da"
+    },
+    {
+      "sentence": "Arrivo ___ scuola in bicicletta.",
+      "ok": "da",
+      "bad": "dà"
+    },
+    {
+      "sentence": "Questa lettera viene ___ Milano.",
+      "ok": "da",
+      "bad": "dà"
+    },
+    {
+      "sentence": "Vieni qui, non stare ___.",
+      "ok": "là",
+      "bad": "la"
+    },
+    {
+      "sentence": "Metti ___ sedia vicino al tavolo.",
+      "ok": "la",
+      "bad": "là"
+    },
+    {
+      "sentence": "___ maestra ci ha dato i compiti.",
+      "ok": "la",
+      "bad": "là"
+    },
+    {
+      "sentence": "Hai fame? ___, un po'.",
+      "ok": "sì",
+      "bad": "si"
+    },
+    {
+      "sentence": "La finestra ___ apre da sola.",
+      "ok": "si",
+      "bad": "sì"
+    },
+    {
+      "sentence": "I ragazzi ___ preparano per la gara.",
+      "ok": "si",
+      "bad": "sì"
+    },
+    {
+      "sentence": "Preferisco il ___ freddo d'estate.",
+      "ok": "tè",
+      "bad": "te"
+    },
+    {
+      "sentence": "Ho pensato tanto a ___.",
+      "ok": "te",
+      "bad": "tè"
+    },
+    {
+      "sentence": "Questo disegno è stato fatto da ___.",
+      "ok": "te",
+      "bad": "tè"
     }
   ],
   "apostrofo": [
@@ -1367,6 +1957,66 @@
     {
       "ok": "quest'oca",
       "bad": "questa oca"
+    },
+    {
+      "ok": "l'albero",
+      "bad": "lo albero"
+    },
+    {
+      "ok": "l'ombrello",
+      "bad": "lo ombrello"
+    },
+    {
+      "ok": "un'infanzia",
+      "bad": "una infanzia"
+    },
+    {
+      "ok": "un'idea",
+      "bad": "una idea"
+    },
+    {
+      "ok": "un elefante",
+      "bad": "un'elefante"
+    },
+    {
+      "ok": "quell'uomo",
+      "bad": "quello uomo"
+    },
+    {
+      "ok": "quest'estate",
+      "bad": "questo estate"
+    },
+    {
+      "ok": "l'acqua",
+      "bad": "la acqua"
+    },
+    {
+      "ok": "l'uva",
+      "bad": "la uva"
+    },
+    {
+      "ok": "un'ape",
+      "bad": "una ape"
+    },
+    {
+      "ok": "un aereo",
+      "bad": "un'aereo"
+    },
+    {
+      "ok": "l'occhio",
+      "bad": "lo occhio"
+    },
+    {
+      "ok": "quell'orso",
+      "bad": "quello orso"
+    },
+    {
+      "ok": "un'auto",
+      "bad": "una auto"
+    },
+    {
+      "ok": "l'anno",
+      "bad": "lo anno"
     }
   ],
   "punteggiatura": [
@@ -1429,6 +2079,71 @@
       "sentence": "Vado a scuola ogni mattina___",
       "ok": ".",
       "bad": "?"
+    },
+    {
+      "sentence": "Che bel disegno___",
+      "ok": "!",
+      "bad": "."
+    },
+    {
+      "sentence": "Cosa vuoi per merenda___",
+      "ok": "?",
+      "bad": "."
+    },
+    {
+      "sentence": "Piove sempre più forte___",
+      "ok": ".",
+      "bad": "!"
+    },
+    {
+      "sentence": "Chi ha vinto la gara___",
+      "ok": "?",
+      "bad": "!"
+    },
+    {
+      "sentence": "Scappa, arriva il temporale___",
+      "ok": "!",
+      "bad": "."
+    },
+    {
+      "sentence": "La mia maestra si chiama Sara___",
+      "ok": ".",
+      "bad": "?"
+    },
+    {
+      "sentence": "Quanti compiti abbiamo oggi___",
+      "ok": "?",
+      "bad": "!"
+    },
+    {
+      "sentence": "Bravo, ce l'hai fatta___",
+      "ok": "!",
+      "bad": "."
+    },
+    {
+      "sentence": "Il cane abbaia forte___",
+      "ok": ".",
+      "bad": "?"
+    },
+    {
+      "sentence": "Dove hai messo lo zaino___",
+      "ok": "?",
+      "bad": "."
+    },
+    {
+      "sentence": "Che sorpresa vederti qui___",
+      "ok": "!",
+      "bad": "."
+    },
+    {
+      "sentence": "Domani andiamo in gita___",
+      "ok": ".",
+      "bad": "!"
+    },
+    {
+      "sentence": "Ti piace il gelato al cioccolato___",
+      "ok": "?",
+      "bad": "!"
     }
   ]
 }

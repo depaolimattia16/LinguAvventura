@@ -1,7 +1,8 @@
 /* ============ PAROLA MISTERIOSA ============ */
 function startParolaMisteriosa(){
   state.gameMode='misteriosa';
-  state.game={qIndex:0,total:10,score:0,queue:makeUniqueQueue(SENTENCES,10)};
+  const n = settings.questionCount;
+  state.game={qIndex:0,total:n,score:0,queue:makeUniqueQueue(SENTENCES,n)};
   nextParolaMisteriosa();
   state.view='game'; render();
 }

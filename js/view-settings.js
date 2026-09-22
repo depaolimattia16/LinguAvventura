@@ -52,6 +52,13 @@ function viewSettings(){
   <h2>Argomenti</h2>
   <p class="hint">Scegli su cosa vuoi allenare la classe nelle modalità di Grammatica. (L'Ortografia ha sempre tutte le regole disponibili: non serve attivarle qui.)</p>
   <div class="blackboard">
+    <h3>Quante domande per round</h3>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      ${[10,20,30,40,50].map(n=>`<button class="btn ${settings.questionCount===n?'btn-coral':'btn-ghost'}" onclick="setQuestionCount(${n})">${n}</button>`).join('')}
+    </div>
+    <div class="hint" style="margin-top:8px">Vale per tutti i giochi a round (Che cos'è, Analisi, Ortografia, Lessico, ecc.). Le domande non si ripetono mai finché ci sono parole diverse disponibili; con argomenti che ne hanno poche (es. Sinonimi e contrari, Nomi composti, Apostrofo, Punteggiatura) oltre un certo numero qualche ripetizione può ricapitare.</div>
+  </div>
+  <div class="blackboard">
     <h3>Parti del discorso</h3>
     ${tipiRows}
     <div class="hint">Servono almeno due parti del discorso attive per giocare a "Che cos'è?", "Sfida lampo" e "Il mostro".</div>
@@ -90,6 +97,11 @@ function viewSettings(){
     <div class="hint">Solo i verbi qui attivi compaiono nell'analisi del verbo. Coniugati solo all'indicativo (presente, imperfetto, futuro).</div>
   </div>
   <p class="hint">Le caratteristiche qui sopra si usano nelle modalità "Analisi grammaticale", "Analizza tutto" e "Trova l'intruso" (nome).</p>`;
+}
+function setQuestionCount(n){
+  settings.questionCount = n;
+  saveSettings();
+  render();
 }
 function toggleTipo(k){
   const active = Object.keys(settings.tipi).filter(x=>settings.tipi[x]);

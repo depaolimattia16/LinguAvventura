@@ -40,7 +40,7 @@ function generateIntruso(){
 }
 function startIntruso(){
   state.gameMode='intruso';
-  state.game={qIndex:0,total:10,score:0,usedIntruders:[]};
+  state.game={qIndex:0,total:settings.questionCount,score:0,usedIntruders:[]};
   const r = generateIntrusoUnique();
   if(!r){ state.game.error=true; state.view='game'; render(); return; }
   state.game.current = {...r, answered:false};

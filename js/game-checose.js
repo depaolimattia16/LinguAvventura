@@ -168,7 +168,8 @@ function placeInOrdinaBin(tipo){
 function startCheCosE(){
   state.gameMode='checose';
   const pool = wordsByTipi(activeTipiList());
-  state.game={qIndex:0,total:10,score:0,queue:makeUniqueQueue(pool,10)};
+  const n = settings.questionCount;
+  state.game={qIndex:0,total:n,score:0,queue:makeUniqueQueue(pool,n)};
   nextCheCosEQuestion();
   state.view='game'; render();
 }

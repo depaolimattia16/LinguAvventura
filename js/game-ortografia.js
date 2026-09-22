@@ -66,7 +66,7 @@ function startOrtografiaMista(){
   state.orthoMistaTypes.forEach(topicKey=>{
     ORTHO_TOPICS[topicKey].bank.forEach(item=> pool.push({topicKey, item}));
   });
-  state.game={qIndex:0,total:10,score:0,queue:makeUniqueQueue(pool,10)};
+  state.game={qIndex:0,total:settings.questionCount,score:0,queue:makeUniqueQueue(pool,settings.questionCount)};
   nextOrtografiaMistaQuestion();
   state.view='game'; render();
 }
@@ -120,7 +120,7 @@ function nextOrtografiaMistaBtn(){
 function startOrtografiaTopic(topicKey){
   state.gameMode='ortografia';
   const bank = ORTHO_TOPICS[topicKey].bank;
-  state.game={topic:topicKey,qIndex:0,total:10,score:0,queue:makeUniqueQueue(bank,10)};
+  state.game={topic:topicKey,qIndex:0,total:settings.questionCount,score:0,queue:makeUniqueQueue(bank,settings.questionCount)};
   nextOrtografiaQuestion();
   state.view='game'; render();
 }

@@ -1,6 +1,7 @@
 /* ============ STORAGE ============ */
 function loadSettings(){
   const defaults = {
+    questionCount:10,
     tipi:{nome:true, verbo:true, aggettivo:true, articolo:true, pronome:true, preposizione:true, avverbio:true},
     nomiSkills:{tipo:true, categoria:true, forma:true, genere:true, numero:true},
     aggSkills:{sottotipo:true, genere:true, numero:true},
@@ -16,6 +17,7 @@ function loadSettings(){
     if(raw){
       const p = JSON.parse(raw);
       return {
+        questionCount:p.questionCount || defaults.questionCount,
         tipi:{...defaults.tipi, ...(p.tipi||{})},
         nomiSkills:{...defaults.nomiSkills, ...(p.nomiSkills||{})},
         aggSkills:{...defaults.aggSkills, ...(p.aggSkills||{})},

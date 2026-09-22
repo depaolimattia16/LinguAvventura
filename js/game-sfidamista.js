@@ -50,7 +50,7 @@ const MIXED_BUILDERS = {
 };
 function startSfidaMista(){
   state.gameMode='sfidamista';
-  state.game = {qIndex:0, total:10, score:0};
+  state.game = {qIndex:0, total:settings.questionCount, score:0};
   nextSfidaMistaQuestion();
   state.view='game'; render();
 }

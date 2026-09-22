@@ -14,9 +14,11 @@ function viewLessicoChoose(){
 /* --- Sinonimi e contrari --- */
 function startSinContr(){
   state.gameMode='sincontr';
-  const sinQueue = makeUniqueQueue(SINONIMI_CONTRARI.sinonimi,5).map(pair=>({pair,kind:'sinonimi'}));
-  const contrQueue = makeUniqueQueue(SINONIMI_CONTRARI.contrari,5).map(pair=>({pair,kind:'contrari'}));
-  state.game = {qIndex:0, total:10, score:0, queue:shuffle([...sinQueue, ...contrQueue])};
+  const n = settings.questionCount;
+  const half1 = Math.ceil(n/2), half2 = Math.floor(n/2);
+  const sinQueue = makeUniqueQueue(SINONIMI_CONTRARI.sinonimi,half1).map(pair=>({pair,kind:'sinonimi'}));
+  const contrQueue = makeUniqueQueue(SINONIMI_CONTRARI.contrari,half2).map(pair=>({pair,kind:'contrari'}));
+  state.game = {qIndex:0, total:n, score:0, queue:shuffle([...sinQueue, ...contrQueue])};
   nextSinContr();
   state.view='game'; render();
 }
@@ -60,7 +62,7 @@ function nextSinContrBtn(){
 /* --- Nomi alterati --- */
 function startAlterati(){
   state.gameMode='alterati';
-  state.game = {qIndex:0, total:10, score:0, queue:makeUniqueQueue(NOMI_ALTERATI,10)};
+  state.game = {qIndex:0, total:settings.questionCount, score:0, queue:makeUniqueQueue(NOMI_ALTERATI,settings.questionCount)};
   nextAlterati();
   state.view='game'; render();
 }
@@ -105,9 +107,11 @@ function nextAlteratiBtn(){
 /* --- Nomi composti --- */
 function startComposti(){
   state.gameMode='composti';
-  const compQueue = makeUniqueQueue(NOMI_COMPOSTI.composti,5).map(item=>({item, tipo:'composto'}));
-  const sempQueue = makeUniqueQueue(NOMI_COMPOSTI.semplici,5).map(w=>({item:{w}, tipo:'semplice'}));
-  state.game = {qIndex:0, total:10, score:0, queue:shuffle([...compQueue, ...sempQueue])};
+  const n = settings.questionCount;
+  const half1 = Math.ceil(n/2), half2 = Math.floor(n/2);
+  const compQueue = makeUniqueQueue(NOMI_COMPOSTI.composti,half1).map(item=>({item, tipo:'composto'}));
+  const sempQueue = makeUniqueQueue(NOMI_COMPOSTI.semplici,half2).map(w=>({item:{w}, tipo:'semplice'}));
+  state.game = {qIndex:0, total:n, score:0, queue:shuffle([...compQueue, ...sempQueue])};
   nextComposti();
   state.view='game'; render();
 }
