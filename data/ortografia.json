@@ -1919,16 +1919,8 @@
       "bad": "la aula"
     },
     {
-      "ok": "un'amica",
-      "bad": "una amica"
-    },
-    {
       "ok": "un amico",
       "bad": "un'amico"
-    },
-    {
-      "ok": "quest'anno",
-      "bad": "questo anno"
     },
     {
       "ok": "quell'albero",
@@ -1943,20 +1935,12 @@
       "bad": "lo orologio"
     },
     {
-      "ok": "un'ora",
-      "bad": "una ora"
-    },
-    {
       "ok": "un orologio",
       "bad": "un'orologio"
     },
     {
       "ok": "l'erba",
       "bad": "la erba"
-    },
-    {
-      "ok": "quest'oca",
-      "bad": "questa oca"
     },
     {
       "ok": "l'albero",
@@ -1967,14 +1951,6 @@
       "bad": "lo ombrello"
     },
     {
-      "ok": "un'infanzia",
-      "bad": "una infanzia"
-    },
-    {
-      "ok": "un'idea",
-      "bad": "una idea"
-    },
-    {
       "ok": "un elefante",
       "bad": "un'elefante"
     },
@@ -1983,20 +1959,12 @@
       "bad": "quello uomo"
     },
     {
-      "ok": "quest'estate",
-      "bad": "questo estate"
-    },
-    {
       "ok": "l'acqua",
       "bad": "la acqua"
     },
     {
       "ok": "l'uva",
       "bad": "la uva"
-    },
-    {
-      "ok": "un'ape",
-      "bad": "una ape"
     },
     {
       "ok": "un aereo",
@@ -2011,12 +1979,56 @@
       "bad": "quello orso"
     },
     {
-      "ok": "un'auto",
-      "bad": "una auto"
-    },
-    {
       "ok": "l'anno",
       "bad": "lo anno"
+    },
+    {
+      "ok": "l'ospedale",
+      "bad": "lo ospedale"
+    },
+    {
+      "ok": "l'unicorno",
+      "bad": "lo unicorno"
+    },
+    {
+      "ok": "l'elicottero",
+      "bad": "lo elicottero"
+    },
+    {
+      "ok": "l'edicola",
+      "bad": "la edicola"
+    },
+    {
+      "ok": "l'entrata",
+      "bad": "la entrata"
+    },
+    {
+      "ok": "l'automobile",
+      "bad": "la automobile"
+    },
+    {
+      "ok": "quell'aquilone",
+      "bad": "quello aquilone"
+    },
+    {
+      "ok": "quell'elefante",
+      "bad": "quello elefante"
+    },
+    {
+      "ok": "quell'orologio",
+      "bad": "quello orologio"
+    },
+    {
+      "ok": "un ospedale",
+      "bad": "un'ospedale"
+    },
+    {
+      "ok": "un orso",
+      "bad": "un'orso"
+    },
+    {
+      "ok": "un ombrello",
+      "bad": "un'ombrello"
     }
   ],
   "punteggiatura": [
