@@ -16,6 +16,7 @@ function viewClassroomChoose(){
 /* --- Contenuto condiviso da più modalità: genera e disegna una domanda a partire da un "tipo" scelto --- */
 const CONTENT_TYPES = {
   checose:{label:"Che cos'è?", emoji:'❓'},
+  analisi:{label:'Analisi grammaticale', emoji:'🔍'},
   primitivi:{label:'Primitivi e derivati', emoji:'🌱'},
   cege:{label:'Ortografia: Ce/Cie - Ge/Gie', emoji:'🔤'},
   scesci:{label:'Ortografia: Sce - Sci', emoji:'🔤'},
@@ -45,6 +46,26 @@ function generateContentQuestion(type){
     const item = Math.random() < 0.5 ? pickRandom(primitivi) : pickRandom(derivati);
     const options = ['primitivo','derivato']; // ordine fisso, sempre le stesse due etichette
     current = {kind:'grammar', display:item.w, correct:item.tipo, options, labels:PRIMDERIV_LABELS};
+  } else if(type==='analisi'){
+    // stessa logica dell'Analisi grammaticale vera, ma senza "che cos'è questa parola?"
+    // (quella c'è già come content type a sé, "checose": qui evitiamo di chiederla due volte)
+    const types = ['nome','aggettivo','articolo','verbo','pronome','preposizione','avverbio'].filter(t=>{
+      const steps = activeStepsFor(t).filter(s=>s!=='tipo_parola');
+      return steps.length>0 && poolFor(t).length>0;
+    });
+    if(types.length===0){
+      // nessuna caratteristica attiva da nessuna parte: torno a "che cos'è" come ultima spiaggia
+      const tipiList = activeTipiList();
+      const pool = wordsByTipi(tipiList);
+      const word = pickRandom(pool);
+      current = {kind:'grammar', display:word.w, correct:word.t, options:tipiList.slice(), labels:TIPI_LABELS};
+    } else {
+      const t = pickRandom(types);
+      const stepKey = pickRandom(activeStepsFor(t).filter(s=>s!=='tipo_parola'));
+      const stepDef = ANALYSIS_CONFIG[t].stepDef[stepKey];
+      const word = pickRandom(poolFor(t));
+      current = {kind:'grammar', display:word.w, correct:word[stepDef.field], options:stepDef.opts.slice(), labels:stepDef.labels};
+    }
   } else if(type==='sincontr'){
     const kind = Math.random()<0.5 ? 'sinonimi' : 'contrari';
     const pair = pickRandom(SINONIMI_CONTRARI[kind]);
