@@ -10761,5 +10761,89 @@
     "w": "niente",
     "t": "avverbio",
     "tipo": "quantita"
+  },
+  {
+    "w": "del pane",
+    "t": "articolo",
+    "tipo": "partitivo",
+    "gen": "m",
+    "num": "s"
+  },
+  {
+    "w": "del formaggio",
+    "t": "articolo",
+    "tipo": "partitivo",
+    "gen": "m",
+    "num": "s"
+  },
+  {
+    "w": "dello zucchero",
+    "t": "articolo",
+    "tipo": "partitivo",
+    "gen": "m",
+    "num": "s"
+  },
+  {
+    "w": "dello yogurt",
+    "t": "articolo",
+    "tipo": "partitivo",
+    "gen": "m",
+    "num": "s"
+  },
+  {
+    "w": "della carta",
+    "t": "articolo",
+    "tipo": "partitivo",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "della frutta",
+    "t": "articolo",
+    "tipo": "partitivo",
+    "gen": "f",
+    "num": "s"
+  },
+  {
+    "w": "dei libri",
+    "t": "articolo",
+    "tipo": "partitivo",
+    "gen": "m",
+    "num": "p"
+  },
+  {
+    "w": "dei biscotti",
+    "t": "articolo",
+    "tipo": "partitivo",
+    "gen": "m",
+    "num": "p"
+  },
+  {
+    "w": "degli amici",
+    "t": "articolo",
+    "tipo": "partitivo",
+    "gen": "m",
+    "num": "p"
+  },
+  {
+    "w": "degli gnocchi",
+    "t": "articolo",
+    "tipo": "partitivo",
+    "gen": "m",
+    "num": "p"
+  },
+  {
+    "w": "delle mele",
+    "t": "articolo",
+    "tipo": "partitivo",
+    "gen": "f",
+    "num": "p"
+  },
+  {
+    "w": "delle caramelle",
+    "t": "articolo",
+    "tipo": "partitivo",
+    "gen": "f",
+    "num": "p"
   }
 ]

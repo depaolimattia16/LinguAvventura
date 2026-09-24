@@ -34,7 +34,7 @@ const ANALYSIS_CONFIG = {
     order:['tipo','genere','numero'],
     stepDef:{
       tipo_parola:{q:'Che cos\'è questa parola?', opts:TIPO_PAROLA_OPTS, labels:TIPI_LABELS, field:'t'},
-      tipo:{q:'Determinativo o indeterminativo?', opts:['determinativo','indeterminativo'], labels:ARTTIPO_LABELS, field:'tipo'},
+      tipo:{q:'Determinativo, indeterminativo o partitivo?', opts:['determinativo','indeterminativo','partitivo'], labels:ARTTIPO_LABELS, field:'tipo'},
       genere:{q:'Genere?', opts:['m','f'], labels:GEN_LABELS, field:'gen'},
       numero:{q:'Numero?', opts:['s','p'], labels:NUM_LABELS, field:'num'},
     }
@@ -89,6 +89,15 @@ function activeStepsFor(type){
   const sk = settings[cfg.skillsKey];
   return ['tipo_parola', ...cfg.order.filter(s=>sk[s])];
 }
+/* Come sopra, ma senza la domanda "che cos'è questa parola?": ha senso solo in "Casuale",
+   non quando si è già scelto direttamente "Nome", "Verbo", ecc. — lì si sa già cos'è.
+   Se non c'è nessun'altra caratteristica attiva, la teniamo come ultima spiaggia. */
+function activeStepsForForced(type){
+  const cfg = ANALYSIS_CONFIG[type];
+  const sk = settings[cfg.skillsKey];
+  const rest = cfg.order.filter(s=>sk[s]);
+  return rest.length>0 ? rest : ['tipo_parola'];
+}
 function poolFor(type){
   return WORDS.filter(ANALYSIS_CONFIG[type].poolFilter);
 }
@@ -96,9 +105,9 @@ function goAnalizzaChoose(){ state.view='analizzaChoose'; render(); }
 function viewAnalizzaChoose(){
   const types = sortedKeysByLabel(['nome','aggettivo','articolo','verbo','pronome','preposizione','avverbio'], Object.fromEntries(Object.entries(ANALYSIS_CONFIG).map(([k,v])=>[k,v.label])));
   const cards = types.map(t=>{
-    const n = activeStepsFor(t).length;
+    const n = activeStepsForForced(t).length;
     const hasWords = poolFor(t).length>0;
-    const status = !hasWords ? 'Nessuna parola attiva' : (n>0?n+' caratteristiche attive':'Nessuna caratteristica attiva');
+    const status = !hasWords ? 'Nessuna parola attiva' : n+' caratteristiche attive';
     return `<button class="mode-card" onclick="startAnalizza('${t}')"><span class="emoji">${ANALYSIS_CONFIG[t].icon}</span><div class="txt"><strong>${ANALYSIS_CONFIG[t].label}</strong><span>${status}</span></div></button>`;
   }).join('');
   return `
@@ -114,11 +123,11 @@ function startAnalizza(forcedType){
   state.gameMode='analizza';
   let type = forcedType;
   if(!type){
-    const candidates = ['nome','aggettivo','articolo','verbo','pronome','preposizione','avverbio'].filter(t=>activeStepsFor(t).length>0 && poolFor(t).length>0);
+    const candidates = ['nome','aggettivo','articolo','verbo','pronome','preposizione','avverbio'].filter(t=>poolFor(t).length>0);
     if(candidates.length===0){ state.game={error:true}; state.view='game'; render(); return; }
     type = pickRandom(candidates);
   }
-  const steps = activeStepsFor(type);
+  const steps = forcedType ? activeStepsForForced(type) : activeStepsFor(type);
   const pool = poolFor(type);
   if(steps.length===0 || pool.length===0){ state.game={error:true}; state.view='game'; render(); return; }
   const word = pickRandom(pool);

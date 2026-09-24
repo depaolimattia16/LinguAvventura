@@ -3,6 +3,25 @@
    pronunciato): la escludiamo dagli argomenti disponibili qui. */
 const DETTATO_TOPICS = Object.keys(ORTHO_TOPICS).filter(k=>k!=='sillabe');
 
+/* Frasi-contenitore per gli argomenti che non hanno già una frase pronta (tutti tranne
+   Accento, Lettera H, Punteggiatura): restano corrette qualsiasi parola ci si metta dentro,
+   perché la presentano come "la parola da scrivere" invece di usarla dentro la frase. */
+const DETTATO_CARRIER_TEMPLATES = [
+  'Ho scritto la parola ___.',
+  'Ripeti ad alta voce: ___.',
+  'Nel quaderno c\'è scritto ___.',
+  'La parola di oggi è ___.',
+  'Prova a scrivere: ___.',
+  'Attenzione a come si scrive ___.',
+  'Ricorda bene questa parola: ___.',
+  'Adesso scrivi ___.',
+  'Sottolinea la parola ___.',
+  'Trovi scritto qui ___.',
+];
+/* Un po' di connettivi, messi qua e là tra una frase e l'altra, per dare un minimo di filo
+   invece di un elenco freddo — niente vera intelligenza artificiale, solo variazione. */
+const DETTATO_CONNECTORS = ['Poi','Dopo un po\'','Più tardi','Intanto','A un certo punto','Alla fine','Quella mattina','Subito dopo'];
+
 function goDettatoChoose(){
   if(!state.dettatoTopics) state.dettatoTopics = ['cege'];
   if(!state.dettatoFormat) state.dettatoFormat = 'lista';
@@ -25,7 +44,6 @@ function viewDettatoChoose(){
     const checked = selected.includes(k);
     return `<label class="check-row"><input type="checkbox" ${checked?'checked':''} onchange="toggleDettatoTopic('${k}')"> ${ORTHO_TOPICS[k].label}</label>`;
   }).join('');
-  const hasSentenceTopics = selected.some(k=>ORTHO_TOPICS[k].mode==='sentence');
   const unitLabel = state.dettatoFormat==='lista' ? 'parole' : 'frasi';
   return `
   <h2>Crea dettato</h2>
@@ -38,7 +56,6 @@ function viewDettatoChoose(){
     <h3>Formato</h3>
     <label class="check-row"><input type="radio" name="dettformat" ${state.dettatoFormat==='lista'?'checked':''} onchange="setDettatoFormat('lista')"> Lista di parole</label>
     <label class="check-row"><input type="radio" name="dettformat" ${state.dettatoFormat==='testo'?'checked':''} onchange="setDettatoFormat('testo')"> Testo (frasi da dettare)</label>
-    ${state.dettatoFormat==='testo' && !hasSentenceTopics ? `<p class="hint">⚠️ Il testo è disponibile solo per Accento, La lettera H e Punteggiatura: seleziona almeno uno di questi tre, oppure passa a "Lista di parole".</p>` : ''}
   </div>
   <div class="settings-block">
     <h3>Quante ${unitLabel}</h3>
@@ -49,19 +66,30 @@ function viewDettatoChoose(){
   <button class="btn btn-coral" style="margin-top:16px;width:100%" onclick="generateDettato()">Crea dettato</button>`;
 }
 
+function buildDettatoSentence(topicKey, item){
+  if(ORTHO_TOPICS[topicKey].mode==='sentence') return item.sentence.replace('___', item.ok);
+  return pickRandom(DETTATO_CARRIER_TEMPLATES).replace('___', item.ok);
+}
+function addDettatoConnectors(sentences){
+  return sentences.map((s,i)=>{
+    if(i===0 || Math.random()<0.55) return s; // non su tutte, altrimenti diventa un tic
+    const lower = s.charAt(0).toLowerCase() + s.slice(1);
+    return `${pickRandom(DETTATO_CONNECTORS)}, ${lower}`;
+  });
+}
+
 function generateDettato(){
   const topics = state.dettatoTopics;
   if(topics.length===0){ showToast('Scegli almeno un argomento'); return; }
   if(state.dettatoFormat==='testo'){
-    const sentenceTopics = topics.filter(k=>ORTHO_TOPICS[k].mode==='sentence');
-    if(sentenceTopics.length===0){ showToast('Per il testo serve almeno un argomento tra Accento, Lettera H o Punteggiatura'); return; }
     const pool = [];
-    sentenceTopics.forEach(k=> ORTHO_TOPICS[k].bank.forEach(item=> pool.push({topicKey:k,item})));
+    topics.forEach(k=> ORTHO_TOPICS[k].bank.forEach(item=> pool.push({topicKey:k,item})));
     const picked = makeUniqueQueue(pool, state.dettatoCount);
+    const rawSentences = picked.map(p=>buildDettatoSentence(p.topicKey, p.item));
     state.dettato = {
       format:'testo',
-      topics: sentenceTopics.map(k=>ORTHO_TOPICS[k].label),
-      sentences: picked.map(p=>p.item.sentence.replace('___', p.item.ok)),
+      topics: topics.map(k=>ORTHO_TOPICS[k].label),
+      sentences: addDettatoConnectors(rawSentences),
       answers: picked.map(p=>p.item.ok),
     };
   } else {

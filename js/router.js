@@ -103,6 +103,7 @@ const CHECOSE_GAME_MODES = ['checose','lampo','mostro','misteriosa','ordina','ro
 const ANALIZZA_GAME_MODES = ['analizza','analizzatutto'];
 const PRIMITIVI_GAME_MODES = ['primitivi','memoria'];
 const LESSICO_GAME_MODES = ['sincontr','alterati','composti'];
+const STANDALONE_GRAMMAR_MODES = ['intruso','sfidamista']; // niente scelta intermedia: si torna alla schermata Grammatica
 function goModeSelectOrHome(){
   if(state.view==='classroom'){ goClassroomChoose(); return; }
   if(state.view==='classroomSplit'){ goClassroomSplitChoose(); return; }
@@ -127,5 +128,6 @@ function goModeSelectOrHome(){
   if(state.view==='game' && ANALIZZA_GAME_MODES.includes(state.gameMode)){ goAnalizzaChoose(); return; }
   if(state.view==='game' && PRIMITIVI_GAME_MODES.includes(state.gameMode)){ goPrimitiviChoose(); return; }
   if(state.view==='game' && LESSICO_GAME_MODES.includes(state.gameMode)){ goLessicoChoose(); return; }
+  if(state.view==='game' && STANDALONE_GRAMMAR_MODES.includes(state.gameMode)){ goModeSelect(); return; }
   goModeSelect();
 }
